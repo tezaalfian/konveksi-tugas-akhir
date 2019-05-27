@@ -2,44 +2,38 @@
         <nav class="navbar navbar-expand-sm navbar-default">
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active">
-                        <a href="index.html"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
+                    <li class="">
+                        <a href="<?= base_url('admin/dashboard'); ?>"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
                     </li>
                     <li class="menu-title">Transaksi</li><!-- /.menu-title -->
-
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Icons</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="font-fontawesome.html">Font Awesome</a></li>
-                            <li><i class="menu-icon ti-themify-logo"></i><a href="font-themify.html">Themefy Icons</a></li>
-                        </ul>
+                    <li>
+                        <a href="#"> <i class="menu-icon fa fa-shopping-cart"></i>Pemesanan</a>
                     </li>
                     <li>
-                        <a href="widgets.html"> <i class="menu-icon ti-email"></i>Widgets </a>
+                        <a href="#"> <i class="menu-icon fa fa-shipping-fast"></i>Pengiriman</a>
                     </li>
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bar-chart"></i>Charts</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-line-chart"></i><a href="charts-chartjs.html">Chart JS</a></li>
-                            <li><i class="menu-icon fa fa-area-chart"></i><a href="charts-flot.html">Flot Chart</a></li>
-                            <li><i class="menu-icon fa fa-pie-chart"></i><a href="charts-peity.html">Peity Chart</a></li>
-                        </ul>
+                    <li>
+                        <a href="#"> <i class="menu-icon fa fa-coins"></i>Pembayaran</a>
                     </li>
 
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-area-chart"></i>Maps</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-map-o"></i><a href="maps-gmap.html">Google Maps</a></li>
-                            <li><i class="menu-icon fa fa-street-view"></i><a href="maps-vector.html">Vector Maps</a></li>
-                        </ul>
+                    <li class="menu-title">Master Data</li><!-- /.menu-title -->
+                    <li class="">
+                        <a href="<?= base_url('admin/produk'); ?>"> <i class="menu-icon fa fa-shopping-bag"></i>Produk</a>
                     </li>
-                    <li class="menu-title">Extras</li><!-- /.menu-title -->
+                    <li>
+                        <a href="widgets.html"> <i class="menu-icon fa fa-user"></i>Pelanggan</a>
+                    </li>
+                    <li>
+                        <a href="widgets.html"> <i class="menu-icon fa fa-user-tie"></i>Pegawai</a>
+                    </li>
+
+                    <li class="menu-title">Admin</li>
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-glass"></i>Pages</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user-cog"></i>Admin</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-sign-in"></i><a href="page-login.html">Login</a></li>
-                            <li><i class="menu-icon fa fa-sign-in"></i><a href="page-register.html">Register</a></li>
-                            <li><i class="menu-icon fa fa-paper-plane"></i><a href="pages-forget.html">Forget Pass</a></li>
+                            <li><i class="menu-icon fa fa-user-plus"></i><a href="page-login.html">&nbsp;Tambah Admin</a></li>
+                            <li><i class="menu-icon fa fa-user-cog"></i><a href="page-register.html">&nbsp;Daftar Admin</a></li>
+                            <li><i class="menu-icon fa fa-unlock-alt"></i><a href="pages-forget.html">&nbsp;Ubah Sandi</a></li>
                         </ul>
                     </li>
                 </ul>

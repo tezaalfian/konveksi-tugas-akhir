@@ -1,7 +1,7 @@
 <header id="header" class="header bg-dark">
             <div class="top-left bg-dark">
                 <div class="navbar-header bg-dark ">
-                    <a class="navbar-brand" href="./"><img src="images/logo.png" alt="Logo"></a>
+                    <a class="navbar-brand" href="<?= base_url('admin/dashboard'); ?>"><img src="<?= base_url('vendor_assets/img/logo.png'); ?>" alt="Logo"></a>
                     <a class="navbar-brand hidden" href="./"><img src="" alt="Logo"></a>
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
@@ -13,7 +13,7 @@
                         <div class="form-inline">
                             <form class="search-form">
                                 <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
-                                <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
+                                <button class="search-close" type="submit"><i class="fas fa-times"></i></button>
                             </form>
                         </div>
 
