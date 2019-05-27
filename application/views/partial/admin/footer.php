@@ -7,7 +7,7 @@
                         <strong>Copyright &copy; 2019 <a href="<?=base_url();?>">Co-Tailor</a>.</strong> All rights reserved.
                     </div>
                     <div class="col-sm-6 text-right">
-                        Designed by Teza Alfian
+                        Designed by Anu
                     </div>
                 </div>
             </div>
