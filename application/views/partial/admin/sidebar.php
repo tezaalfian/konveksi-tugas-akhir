@@ -2,28 +2,28 @@
         <nav class="navbar navbar-expand-sm navbar-default">
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="">
+                    <li class="<?php echo $this->uri->segment(2) == 'dashboard' ? 'active': '' ?>">
                         <a href="<?= base_url('admin/dashboard'); ?>"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
                     </li>
                     <li class="menu-title">Transaksi</li><!-- /.menu-title -->
-                    <li>
+                    <li class="<?php echo $this->uri->segment(2) == 'pemesanan' ? 'active': '' ?>">
                         <a href="#"> <i class="menu-icon fa fa-shopping-cart"></i>Pemesanan</a>
                     </li>
-                    <li>
+                    <li class="<?php echo $this->uri->segment(2) == 'pengiriman' ? 'active': '' ?>">
                         <a href="#"> <i class="menu-icon fa fa-shipping-fast"></i>Pengiriman</a>
                     </li>
-                    <li>
+                    <li class="<?php echo $this->uri->segment(2) == 'pembayaran' ? 'active': '' ?>">
                         <a href="#"> <i class="menu-icon fa fa-coins"></i>Pembayaran</a>
                     </li>
 
                     <li class="menu-title">Master Data</li><!-- /.menu-title -->
-                    <li class="">
+                    <li class="<?php echo $this->uri->segment(2) == 'produk' ? 'active': '' ?>">
                         <a href="<?= base_url('admin/produk'); ?>"> <i class="menu-icon fa fa-shopping-bag"></i>Produk</a>
                     </li>
-                    <li>
+                    <li class="<?php echo $this->uri->segment(2) == 'pelanggan' ? 'active': '' ?>"> 
                         <a href="widgets.html"> <i class="menu-icon fa fa-user"></i>Pelanggan</a>
                     </li>
-                    <li>
+                    <li class="<?php echo $this->uri->segment(2) == 'pegawai' ? 'active': '' ?>">
                         <a href="widgets.html"> <i class="menu-icon fa fa-user-tie"></i>Pegawai</a>
                     </li>
 
