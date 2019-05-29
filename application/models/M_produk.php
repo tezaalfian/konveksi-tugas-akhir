@@ -10,33 +10,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 public function rules()
                 {
                         return [
-                            ['field' => 'name',
-                            'label' => 'Name',
+                            ['field' => 'nama',
+                            'label' => 'Nama',
                             'rules' => 'required'],
 
-                            ['field' => 'price',
-                            'label' => 'Price',
+                            ['field' => 'harga',
+                            'label' => 'Harga',
                             'rules' => 'numeric'],
                             
-                            ['field' => 'description',
-                            'label' => 'Description',
+                            ['field' => 'deskripsi',
+                            'label' => 'Deskripsi',
                             'rules' => 'required']
                         ];
                 }
 
-                public function get_last_ten_entries()
+                public function getAllProduk()
                 {
-                        $query = $this->db->get('entries', 10);
+                        $query = $this->db->get('barang');
                         return $query->result();
                 }
 
-                public function insert_entry()
+                public function insert($data)
                 {
-                        $this->title    = $_POST['title']; // please read the below note
-                        $this->content  = $_POST['content'];
-                        $this->date     = time();
-
-                        $this->db->insert('entries', $this);
+                        $this->db->insert('barang', $data);
                 }
 
                 public function update_entry()

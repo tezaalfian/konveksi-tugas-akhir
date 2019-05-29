@@ -15,3 +15,17 @@
     <link rel="stylesheet" href="<?= base_url(); ?>vendor_assets/css/style.css">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+
+    <style type="text/css">
+        
+        footer.footer {
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          right: 0;
+          bottom: 0;
+          position: absolute;
+          width: calc(100% - 90px);
+          line-height: 60px; /* Vertically center the text there */
+        }
+    </style>
