@@ -22,7 +22,7 @@
                                             <?php if($is_active): ?>
                                                 <?php echo ucfirst($segment) ?>
                                             <?php else: ?>
-                                                <?php echo ucfirst($segment) ?>
+                                                <a href="<?php echo base_url($url) ?>"><?php echo ucfirst($segment) ?></a>
                                             <?php endif; ?>
                                             <?php if (++$i == 3) break;?>
                                         </li>
