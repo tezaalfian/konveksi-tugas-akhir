@@ -3,12 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Produk extends CI_Controller {
 
+	public $image = "default.jpg";
+
 	public function __construct()
     {
         parent::__construct();
         $this->load->model("m_produk");
         $this->load->library('form_validation');
-        $this->load->helper(array('form', 'url'));
     }
 
 	public function index() {
@@ -21,17 +22,38 @@ class Produk extends CI_Controller {
         $validation = $this->form_validation;
         $validation->set_rules($product->rules());
 
-        $data_produk = array(
-        	'nama' => $this->input->post("nama"),
-        	'harga' => $this->input->post("harga"),
-        	'deskripsi' => $this->input->post("deskripsi")
-        );
+        if ($validation->run()) {
+            $product->insert();
+            $this->session->set_flashdata('success', 'Berhasil disimpan');
+        }
+		$this->load->view('admin/produk/form-data');
+	}
+
+	public function edit($id = null)
+	{
+		if (!isset($id)) redirect('admin/produk');
+       
+        $product = $this->m_produk;
+        $validation = $this->form_validation;
+        $validation->set_rules($product->rules());
 
         if ($validation->run()) {
-            $product->insert($data_produk);
+            $product->update();
             $this->session->set_flashdata('success', 'Berhasil disimpan');
         }
 
-		$this->load->view('admin/produk/form-data');
+        $data["produk"] = $product->getById($id);
+        if (!$data["produk"]) show_404();
+        
+        $this->load->view("admin/produk/form-edit", $data);
+	}
+
+	public function delete($id=null)
+	{
+		if (!isset($id)) show_404();
+        
+        if ($this->m_produk->delete($id)) {
+            redirect(site_url('admin/produk'));
+        }
 	}
 }

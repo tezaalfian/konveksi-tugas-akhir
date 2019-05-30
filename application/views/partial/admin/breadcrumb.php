@@ -12,7 +12,8 @@
                         <div class="page-header float-right">
                             <div class="page-title">
                                 <ol class="breadcrumb text-right">
-                                    <?php foreach ($this->uri->segments as $segment): ?>
+                                    <?php $i=0; ?>
+                                    <?php foreach ($this->uri->segments as $segment) : ?>
                                         <?php 
                                             $url = substr($this->uri->uri_string, 0, strpos($this->uri->uri_string, $segment)) . $segment;
                                             $is_active =  $url == $this->uri->uri_string;
@@ -23,6 +24,7 @@
                                             <?php else: ?>
                                                 <?php echo ucfirst($segment) ?>
                                             <?php endif; ?>
+                                            <?php if (++$i == 3) break;?>
                                         </li>
                                     <?php endforeach; ?>
                                 </ol>

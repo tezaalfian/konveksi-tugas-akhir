@@ -54,8 +54,12 @@
                                                 <td class="small">
                                                     <?php echo substr($product->deskripsi, 0, 120) ?>...</td>
                                                 <td align="center">
-                                                    <a href="" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
-                                                    <a href="" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a>
+                                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#mediumModal">
+                                                      <i class="fa fa-trash"></i>
+                                                    </button>
+                                                    <a href="<?= base_url('admin/produk/edit/'.$product->id); ?>" class="btn btn-success btn-sm">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -63,9 +67,30 @@
                                 </table>
                             </div>
                         </div>
+                        <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" id="mediumModalLabel">Apakah kamu yakin ?</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>
+                                            Data yang dihapus tidak akan bisa dikembalikan
+                                        </p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        <a href="<?= base_url('admin/produk/delete/'.$product->id); ?>" class="btn btn-primary">
+                                            Confirm
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-
                 </div>
             </div>
             <!-- .animated -->
