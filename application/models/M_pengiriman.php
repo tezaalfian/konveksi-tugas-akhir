@@ -127,7 +127,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 private function uploadImage()
                 {
                     $config['upload_path']          = './upload/pengiriman/';
-                    $config['allowed_types']        = 'gif|jpg|png';
+                    $config['allowed_types']        = 'gif|jpg|png|jpeg';
                     $config['file_name']            = $this->id_pengiriman;
                     $config['overwrite']            = true;
                     $config['max_size']             = 2048; // 1MB

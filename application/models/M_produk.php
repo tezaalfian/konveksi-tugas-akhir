@@ -78,7 +78,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 private function uploadImage()
                 {
                     $config['upload_path']          = './upload/produk/';
-                    $config['allowed_types']        = 'gif|jpg|png';
+                    $config['allowed_types']        = 'gif|jpg|png|jpeg';
                     $config['file_name']            = $this->id;
                     $config['overwrite']            = true;
                     $config['max_size']             = 2048; // 1MB
@@ -96,8 +96,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         $config['create_thumb']= FALSE;
                         $config['maintain_ratio']= FALSE;
                         $config['quality']= '50%';
-                        $config['width']= 600;
-                        $config['height']= 600;
+                        // $config['width']= 600;
+                        // $config['height']= 600;
                         $config['new_image']= './upload/produk/'.$gbr['file_name'];
                         $this->load->library('image_lib', $config);
                         $this->image_lib->resize();
