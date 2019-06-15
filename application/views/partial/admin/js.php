@@ -4,7 +4,8 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
     <script src="<?= base_url(); ?>vendor_assets/js/main.js"></script>
 
-
+    <!-- <script src="<?= base_url(); ?>vendor_assets/js/jquery.min.js"></script>
+    <script src="<?= base_url(); ?>vendor_assets/js/bootstrap.min.js"></script> -->
     <script src="<?= base_url(); ?>vendor_assets/js/lib/data-table/datatables.min.js"></script>
     <script src="<?= base_url(); ?>vendor_assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
     <script src="<?= base_url(); ?>vendor_assets/js/lib/data-table/dataTables.buttons.min.js"></script>

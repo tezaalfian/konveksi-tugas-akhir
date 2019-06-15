@@ -9,13 +9,13 @@
             <div class="top-right bg-dark">
                 <div class="header-menu bg-dark">
                     <div class="header-left">
-                        <button class="search-trigger"><i class="fa fa-search"></i></button>
-                        <div class="form-inline">
+                        <!-- <button class="search-trigger"><i class="fa fa-search"></i></button> -->
+                        <!-- <div class="form-inline">
                             <form class="search-form">
                                 <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
                                 <button class="search-close" type="submit"><i class="fas fa-times"></i></button>
                             </form>
-                        </div>
+                        </div> -->
 
                         <div class="dropdown for-notification">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

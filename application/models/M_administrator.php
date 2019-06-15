@@ -1,36 +1,40 @@
 <?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-        class M_produk extends CI_Model {
+        class M_administrator extends CI_Model {
 
-                private $_table = "barang";
-                public $id;
+                private $_table = "administrator";
+                public $id_administrator;
+                public $username;
                 public $nama;
-                public $harga;
                 public $foto = "default.jpg";
-                public $deskripsi;
+                public $password;
 
                 public function rules()
                 {
                         return [
-                            ['field' => 'nama',
-                            'label' => 'Nama',
+                            ['field' => 'username',
+                            'label' => 'username',
                             'rules' => 'required'],
 
-                            ['field' => 'harga',
-                            'label' => 'Harga',
-                            'rules' => 'numeric'],
-                            
-                            ['field' => 'deskripsi',
-                            'label' => 'Deskripsi',
-                            'rules' => 'required']
+                            ['field' => 'nama',
+                            'label' => 'nama',
+                            'rules' => 'required'],
+
+                            ['field' => 'password',
+                            'label' => 'password',
+                            'rules' => 'required|min_length[8]'],
+
+                            // ['field' => 'jenis_kelamin',
+                            // 'label' => 'jenis_kelamin',
+                            // 'rules' => 'trim|required|xss_clean']
                         ];
                 }
 
-                public function getAllProduk()
+                public function getAll()
                 {
                     $this->db->select("*");
-                    $this->db->from("barang");
+                    $this->db->from("administrator");
                     $this->db->order_by("nama", "asc");
                     $query = $this->db->get();
                     return $query->result();
@@ -38,27 +42,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                 public function getById($id)
                 {
-                    return $this->db->get_where('barang', ["id" => $id])->row();
+                   return $this->db->get_where('administrator', ["id_administrator" => $id])->row();
                 }
 
                 public function insert()
                 {
                     $post = $this->input->post();
-                    $this->id = base_convert(microtime(FALSE), 10, 36);
+                    $this->id_administrator = base_convert(microtime(FALSE), 8, 16);
+                    $this->username = $post["username"];
                     $this->nama = $post["nama"];
-                    $this->harga = $post["harga"];
                     $this->foto = $this->uploadImage();
-                    $this->deskripsi = $post["deskripsi"];
+                    $this->password = $post["password"];
+
                     $this->db->insert($this->_table, $this);
                 }
 
                 public function update()
                 {
                     $post = $this->input->post();
-                    $this->id = $post['id'];
+                    $this->id_administrator = $post['id_administrator'];
+                    $this->username = $post["username"];
                     $this->nama = $post["nama"];
-                    $this->harga = $post["harga"];
-                    $this->deskripsi = $post["deskripsi"];
+                    $this->password = $post["password"];
 
                     if (!empty($_FILES["foto"]["name"])) {
                         $this->foto = $this->uploadImage();
@@ -66,20 +71,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         $this->foto = $post["old_foto"];
                     }
 
-                    $this->db->update($this->_table, $this, array('id' => $post['id']));
+                    $this->db->update($this->_table, $this, array('id_administrator' => $post['id_administrator']));
                 }
 
                 public function delete($id)
                 {
                     $this->deleteImage($id);
-                    return $this->db->delete('barang', array("id" => $id));
+                    return $this->db->delete('administrator', array("id_administrator" => $id));
                 }
 
                 private function uploadImage()
                 {
-                    $config['upload_path']          = './upload/produk/';
+                    $config['upload_path']          = './upload/administrator/';
                     $config['allowed_types']        = 'gif|jpg|png';
-                    $config['file_name']            = $this->id;
+                    $config['file_name']            = $this->id_administrator;
                     $config['overwrite']            = true;
                     $config['max_size']             = 2048; // 1MB
                     // $config['max_width']            = 1024;
@@ -92,28 +97,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         $gbr = $this->upload->data();
                 //Compress Image
                         $config['image_library']='gd2';
-                        $config['source_image']='./upload/produk/'.$gbr['file_name'];
+                        $config['source_image']='./upload/administrator/'.$gbr['file_name'];
                         $config['create_thumb']= FALSE;
                         $config['maintain_ratio']= FALSE;
                         $config['quality']= '50%';
                         $config['width']= 600;
                         $config['height']= 600;
-                        $config['new_image']= './upload/produk/'.$gbr['file_name'];
+                        $config['new_image']= './upload/administrator/'.$gbr['file_name'];
                         $this->load->library('image_lib', $config);
                         $this->image_lib->resize();
 
                         return $this->upload->data("file_name");
                     }
-                    // print_r($this->upload->display_errors());
+                    print_r($this->upload->display_errors());
                     return "default.jpg";
                 }
 
                 private function deleteImage($id)
                 {
-                    $product = $this->getById($id);
-                    if ($product->foto != "default.jpg") {
-                        $filename = explode(".", $product->foto)[0];
-                        return array_map('unlink', glob(FCPATH."upload/produk/$filename.*"));
+                    $administrator = $this->getById($id);
+                    if ($administrator->foto != "default.jpg") {
+                        $filename = explode(".", $administrator->foto)[0];
+                        return array_map('unlink', glob(FCPATH."upload/administrator/$filename.*"));
                     }
                 }
         }
