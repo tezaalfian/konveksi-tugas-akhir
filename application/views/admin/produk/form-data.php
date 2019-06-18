@@ -38,7 +38,10 @@
                                         <div class="form-group">
                                             <label for="foto">Foto</label>
                                             <img src="<?=base_url('upload/produk/default.jpg'); ?>" class="img-thumbnail">
-                                            <input class="form-control-file <?php echo form_error('foto') ? 'is-invalid':'' ?>" type="file" name="foto">
+                                            <div class="custom-file">
+                                                  <input type="file" class="custom-file-input" id="customFilen" name="foto">
+                                                  <label class="custom-file-label" for="customFile">Choose file</label>
+                                                </div>
                                             <div class="invalid-feedback">
                                                 <?php echo form_error('foto')?>
                                             </div>

@@ -35,17 +35,27 @@
                             <div class="card-body">
 		                        <form action="<?= base_url('admin/pelanggan/tambah')?>" method="post" enctype="multipart/form-data">
 		                            <div class="row">
-		                                <div class="col-md-3">
+		                                <div class="col-md-4">
+		                                <div class="card" style="border: solid #d4d4d4 1px;">
+		                                	<div class="card-body">
 			                                <div class="form-group">
-		                                		<label for="foto">Foto</label>
-		                            			<img src="<?=base_url('upload/pelanggan/default.jpg'); ?>" class="img-thumbnail">
-			                                    <input class="form-control-file <?php echo form_error('foto') ? 'is-invalid':'' ?>" type="file" name="foto">
+		                            			<img src="<?=base_url('upload/pelanggan/default.jpg'); ?>" class="img-thumbnail"><br><br>
+			                                    <div class="custom-file">
+	                                              <input type="file" class="custom-file-input" id="customFilen" name="foto" accept=".jpg,.jpeg,.png">
+	                                              <label class="custom-file-label" for="customFile">Pilih Foto</label>
+	                                            </div>
 			                                    <div class="invalid-feedback">
 			                                        <?php echo form_error('foto')?>
 			                                    </div>
 			                                </div>
+			                            	</div>
+			                            	<div class="card-footer">
+			                            		<small>Besar file: maksimum 5 Mb</small><br>
+			                            		<small>Ekstensi file yang diperbolehkan: .JPG .JPEG .PNG</small>
+			                            	</div>
+			                            </div>
 		                            	</div>
-		                            	<div class="col-md-9">
+		                            	<div class="col-md-8">
 			                                <div class="form-group">
 			                                    <label for="username">Username*</label>
 			                                    <input class="form-control <?php echo form_error('username') ? 'is-invalid':'' ?>" type="text" name="username" placeholder="username">
@@ -71,7 +81,7 @@
 			                                </div>
 
 			                                <div class="form-group">
-			                                    <label for="no_hp">No Hp*</label>
+			                                    <label for="no_hp">No Hp</label>
 			                                    <input class="form-control <?php echo form_error('no_hp') ? 'is-invalid':'' ?>" type="text" name="no_hp" placeholder="No Hp">
 			                                    <div class="invalid-feedback">
 			                                        <?php echo form_error('no_hp') ?>
@@ -92,7 +102,7 @@
 			                                </div>
 
 			                                <div class="form-group">
-	                                            <label for="alamat">Alamat*</label>
+	                                            <label for="alamat">Alamat</label>
 	                                            <textarea class="form-control <?php echo form_error('alamat') ? 'is-invalid':'' ?>" name="alamat" placeholder="alamat..."></textarea>
 	                                            <div class="invalid-feedback">
 	                                                <?php echo form_error('alamat'); ?>

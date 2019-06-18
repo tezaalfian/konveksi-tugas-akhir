@@ -58,7 +58,7 @@
                                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#mediumModal">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
-                                                    <a href="<?= base_url('admin/pegawai/edit/'.$user->id_pegawai); ?>" class="btn btn-success btn-sm">
+                                                    <a href="<?= base_url('admin/pegawai/edit/'.$user->id_user); ?>" class="btn btn-success btn-sm">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
                                                 </td>
@@ -83,7 +83,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                        <a href="<?= base_url('admin/pegawai/delete/'.$user->id_pegawai); ?>" class="btn btn-primary">
+                                        <a href="<?= base_url('admin/pegawai/delete/'.$user->id_user); ?>" class="btn btn-primary">
                                             Confirm
                                         </a>
                                     </div>

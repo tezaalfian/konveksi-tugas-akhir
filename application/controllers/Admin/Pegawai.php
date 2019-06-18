@@ -17,11 +17,11 @@ class Pegawai extends CI_Controller {
 
 	public function edit($id = null)
 	{
-		// if (!isset($id)) redirect('admin/pegawai');
+		if (!isset($id)) redirect('admin/pegawai');
        
         $pegawai = $this->m_pegawai;
         $validation = $this->form_validation;
-        $validation->set_rules($pegawai->rules());
+        $validation->set_rules($pegawai->rules2());
 
         if ($validation->run()) {
             $pegawai->update();

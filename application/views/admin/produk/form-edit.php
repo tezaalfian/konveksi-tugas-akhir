@@ -39,7 +39,10 @@
                                             <label for="foto">Foto</label>
                                             <img src="<?=base_url('upload/produk/'.$produk->foto); ?>" class="img-thumbnail">
                                             <input type="hidden" name="old_foto" value="<?= $produk->foto ?>"/>
-                                            <input class="form-control-file <?php echo form_error('foto') ? 'is-invalid':'' ?>" type="file" name="foto" value="<?= $produk->foto ?>">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="customFilen" name="foto" value="<?= $produk->foto ?>">
+                                                <label class="custom-file-label" for="customFile">Choose file</label>
+                                            </div>
                                             <div class="invalid-feedback">
                                                 <?php echo form_error('foto')?>
                                             </div>

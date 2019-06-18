@@ -39,7 +39,10 @@
 			                                <div class="form-group">
 		                                		<label for="desain">Desain</label>
 		                            			<img src="<?=base_url('upload/pemesanan/'.$pemesanan->desain); ?>" class="img-thumbnail" widht="100%">
-			                                    <input class="form-control-file <?php echo form_error('desain') ? 'is-invalid':'' ?>" type="file" name="desain">
+			                                    <div class="custom-file">
+	                                              <input type="file" class="custom-file-input" id="customFilen" name="desain" value="<?= $pemesanan->desain ?>">
+	                                              <label class="custom-file-label" for="customFile">Choose file</label>
+	                                            </div>
 			                                    <input type="hidden" name="old_desain" value="<?= $pemesanan->desain ?>"/>
 			                                    <input type="hidden" name="old_date" value="<?= $pemesanan->tanggal_pemesanan ?>"/>
 			                                    <input type="hidden" name="id_pemesanan" value="<?= $pemesanan->id_pemesanan ?>"/>

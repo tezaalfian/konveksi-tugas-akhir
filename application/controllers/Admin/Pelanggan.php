@@ -17,7 +17,7 @@ class Pelanggan extends CI_Controller {
 
 	public function edit($id = null)
 	{
-		// if (!isset($id)) redirect('admin/pelanggan');
+		if (!isset($id)) redirect('admin/pelanggan');
        
         $pelanggan = $this->m_pelanggan;
         $validation = $this->form_validation;

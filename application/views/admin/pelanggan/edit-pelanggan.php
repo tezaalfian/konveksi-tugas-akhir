@@ -45,21 +45,24 @@
                             	</a>
                             </div>
                             <div class="card-body">
-		                        <form action="<?= base_url('admin/pelanggan/edit/').$pelanggan->id_pelanggan;?>" method="post" enctype="multipart/form-data">
+		                        <form action="<?= base_url('admin/pelanggan/edit/').$pelanggan->id_user;?>" method="post" enctype="multipart/form-data">
 		                            <div class="row">
 		                                <div class="col-md-3">
 			                                <div class="form-group">
 		                                		<label for="foto">Foto</label>
 		                            			<img src="<?=base_url('upload/pelanggan/'.$pelanggan->foto); ?>" class="img-thumbnail">
 			                                	<input type="hidden" name="old_foto" value="<?= $pelanggan->foto ?>"/>
-			                                    <input class="form-control-file <?php echo form_error('foto') ? 'is-invalid':'' ?>" type="file" name="foto" value="<?= $pelanggan->foto ?>">
+			                                    <div class="custom-file">
+	                                              <input type="file" class="custom-file-input" id="customFilen" name="foto" value="<?= $pelanggan->foto ?>">
+	                                              <label class="custom-file-label" for="customFile">Choose file</label>
+	                                            </div>
 			                                    <div class="invalid-feedback">
 			                                        <?php echo form_error('foto')?>
 			                                    </div>
 			                                </div>
 		                            	</div>
 		                            	<div class="col-md-9">
-		                            		<input type="hidden" name="id_pelanggan" value="<?php echo $pelanggan->id_pelanggan?>" />
+		                            		<input type="hidden" name="id_user" value="<?php echo $pelanggan->id_user?>" />
 			                                <div class="form-group">
 			                                    <label for="username">Username*</label>
 			                                    <input class="form-control <?php echo form_error('username') ? 'is-invalid':'' ?>" type="text" name="username" placeholder="username" value="<?= $pelanggan->username ?>">

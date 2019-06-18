@@ -3,8 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         class M_pegawai extends CI_Model {
 
-                private $_table = "pegawai";
-                public $id_pegawai;
+                private $_table = "user";
+                public $id_user;
                 public $username;
                 public $nama;
                 public $foto = "default.jpg";
@@ -17,8 +17,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 {
                         return [
                             ['field' => 'username',
-                            'label' => 'username',
-                            'rules' => 'required'],
+                            'label' => 'Username',
+                            'rules' => 'required|trim|alpha_dash'],
 
                             ['field' => 'nama',
                             'label' => 'nama',
@@ -26,47 +26,60 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                             ['field' => 'no_hp',
                             'label' => 'no_hp',
-                            'rules' => 'required|numeric'],
+                            'rules' => 'numeric'],
 
                             ['field' => 'password',
-                            'label' => 'password',
-                            'rules' => 'required|min_length[8]'],
-                            
-                            ['field' => 'alamat',
-                            'label' => 'alamat',
+                            'label' => 'Password',
+                            'rules' => 'required|trim|min_length[8]'],
+                        ];
+                }
+
+                public function rules2()
+                {
+                        return [
+                            ['field' => 'username',
+                            'label' => 'Username',
+                            'rules' => 'required|trim|alpha_dash'],
+
+                            ['field' => 'nama',
+                            'label' => 'nama',
                             'rules' => 'required'],
 
-                            // ['field' => 'jenis_kelamin',
-                            // 'label' => 'jenis_kelamin',
-                            // 'rules' => 'trim|required|xss_clean']
+                            ['field' => 'no_hp',
+                            'label' => 'no_hp',
+                            'rules' => 'numeric'],
                         ];
                 }
 
                 public function getAll()
                 {
                     $this->db->select("*");
-                    $this->db->from("pegawai");
+                    $this->db->from("user");
                     $this->db->order_by("nama", "asc");
+                    $this->db->where("role_id", 3);
                     $query = $this->db->get();
                     return $query->result();
                 }
 
                 public function getById($id)
                 {
-                   return $this->db->get_where('pegawai', ["id_pegawai" => $id])->row();
+                   return $this->db->get_where('user', ["id_user" => $id])->row();
                 }
 
                 public function insert()
                 {
                     $post = $this->input->post();
-                    $this->id_pegawai = base_convert(microtime(FALSE), 8, 16);
+                    $this->id_user = base_convert(microtime(FALSE), 8, 16);
                     $this->username = $post["username"];
                     $this->nama = $post["nama"];
                     $this->foto = $this->uploadImage();
                     $this->alamat = $post["alamat"];
-                    $this->password = $post["password"];
                     $this->no_hp = $post["no_hp"];
                     $this->jenis_kelamin = $post["jenis_kelamin"];
+                    $this->password = password_hash($post["password"], PASSWORD_DEFAULT);
+                    $this->is_active = 1;
+                    $this->date_created = time();
+                    $this->role_id = 3;
 
                     $this->db->insert($this->_table, $this);
                 }
@@ -74,11 +87,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 public function update()
                 {
                     $post = $this->input->post();
-                    $this->id_pegawai = $post['id_pegawai'];
+                    $this->id_user = $post['id_user'];
                     $this->username = $post["username"];
                     $this->nama = $post["nama"];
                     $this->alamat = $post["alamat"];
-                    $this->password = $post["password"];
                     $this->no_hp = $post["no_hp"];
                     $this->jenis_kelamin = $post["jenis_kelamin"];
 
@@ -88,20 +100,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         $this->foto = $post["old_foto"];
                     }
 
-                    $this->db->update($this->_table, $this, array('id_pegawai' => $post['id_pegawai']));
+                    $this->db->update($this->_table, $this, array('id_user' => $post['id_user']));
                 }
 
                 public function delete($id)
                 {
                     $this->deleteImage($id);
-                    return $this->db->delete('pegawai', array("id_pegawai" => $id));
+                    return $this->db->delete('user', array("id_user" => $id));
                 }
 
                 private function uploadImage()
                 {
                     $config['upload_path']          = './upload/pegawai/';
                     $config['allowed_types']        = 'gif|jpg|png|jpeg';
-                    $config['file_name']            = $this->id_pegawai;
+                    $config['file_name']            = $this->id_user;
                     $config['overwrite']            = true;
                     $config['max_size']             = 2048; // 1MB
                     // $config['max_width']            = 1024;
@@ -118,8 +130,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         $config['create_thumb']= FALSE;
                         $config['maintain_ratio']= FALSE;
                         $config['quality']= '50%';
-                        $config['width']= 600;
-                        $config['height']= 600;
+                        // $config['width']= 600;
+                        // $config['height']= 600;
                         $config['new_image']= './upload/pegawai/'.$gbr['file_name'];
                         $this->load->library('image_lib', $config);
                         $this->image_lib->resize();

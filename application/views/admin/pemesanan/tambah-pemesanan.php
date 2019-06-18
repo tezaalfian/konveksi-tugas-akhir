@@ -40,6 +40,10 @@
 		                                		<label for="desain">Desain</label>
 		                            			<img src="<?=base_url('upload/pemesanan/default.jpg'); ?>" class="img-thumbnail" widht="100%">
 			                                    <input class="form-control-file <?php echo form_error('desain') ? 'is-invalid':'' ?>" type="file" name="desain">
+			                                    <div class="custom-file">
+	                                              <input type="file" class="custom-file-input" id="customFile" name="desain">
+	                                              <label class="custom-file-label" for="customFile">Choose file</label>
+	                                            </div>
 			                                    <div class="invalid-feedback">
 			                                        <?php echo form_error('desain')?>
 			                                    </div>
