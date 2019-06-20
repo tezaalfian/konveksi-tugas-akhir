@@ -9,9 +9,8 @@
         <div class="container">
             <div class="row py-5">
                 <div class="col-md-4">
-              	
 					<!-- <label for="pelanggan"><b>Sampel</b></label> -->
-                	<img style="cursor: pointer;}" data-toggle="modal" data-target="#exampleModal" src="<?=base_url('upload/produk/'.$produk->foto);  ?>" class="img-thumbnail">
+                	<img style="cursor: pointer;}" id="foto_produk" data-toggle="modal" data-target="#exampleModal" src="" class="img-thumbnail">
 					<div id="myModal" class="modal">
 					  <span class="close">&times;</span>
 					  <img class="modal-content" id="img01">
@@ -19,9 +18,11 @@
 					</div>
                 </div>
                 <div class="col-md-8">
-                	<h3 class="text-dark"><?= $produk->nama ?> - <span class="text-dark"><?= $produk->deskripsi ?></span></h3>
-                	<h4 class="text-info"><b>Rp.&nbsp;<?= $produk->harga ?></b></h4>
-                	<form class="my-4" action="<?= base_url('admin/pemesanan/tambah')?>" method="post" enctype="multipart/form-data">
+                	<div id="keterangan">
+                		
+                	</div>
+                	
+                	<form class="my-4" action="<?= base_url('pemesanan/tambah')?>" method="post" enctype="multipart/form-data">
 			            <div class="form-group">
 			                <label for="pelanggan"><b>Ukuran</b></label>
 				                <div class="row">
@@ -79,13 +80,14 @@
 			                    <?php echo form_error('pelanggan') ?>
 			                </div>
 			            </div>
-			            <input class="form-control" type="hidden" id="harga" name="harga" value="$produk->harga" readonly>
+			            <!-- <input class="form-control" type="hidden" id="harga" name="harga"> -->
+			            <input class="form-control" type="hidden" id="barang_id" name="barang_id">
 
 			            <div class="row">
 			            	<div class="col-md-6">
 			            		<div class="form-group">
 					                <label for="pelanggan"><b>Jumlah</b></label>
-					                <input class="form-control <?php echo form_error('jumlah') ? 'is-invalid':'' ?>" type="number" name="jumlah" id="jumlah" readonly>
+					                <input class="bg-white form-control <?php echo form_error('jumlah') ? 'is-invalid':'' ?>" type="number" name="jumlah" id="jumlah" readonly>
 					                <div class="invalid-feedback">
 					                    <?php echo form_error('jumlah') ?>
 					                </div>
@@ -94,7 +96,12 @@
 			            	<div class="col-md-6">
 			            		<div class="form-group">
 					                <label for="pelanggan"><b>Total</b></label>
-					                <input class="form-control <?php echo form_error('tagihan') ? 'is-invalid':'' ?>" type="number" name="tagihan" id="tagihan" readonly>
+					                <div class="input-group mb-1">
+						                <div class="input-group-prepend">
+											<div class="input-group-text"><b>Rp.</b></div>
+										</div>
+						                <input class="bg-white form-control <?php echo form_error('tagihan') ? 'is-invalid':'' ?>" type="number" name="tagihan" id="tagihan" readonly>
+							        </div>
 					            </div>
 			            	</div>
 			            </div>
@@ -103,7 +110,7 @@
 			            	<div class="col-md-6">
 			            		<div class="form-group">
 					                <label for="pelanggan"><b>Catatan</b></label>
-					                <textarea rows="4" class="form-control <?php echo form_error('catatan') ? 'is-invalid':'' ?>" name="catatan2" id="catatan2" placeholder="Catatan khusus admin..."></textarea>
+					                <textarea rows="4" class="form-control <?php echo form_error('catatan') ? 'is-invalid':'' ?>" name="catatan" id="catatan2" placeholder="Catatan khusus admin..."></textarea>
 					            </div>
 			            	</div>
 			            	<div class="col-md-6">
@@ -139,7 +146,7 @@
 		        </button>
 		      </div>
 		      <div class="modal-body">
-		        <img data-toggle="modal" data-target="#exampleModal" src="<?=base_url('upload/produk/'.$produk->foto);  ?>" class="img-thumbnail">
+		        <img id="foto-modal" data-toggle="modal" data-target="#exampleModal" src="" class="img-thumbnail">
 		      </div>
 		    </div>
 		  </div>
@@ -152,10 +159,10 @@
 
 <!-- LIBRARY JS -->
 <script type="text/javascript">
-
+		var result = <?= $produk ?>;
         var pelanggan = document.getElementById('pelanggan');
         var jenis_produk = document.getElementById('produk');
-        var harga = document.getElementById('harga');
+        var harga = result.harga;
         var s = document.getElementById('size1');
         var m = document.getElementById('size2');
         var l = document.getElementById('size3');
@@ -168,39 +175,46 @@
         var catatan2 = document.getElementById('catatan2');
         var allCatatan = document.getElementById('catatan');
         var ukuran = document.getElementsByClassName('ukuran');
+        var barang = document.getElementById('barang_id');
+
+        var string = "<h3 class='text-dark'>"+result.nama+"- <span class='text-dark'>"+result.deskripsi+"</span></h3><h4 class='text-info'><b>Rp.&nbsp;"+result.harga+"</b></h4>";
+
+        document.getElementById('keterangan').innerHTML = string;
+        barang.value = result.id;
+        
 
         s.addEventListener('change', (event)=>{
             jumlah.value = parseInt(s.value) + parseInt(m.value) + parseInt(l.value) + parseInt(xl.value) +parseInt(xxl.value) +parseInt(xxxl.value);
-            tagihan.value = parseInt(jumlah.value) * parseInt(harga.value);
+            tagihan.value = parseInt(jumlah.value) * parseInt(harga);
         });
 
         m.addEventListener('change', (event)=>{
             jumlah.value = parseInt(s.value) + parseInt(m.value) + parseInt(l.value) + parseInt(xl.value) +parseInt(xxl.value) +parseInt(xxxl.value);
-            tagihan.value = parseInt(jumlah.value) * parseInt(harga.value);
+            tagihan.value = parseInt(jumlah.value) * parseInt(harga);
             // catatan.value = "KETERANGAN UKURAN : S = "+s.value+", M = "+m.value+", L = "+l.value+", XL = "+xl.value+", XXL = "+xxl.value+", XXXL = "+xxxl.value+" | ";
             // allCatatan.value = catatan.value + catatan2.value;
         });
         l.addEventListener('change', (event)=>{
             jumlah.value = parseInt(s.value) + parseInt(m.value) + parseInt(l.value) + parseInt(xl.value) +parseInt(xxl.value) +parseInt(xxxl.value);
-            tagihan.value = parseInt(jumlah.value) * parseInt(harga.value);
+            tagihan.value = parseInt(jumlah.value) * parseInt(harga);
             // catatan.value = "KETERANGAN UKURAN : S = "+s.value+", M = "+m.value+", L = "+l.value+", XL = "+xl.value+", XXL = "+xxl.value+", XXXL = "+xxxl.value+" | ";
             // allCatatan.value = catatan.value + catatan2.value;
         });
         xl.addEventListener('change', (event)=>{
             jumlah.value = parseInt(s.value) + parseInt(m.value) + parseInt(l.value) + parseInt(xl.value) +parseInt(xxl.value) +parseInt(xxxl.value);
-            tagihan.value = parseInt(jumlah.value) * parseInt(harga.value);
+            tagihan.value = parseInt(jumlah.value) * parseInt(harga);
             // catatan.value = "KETERANGAN UKURAN : S = "+s.value+", M = "+m.value+", L = "+l.value+", XL = "+xl.value+", XXL = "+xxl.value+", XXXL = "+xxxl.value+" | ";
             // allCatatan.value = catatan.value + catatan2.value;
         });
         xxl.addEventListener('change', (event)=>{
             jumlah.value = parseInt(s.value) + parseInt(m.value) + parseInt(l.value) + parseInt(xl.value) +parseInt(xxl.value) +parseInt(xxxl.value);
-            tagihan.value = parseInt(jumlah.value) * parseInt(harga.value);
+            tagihan.value = parseInt(jumlah.value) * parseInt(harga);
             // catatan.value = "KETERANGAN UKURAN : S = "+s.value+", M = "+m.value+", L = "+l.value+", XL = "+xl.value+", XXL = "+xxl.value+", XXXL = "+xxxl.value+" | ";
             // allCatatan.value = catatan.value + catatan2.value;
         });
         xxxl.addEventListener('change', (event)=>{
             jumlah.value = parseInt(s.value) + parseInt(m.value) + parseInt(l.value) + parseInt(xl.value) +parseInt(xxl.value) +parseInt(xxxl.value);
-            tagihan.value = parseInt(jumlah.value) * parseInt(harga.value);
+            tagihan.value = parseInt(jumlah.value) * parseInt(harga);
             // catatan.value = "KETERANGAN UKURAN : S = "+s.value+", M = "+m.value+", L = "+l.value+", XL = "+xl.value+", XXL = "+xxl.value+", XXXL = "+xxxl.value+" | ";
             // allCatatan.value = catatan.value + catatan2.value;
         });
@@ -210,7 +224,14 @@
         });
 
     </script>
+
     <?php $this->load->view('partial/client/js');?>
+    <script type="text/javascript">
+    	var result = <?= $produk ?>;
+        $("#foto_produk").attr("src", "<?= base_url('upload/produk/')?>"+result.foto);
+        $("#foto-modal").attr("src", "<?= base_url('upload/produk/')?>"+result.foto);
+    	// $("#barang_id").val(result.barang_id);
+    </script>
     
 </body>
 </html>

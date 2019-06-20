@@ -35,8 +35,8 @@
                                             <th>Pelanggan</th>
                                             <th>Produk</th>
                                             <th>Tanggal</th>
-                                            <th>Aksi</th>
                                             <th>Status</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>

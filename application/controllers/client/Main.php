@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Home extends CI_Controller {
+class Main extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
@@ -51,31 +51,6 @@ class Home extends CI_Controller {
         // die;
         
         $this->load->view("client/home/pemesanan", $data);
-	}
-
-	public function pengiriman()
-	{
-		// $user = $this->session->userdata('username');
-		// $data["user"] = $this->m_pelanggan->getByName($user);
-		// $data["produk"] = $this->m_produk->getAllProduk();
-       
-  //       $product = $this->m_produk;
-  //       $validation = $this->form_validation;
-  //       $validation->set_rules($product->rules());
-
-  //       if ($validation->run()) {
-  //           $product->update();
-  //           $this->session->set_flashdata('success', 'Berhasil disimpan');
-  //       }
-		$id = 
-
-        $data['pemesanan'] = $this->db->get("pemesanan")->last_row();
-        if (!$data["pemesanan"]) show_404();
-
-        // var_dump($data['produk']);
-        // die;
-        
-        $this->load->view("client/home/tambah-pengiriman", $data);
 	}
 
 }

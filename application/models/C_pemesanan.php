@@ -1,7 +1,7 @@
 <?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-        class M_pemesanan extends CI_Model {
+        class C_pemesanan extends CI_Model {
 
                 private $_table = "pemesanan";
                 public $id_pemesanan;
@@ -14,63 +14,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 public $pelanggan_id;
                 public $s, $m, $l, $xl, $xxl, $xxxl;
 
-                public function rules()
-                {
-                        return [
-                            ['field' => 'pelanggan',
-                            'label' => 'pelanggan',
-                            'rules' => 'required'],
-
-                            ['field' => 'produk',
-                            'label' => 'produk',
-                            'rules' => 'required'],
-                        ];
-                }
-
-                public function getAll()
-                {
-                    $this->db->select("*");
-                    $this->db->from("pemesanan");
-                    $this->db->join("barang", "barang.id = pemesanan.barang_id");
-                    $this->db->join("user", "user.id_user = pemesanan.pelanggan_id");
-                    $this->db->order_by("pemesanan.tanggal_pemesanan", "asc");
-                    $query = $this->db->get();
-                    return $query->result();
-                }
-
-                public function getAllById($id)
-                {
-                    $this->db->select("*");
-                    $this->db->from("pemesanan");
-                    $this->db->join("barang", "barang.id = pemesanan.barang_id");
-                    $this->db->join("user", "user.id_user = pemesanan.pelanggan_id");
-                    $this->db->where("pemesanan.id_pemesanan", $id);
-                    $this->db->order_by("pemesanan.tanggal_pemesanan", "asc");
-                    $query = $this->db->get();
-                    return $query->result();
-                }
-
-                public function getById($id)
-                {
-                   return $this->db->get_where('pemesanan', ["id_pemesanan" => $id])->row();
-                }
-
                 public function insert()
                 {
                     $post = $this->input->post();
                     $this->id_pemesanan = base_convert(microtime(FALSE), 8, 16);
 
-                    $produk = $this->db->get_where('barang', ["nama" => $post["produk"]])->row();
-                    $this->barang_id = $produk->id;
-
+                    $this->barang_id = $post["barang_id"];
                     $this->jumlah = $post["jumlah"];
                     $this->desain = $this->uploadImage();
                     $this->catatan = $post["catatan"];
                     $this->tanggal_pemesanan = date("Y/m/d");
                     $this->tagihan = $post["tagihan"];
-
-                    $pelanggan = $this->db->get_where('user', ["username" => $post["pelanggan"]])->row();
-                    $this->pelanggan_id = $pelanggan->id_user;
+                    $this->pelanggan_id = $this->session->userdata('id_user');
 
                     $this->s = $post["s"];
                     $this->m = $post["m"];
