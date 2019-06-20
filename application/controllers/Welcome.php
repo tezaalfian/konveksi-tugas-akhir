@@ -7,6 +7,8 @@ class Welcome extends CI_Controller {
         parent::__construct();
         $this->load->model("m_produk");
         $this->load->model("m_pelanggan");
+
+        
     }
 
 	public function index()
@@ -18,6 +20,9 @@ class Welcome extends CI_Controller {
 	public function home()
 	{
 		$user = $this->session->userdata('username');
+		if ($this->session->userdata('role_id') == 1) {
+	        show_404();
+	    }
 
 		if ($user) {
 			$data["user"] = $this->m_pelanggan->getByName($user);

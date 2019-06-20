@@ -58,7 +58,7 @@
 	                                                <option>Silahkan pilih</option>
 
 	                                                <?php foreach ($pelanggan as $user) : ?>
-	                                                <option value="<?= $user->id_pelanggan; ?>"><?= $user->username ?></option>
+	                                                <option value="<?= $user->id_user; ?>"><?= $user->username ?></option>
 	                                            	<?php endforeach; ?>
 
 	                                            </select>

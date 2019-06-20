@@ -13,6 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 public $tagihan;
                 public $pelanggan_id;
                 public $s, $m, $l, $xl, $xxl, $xxxl;
+                public $status_id;
 
                 public function rules()
                 {
@@ -29,21 +30,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                 public function getAll()
                 {
-                    $this->db->select("*");
+                    $this->db->select("pemesanan.*, barang.*, user.id_user, user.username, status.status");
                     $this->db->from("pemesanan");
                     $this->db->join("barang", "barang.id = pemesanan.barang_id");
                     $this->db->join("user", "user.id_user = pemesanan.pelanggan_id");
-                    $this->db->order_by("pemesanan.tanggal_pemesanan", "asc");
+                    $this->db->join("status", "status.id = pemesanan.status_id");
+                    $this->db->order_by("pemesanan.status_id", "asc");
                     $query = $this->db->get();
                     return $query->result();
                 }
 
                 public function getAllById($id)
                 {
-                    $this->db->select("*");
+                    $this->db->select("pemesanan.*, barang.*, user.id_user, user.username, status.status");
                     $this->db->from("pemesanan");
                     $this->db->join("barang", "barang.id = pemesanan.barang_id");
                     $this->db->join("user", "user.id_user = pemesanan.pelanggan_id");
+                    $this->db->join("status", "status.id = pemesanan.status_id");
                     $this->db->where("pemesanan.id_pemesanan", $id);
                     $this->db->order_by("pemesanan.tanggal_pemesanan", "asc");
                     $query = $this->db->get();
@@ -78,6 +81,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     $this->xl = $post["xl"];
                     $this->xxl = $post["xxl"];
                     $this->xxxl = $post["xxxl"];
+                    $this->status_id = 1;
 
                     $this->db->insert($this->_table, $this);
                 }
@@ -104,6 +108,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     $this->xl = $post["xl"];
                     $this->xxl = $post["xxl"];
                     $this->xxxl = $post["xxxl"];
+                    $this->status_id = 1;
 
                     if (!empty($_FILES["desain"]["name"])) {
                         $this->desain = $this->uploadImage();

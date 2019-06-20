@@ -55,7 +55,7 @@
                                                     <?php echo $order->tanggal_pemesanan?>
                                                 </td>
                                                 <td align="center">
-                                                    <span class="p-1 bg-primary text-white" style="border-radius: 4px;">diproses</span>
+                                                    <span class="p-1 bg-primary text-white" style="border-radius: 4px;"><?php echo $order->status?></span>
                                                 </td>
                                                 <td align="center">
                                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#mediumModal">

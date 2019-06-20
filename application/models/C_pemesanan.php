@@ -13,6 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 public $tagihan;
                 public $pelanggan_id;
                 public $s, $m, $l, $xl, $xxl, $xxxl;
+                public $status_id;
 
                 public function insert()
                 {
@@ -33,8 +34,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     $this->xl = $post["xl"];
                     $this->xxl = $post["xxl"];
                     $this->xxxl = $post["xxxl"];
+                    $this->status_id = 1;
 
                     $this->db->insert($this->_table, $this);
+
+                    $this->session->set_userdata("kode", $this->id_pemesanan);
                 }
 
                 public function update()
@@ -106,7 +110,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         return $this->upload->data("file_name");
                     }
                     // print_r($this->upload->display_errors());
-                    return "default.jpg";
+                    // return "default.jpg";
                 }
 
                 private function deleteImage($id)

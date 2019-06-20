@@ -20,6 +20,10 @@ class Pemesanan extends CI_Controller {
 		} else {
 			redirect('login');
 		}
+
+        if ($this->session->userdata('role_id') == 1) {
+            show_404();
+        }
     }
 
 	public function index()
@@ -37,6 +41,7 @@ class Pemesanan extends CI_Controller {
         // var_dump($this->input->post("tagihan"));
         // die;
         $this->c_pemesanan->insert();
+        $kode = $this->session->userdata('kode');
         redirect('home/pengiriman');
         // $data['pemesanan'] = $this->db->get("pemesanan")->last_row();
         // if ($validation->run()) {
