@@ -9,7 +9,7 @@
         <div class="container">
             <div class="row py-5">
                 <div class="col-md-4">
-<!--                 	<?php var_dump($produk); ?> -->
+              	
 					<!-- <label for="pelanggan"><b>Sampel</b></label> -->
                 	<img style="cursor: pointer;}" data-toggle="modal" data-target="#exampleModal" src="<?=base_url('upload/produk/'.$produk->foto);  ?>" class="img-thumbnail">
 					<div id="myModal" class="modal">
@@ -151,6 +151,65 @@
     </div>
 
 <!-- LIBRARY JS -->
+<script type="text/javascript">
+
+        var pelanggan = document.getElementById('pelanggan');
+        var jenis_produk = document.getElementById('produk');
+        var harga = document.getElementById('harga');
+        var s = document.getElementById('size1');
+        var m = document.getElementById('size2');
+        var l = document.getElementById('size3');
+        var xl = document.getElementById('size4');
+        var xxl = document.getElementById('size5');
+        var xxxl = document.getElementById('size6');        
+        var jumlah = document.getElementById('jumlah');
+        var tagihan = document.getElementById('tagihan');
+        var catatan = document.getElementById('ket_ukuran');
+        var catatan2 = document.getElementById('catatan2');
+        var allCatatan = document.getElementById('catatan');
+        var ukuran = document.getElementsByClassName('ukuran');
+
+        s.addEventListener('change', (event)=>{
+            jumlah.value = parseInt(s.value) + parseInt(m.value) + parseInt(l.value) + parseInt(xl.value) +parseInt(xxl.value) +parseInt(xxxl.value);
+            tagihan.value = parseInt(jumlah.value) * parseInt(harga.value);
+        });
+
+        m.addEventListener('change', (event)=>{
+            jumlah.value = parseInt(s.value) + parseInt(m.value) + parseInt(l.value) + parseInt(xl.value) +parseInt(xxl.value) +parseInt(xxxl.value);
+            tagihan.value = parseInt(jumlah.value) * parseInt(harga.value);
+            // catatan.value = "KETERANGAN UKURAN : S = "+s.value+", M = "+m.value+", L = "+l.value+", XL = "+xl.value+", XXL = "+xxl.value+", XXXL = "+xxxl.value+" | ";
+            // allCatatan.value = catatan.value + catatan2.value;
+        });
+        l.addEventListener('change', (event)=>{
+            jumlah.value = parseInt(s.value) + parseInt(m.value) + parseInt(l.value) + parseInt(xl.value) +parseInt(xxl.value) +parseInt(xxxl.value);
+            tagihan.value = parseInt(jumlah.value) * parseInt(harga.value);
+            // catatan.value = "KETERANGAN UKURAN : S = "+s.value+", M = "+m.value+", L = "+l.value+", XL = "+xl.value+", XXL = "+xxl.value+", XXXL = "+xxxl.value+" | ";
+            // allCatatan.value = catatan.value + catatan2.value;
+        });
+        xl.addEventListener('change', (event)=>{
+            jumlah.value = parseInt(s.value) + parseInt(m.value) + parseInt(l.value) + parseInt(xl.value) +parseInt(xxl.value) +parseInt(xxxl.value);
+            tagihan.value = parseInt(jumlah.value) * parseInt(harga.value);
+            // catatan.value = "KETERANGAN UKURAN : S = "+s.value+", M = "+m.value+", L = "+l.value+", XL = "+xl.value+", XXL = "+xxl.value+", XXXL = "+xxxl.value+" | ";
+            // allCatatan.value = catatan.value + catatan2.value;
+        });
+        xxl.addEventListener('change', (event)=>{
+            jumlah.value = parseInt(s.value) + parseInt(m.value) + parseInt(l.value) + parseInt(xl.value) +parseInt(xxl.value) +parseInt(xxxl.value);
+            tagihan.value = parseInt(jumlah.value) * parseInt(harga.value);
+            // catatan.value = "KETERANGAN UKURAN : S = "+s.value+", M = "+m.value+", L = "+l.value+", XL = "+xl.value+", XXL = "+xxl.value+", XXXL = "+xxxl.value+" | ";
+            // allCatatan.value = catatan.value + catatan2.value;
+        });
+        xxxl.addEventListener('change', (event)=>{
+            jumlah.value = parseInt(s.value) + parseInt(m.value) + parseInt(l.value) + parseInt(xl.value) +parseInt(xxl.value) +parseInt(xxxl.value);
+            tagihan.value = parseInt(jumlah.value) * parseInt(harga.value);
+            // catatan.value = "KETERANGAN UKURAN : S = "+s.value+", M = "+m.value+", L = "+l.value+", XL = "+xl.value+", XXL = "+xxl.value+", XXXL = "+xxxl.value+" | ";
+            // allCatatan.value = catatan.value + catatan2.value;
+        });
+
+        catatan2.addEventListener('change', (event)=>{
+            allCatatan.value = catatan.value + catatan2.value;  
+        });
+
+    </script>
     <?php $this->load->view('partial/client/js');?>
     
 </body>

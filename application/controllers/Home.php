@@ -44,8 +44,11 @@ class Home extends CI_Controller {
             $this->session->set_flashdata('success', 'Berhasil disimpan');
         }
 
-        $data["produk"] = $product->getById($id);
+        $data["produk"] = json_encode($product->getById($id));
         if (!$data["produk"]) show_404();
+
+        // var_dump($data['produk']);
+        // die;
         
         $this->load->view("client/home/pemesanan", $data);
 	}
