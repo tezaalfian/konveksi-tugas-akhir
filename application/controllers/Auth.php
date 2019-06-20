@@ -39,14 +39,16 @@ class Auth extends CI_Controller {
 					if ($user['role_id'] == 2) {
 						$data = [
 							'username' => $user['username'],
-							'role_id' => $user['role_id']
+							'role_id' => $user['role_id'],
+							'id_user' => $user['id_user']
 						];
 						$this->session->set_userdata($data);
 						redirect(base_url('home'));
 					} elseif ($user['role_id'] == 1) {
 						$data = [
 							'username' => $user['username'],
-							'role_id' => $user['role_id']
+							'role_id' => $user['role_id'],
+							'id_user' => $user['id_user']
 						];
 
 						$this->session->set_userdata($data);

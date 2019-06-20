@@ -25,9 +25,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             'label' => 'produk',
                             'rules' => 'required'],
 
-                            // ['field' => 'pelanggan_id',
-                            // 'label' => 'pelanggan_id',
-                            // 'rules' => 'trim|required|xss_clean']
                         ];
                 }
 
