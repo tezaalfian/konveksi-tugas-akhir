@@ -10,6 +10,9 @@ class Pengiriman extends CI_Controller {
 		$this->load->model("m_produk");
 		$this->load->model("m_pelanggan");
 		$this->load->model("m_pengiriman");
+		if ($this->session->userdata('role_id') == 2) {
+			show_404();
+		}		
 	}
 
 	public function index() {

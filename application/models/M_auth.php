@@ -18,8 +18,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             return [
                 ['field' => 'username',
                 'label' => 'Username',
-                'rules' => 'required|trim|alpha_dash'],
-
+                'rules' => 'required|trim|alpha_dash|is_unique[user.username]'],
+                
                 ['field' => 'email',
                 'label' => 'Email',
                 'rules' => 'required|trim|valid_email|is_unique[user.email]'],

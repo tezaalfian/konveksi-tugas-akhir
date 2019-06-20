@@ -18,6 +18,7 @@ class Welcome extends CI_Controller {
 	public function home()
 	{
 		$user = $this->session->userdata('username');
+
 		if ($user) {
 			$data["user"] = $this->m_pelanggan->getByName($user);
 			$data["produk"] = $this->m_produk->getAllProduk();

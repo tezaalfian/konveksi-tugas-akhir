@@ -8,6 +8,9 @@ class Pelanggan extends CI_Controller {
 		parent::__construct();
 		$this->load->library('form_validation');
 		$this->load->model("m_pelanggan");
+		if ($this->session->userdata('role_id') == 2) {
+			show_404();
+		}
 	}
 
 	public function index() {
@@ -21,7 +24,7 @@ class Pelanggan extends CI_Controller {
        
         $pelanggan = $this->m_pelanggan;
         $validation = $this->form_validation;
-        $validation->set_rules($pelanggan->rules());
+        $validation->set_rules($pelanggan->rules2());
 
         if ($validation->run()) {
             $pelanggan->update();

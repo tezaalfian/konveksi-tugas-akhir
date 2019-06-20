@@ -47,21 +47,27 @@
                             <div class="card-body">
 		                        <form action="<?= base_url('admin/pelanggan/edit/').$pelanggan->id_user;?>" method="post" enctype="multipart/form-data">
 		                            <div class="row">
-		                                <div class="col-md-3">
-			                                <div class="form-group">
-		                                		<label for="foto">Foto</label>
-		                            			<img src="<?=base_url('upload/pelanggan/'.$pelanggan->foto); ?>" class="img-thumbnail">
-			                                	<input type="hidden" name="old_foto" value="<?= $pelanggan->foto ?>"/>
-			                                    <div class="custom-file">
-	                                              <input type="file" class="custom-file-input" id="customFilen" name="foto" value="<?= $pelanggan->foto ?>">
-	                                              <label class="custom-file-label" for="customFile">Choose file</label>
-	                                            </div>
-			                                    <div class="invalid-feedback">
-			                                        <?php echo form_error('foto')?>
-			                                    </div>
-			                                </div>
+		                                <div class="col-md-4">
+			                                <div class="card" style="border: solid #d4d4d4 1px;">
+			                                	<div class="card-body">
+				                                <div class="form-group">
+			                            			<img src="<?=base_url('upload/pelanggan/'.$pelanggan->foto); ?>" class="img-thumbnail"><br><br>
+				                                    <div class="custom-file">
+		                                              <input type="file" class="custom-file-input" id="customFilen" name="foto" accept=".jpg,.jpeg,.png">
+		                                              <label class="custom-file-label" for="customFile">Pilih Foto</label>
+		                                            </div>
+				                                    <div class="invalid-feedback">
+				                                        <?php echo form_error('foto')?>
+				                                    </div>
+				                                </div>
+				                            	</div>
+				                            	<div class="card-footer">
+				                            		<small>Besar file : maksimum 10 Mb</small><br>
+				                            		<small>Ekstensi file yang diperbolehkan : .JPG .JPEG .PNG</small>
+				                            	</div>
+				                            </div>
 		                            	</div>
-		                            	<div class="col-md-9">
+		                            	<div class="col-md-8">
 		                            		<input type="hidden" name="id_user" value="<?php echo $pelanggan->id_user?>" />
 			                                <div class="form-group">
 			                                    <label for="username">Username*</label>
@@ -79,13 +85,13 @@
 			                                    </div>
 			                                </div>
 
-			                                <div class="form-group">
+			                                <!-- <div class="form-group">
 			                                    <label for="password">Password*</label>
 			                                    <input class="form-control <?php echo form_error('password') ? 'is-invalid':'' ?>" type="text" name="password" placeholder="password" value="<?= $pelanggan->password ?>">
 			                                    <div class="invalid-feedback">
 			                                        <?php echo form_error('password') ?>
 			                                    </div>
-			                                </div>
+			                                </div> -->
 
 			                                <div class="form-group">
 			                                    <label for="no_hp">No Hp*</label>
@@ -102,6 +108,7 @@
 		                                            Laki-Laki &nbsp;
 		                                            <input type="radio" id="inline-radio2" name="jenis_kelamin" value="Perempuan" class="form-check-input"<?=is_checked($pelanggan->jenis_kelamin, "Perempuan"); ?>> 
 		                                            Perempuan
+		                                            <input type="radio" id="inline-radio2" name="jenis_kelamin" value=" " class="form-check-input hidden" checked>
 		                                        </div>
 		                                        <div class="invalid-feedback">
 			                                        <?php echo form_error('jenis_kelamin') ?>

@@ -50,15 +50,15 @@
 			                                </div>
 			                            	</div>
 			                            	<div class="card-footer">
-			                            		<small>Besar file: maksimum 5 Mb</small><br>
-			                            		<small>Ekstensi file yang diperbolehkan: .JPG .JPEG .PNG</small>
+			                            		<small>Besar file : maksimum 10 Mb</small><br>
+			                            		<small>Ekstensi file yang diperbolehkan : .JPG .JPEG .PNG</small>
 			                            	</div>
 			                            </div>
 		                            	</div>
 		                            	<div class="col-md-8">
 			                                <div class="form-group">
 			                                    <label for="username">Username*</label>
-			                                    <input class="form-control <?php echo form_error('username') ? 'is-invalid':'' ?>" type="text" name="username" placeholder="username">
+			                                    <input class="form-control <?php echo form_error('username') ? 'is-invalid':'' ?>" type="text" name="username" placeholder="username" value="<?= set_value('username'); ?>">
 			                                    <div class="invalid-feedback">
 			                                        <?php echo form_error('username') ?>
 			                                    </div>
@@ -66,7 +66,7 @@
 
 			                                <div class="form-group">
 			                                    <label for="email">Email*</label>
-			                                    <input class="form-control <?php echo form_error('email') ? 'is-invalid':'' ?>" type="email" name="email" placeholder="email">
+			                                    <input class="form-control <?php echo form_error('email') ? 'is-invalid':'' ?>" type="email" name="email" placeholder="email" value="<?= set_value('email'); ?>">
 			                                    <div class="invalid-feedback">
 			                                        <?php echo form_error('email') ?>
 			                                    </div>
@@ -74,7 +74,7 @@
 
 			                                <div class="form-group">
 			                                    <label for="password">Password*</label>
-			                                    <input class="form-control <?php echo form_error('password') ? 'is-invalid':'' ?>" type="text" name="password" placeholder="password">
+			                                    <input class="form-control <?php echo form_error('password') ? 'is-invalid':'' ?>" type="password" name="password" placeholder="password">
 			                                    <div class="invalid-feedback">
 			                                        <?php echo form_error('password') ?>
 			                                    </div>
@@ -82,7 +82,7 @@
 
 			                                <div class="form-group">
 			                                    <label for="no_hp">No Hp</label>
-			                                    <input class="form-control <?php echo form_error('no_hp') ? 'is-invalid':'' ?>" type="text" name="no_hp" placeholder="No Hp">
+			                                    <input class="form-control <?php echo form_error('no_hp') ? 'is-invalid':'' ?>" type="text" name="no_hp" placeholder="No Hp" value="<?= set_value('no_hp'); ?>">
 			                                    <div class="invalid-feedback">
 			                                        <?php echo form_error('no_hp') ?>
 			                                    </div>
@@ -91,10 +91,11 @@
 			                                <label class=" form-control-label">Jenis Kelamin*</label>
 			                                <div class="form-group">
 			                                	<div class="form-check-inline form-check <?php echo form_error('jenis_kelamin') ? 'is-invalid':'' ?>">
-		                                            <input type="radio" id="inline-radio1" name="jenis_kelamin" value="Laki-Laki" class="form-check-input">
+		                                            <input type="radio" id="inline-radio1" name="jenis_kelamin" value="Laki-Laki" class="form-check-input" value="<?= set_value('jenis_kelamin'); ?>">
 		                                            Laki-Laki &nbsp;
-		                                            <input type="radio" id="inline-radio2" name="jenis_kelamin" value="Perempuan" class="form-check-input"> 
+		                                            <input type="radio" id="inline-radio2" name="jenis_kelamin" value="Perempuan" class="form-check-input" value="<?= set_value('jenis_kelamin'); ?>">
 		                                            Perempuan
+		                                            <input type="radio" id="inline-radio2" name="jenis_kelamin" value=" " class="form-check-input hidden" checked>
 		                                        </div>
 		                                        <div class="invalid-feedback">
 			                                        <?php echo form_error('jenis_kelamin') ?>
@@ -103,7 +104,7 @@
 
 			                                <div class="form-group">
 	                                            <label for="alamat">Alamat</label>
-	                                            <textarea class="form-control <?php echo form_error('alamat') ? 'is-invalid':'' ?>" name="alamat" placeholder="alamat..."></textarea>
+	                                            <textarea class="form-control <?php echo form_error('alamat') ? 'is-invalid':'' ?>" name="alamat" placeholder="alamat..."><?= set_value('alamat'); ?></textarea>
 	                                            <div class="invalid-feedback">
 	                                                <?php echo form_error('alamat'); ?>
 	                                            </div>

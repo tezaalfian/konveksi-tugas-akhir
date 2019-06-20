@@ -18,7 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         return [
                             ['field' => 'username',
                             'label' => 'Username',
-                            'rules' => 'required|trim|alpha_dash'],
+                            'rules' => 'required|trim|alpha_dash|is_unique[user.username]'],
 
                             ['field' => 'nama',
                             'label' => 'nama',
@@ -115,7 +115,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     $config['allowed_types']        = 'gif|jpg|png|jpeg';
                     $config['file_name']            = $this->id_user;
                     $config['overwrite']            = true;
-                    $config['max_size']             = 2048; // 1MB
+                    $config['max_size']             = 10120;// 1MB
                     // $config['max_width']            = 1024;
                     // $config['max_height']           = 768;
 
@@ -128,8 +128,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         $config['image_library']='gd2';
                         $config['source_image']='./upload/pegawai/'.$gbr['file_name'];
                         $config['create_thumb']= FALSE;
-                        $config['maintain_ratio']= FALSE;
-                        $config['quality']= '50%';
+                        $config['maintain_ratio']= TRUE;
+                        $config['height']           = 400;
+                        $config['master_dim']       = 'height';
                         // $config['width']= 600;
                         // $config['height']= 600;
                         $config['new_image']= './upload/pegawai/'.$gbr['file_name'];

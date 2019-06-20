@@ -30,4 +30,11 @@
           width: calc(100% - 90px);
           line-height: 60px; /* Vertically center the text there */
         }
+
+        .hidden {
+          display: none!important;
+          visibility:hidden;
+          color: white!important;
+          background-color: white!important;
+        }
     </style>

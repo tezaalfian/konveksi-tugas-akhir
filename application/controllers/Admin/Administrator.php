@@ -8,6 +8,9 @@ class Administrator extends CI_Controller {
 		parent::__construct();
 		$this->load->library('form_validation');
 		$this->load->model("m_administrator");
+		if ($this->session->userdata('role_id') == 2) {
+			show_404();
+		}
 	}
 
 	public function index() {
@@ -21,7 +24,7 @@ class Administrator extends CI_Controller {
        
         $administrator = $this->m_administrator;
         $validation = $this->form_validation;
-        $validation->set_rules($administrator->rules());
+        $validation->set_rules($administrator->rules2());
 
         if ($validation->run()) {
             $administrator->update();

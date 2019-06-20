@@ -38,13 +38,19 @@ class Auth extends CI_Controller {
 					
 					if ($user['role_id'] == 2) {
 						$data = [
-							'username' => $user['username']
+							'username' => $user['username'],
+							'role_id' => $user['role_id']
+						];
+						$this->session->set_userdata($data);
+						redirect(base_url('home'));
+					} elseif ($user['role_id'] == 1) {
+						$data = [
+							'username' => $user['username'],
+							'role_id' => $user['role_id']
 						];
 
 						$this->session->set_userdata($data);
-						redirect(base_url('home'));
-					} else {
-						
+						redirect(base_url('admin/dashboard'));
 					}
 					
 				} else {
@@ -66,6 +72,10 @@ class Auth extends CI_Controller {
 
 	public function register()
 	{
+		$user = $this->session->userdata('username');
+		if ($user) {
+			redirect('home');
+		}
 		$auth = $this->m_auth;
         $validation = $this->form_validation;
         $validation->set_rules($auth->rules());

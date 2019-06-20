@@ -10,8 +10,8 @@
             <h5>Rp.&nbsp;<?php echo $product->harga ?></h5>
             <p class="card-text"><?php echo $product->deskripsi ?></p>
           </div>
-          <div class="card-footer">
-            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+          <div class="card-footer bg-dark">
+            <small class="text-muted"></small>
           </div>
         </div>
     </div>

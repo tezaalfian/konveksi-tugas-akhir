@@ -17,28 +17,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 {
                         return [
                             ['field' => 'username',
-                            'label' => 'username',
-                            'rules' => 'required'],
-
-                            ['field' => 'email',
-                            'label' => 'email',
-                            'rules' => 'required'],
+                            'label' => 'Username',
+                            'rules' => 'required|trim|alpha_dash|is_unique[user.username]'],
 
                             ['field' => 'no_hp',
                             'label' => 'no_hp',
                             'rules' => 'numeric'],
 
                             ['field' => 'password',
-                            'label' => 'password',
-                            'rules' => 'required|min_length[8]'],
-                            
-                            // ['field' => 'alamat',
-                            // 'label' => 'alamat',
-                            // 'rules' => 'required'],
+                            'label' => 'Password',
+                            'rules' => 'required|trim|min_length[8]'],
 
-                            // ['field' => 'jenis_kelamin',
-                            // 'label' => 'jenis_kelamin',
-                            // 'rules' => 'trim|required|xss_clean']
+                            ['field' => 'email',
+                            'label' => 'Email',
+                            'rules' => 'required|trim|valid_email|is_unique[user.email]']
+                        ];
+                }
+
+                public function rules2()
+                {
+                        return [
+                            ['field' => 'username',
+                            'label' => 'Username',
+                            'rules' => 'required|trim|alpha_dash'],
+
+                            ['field' => 'no_hp',
+                            'label' => 'no_hp',
+                            'rules' => 'numeric'],
+
+                            ['field' => 'email',
+                            'label' => 'Email',
+                            'rules' => 'required|trim|valid_email']
                         ];
                 }
 
@@ -65,14 +74,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 public function insert()
                 {
                     $post = $this->input->post();
-                    $this->id_usern = base_convert(microtime(FALSE), 8, 16);
-                    $this->username = $post["username"];
-                    $this->email = $post["email"];
+                    $this->id_user = base_convert(microtime(FALSE), 8, 16);
+                    $this->username = htmlspecialchars($this->input->post("username", true));
+                    $this->email = htmlspecialchars($this->input->post("email", true));
                     $this->foto = $this->uploadImage();
                     $this->alamat = $post["alamat"];
-                    $this->password = $post["password"];
                     $this->no_hp = $post["no_hp"];
                     $this->jenis_kelamin = $post["jenis_kelamin"];
+                    $this->password = password_hash($post["password"], PASSWORD_DEFAULT);
+                    $this->is_active = 1;
+                    $this->date_created = time();
+                    $this->role_id = 2;
 
                     $this->db->insert($this->_table, $this);
                 }
@@ -108,7 +120,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     $config['allowed_types']        = 'gif|jpg|png|jpeg';
                     $config['file_name']            = $this->id_user;
                     $config['overwrite']            = true;
-                    $config['max_size']             = 5120; // 1MB
+                    $config['max_size']             = 10120; // 1MB
                     // $config['max_width']            = 1024;
                     // $config['max_height']           = 768;
 
@@ -122,8 +134,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         $config['source_image']='./upload/pelanggan/'.$gbr['file_name'];
                         $config['create_thumb']= FALSE;
                         $config['maintain_ratio']= TRUE;
-                        $config['quality']= '30%';
-                        $config['height']           = 300;
+                        // $config['quality']= '30%';
+                        $config['height']           = 400;
                         $config['master_dim']       = 'height';
                         // $config['width']     = 500;
                         $config['new_image']= './upload/pelanggan/'.$gbr['file_name'];

@@ -34,7 +34,7 @@
                                         <tr>
                                             <th>Nama</th>
                                             <th>Username</th>
-                                            <th>Password</th>
+                                            <th>Foto</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -47,14 +47,14 @@
                                                 <td>
                                                     <?php echo $admin->username ?>
                                                 </td>
-                                                <td>
-                                                    <?php echo $admin->password?>
+                                                <td align="center">
+                                                    <img src="<?= base_url('upload/administrator/'.$admin->foto) ?>" width="64" />
                                                 </td>
                                                 <td align="center">
                                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#mediumModal">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
-                                                    <a href="<?= base_url('admin/administrator/edit/'.$admin->id_administrator); ?>" class="btn btn-success btn-sm">
+                                                    <a href="<?= base_url('admin/administrator/edit/'.$admin->id_user); ?>" class="btn btn-success btn-sm">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
                                                 </td>
@@ -79,7 +79,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                        <a href="<?= base_url('admin/administrator/delete/'.$admin->id_administrator); ?>" class="btn btn-primary">
+                                        <a href="<?= base_url('admin/administrator/delete/'.$admin->id_user); ?>" class="btn btn-primary">
                                             Confirm
                                         </a>
                                     </div>
