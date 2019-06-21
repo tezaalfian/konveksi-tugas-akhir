@@ -38,7 +38,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                     $this->db->insert($this->_table, $this);
 
-                    $this->session->set_userdata("kode", $this->id_pemesanan);
+                    // $this->session->set_userdata("kode", $this->id_pemesanan);
                 }
 
                 public function update()
@@ -47,7 +47,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     $this->id_pemesanan = $post['id_pemesanan'];
 
                     // $produk = $this->db->get_where('barang', ["nama" => $post["produk"]])->row();
-                    $this->barang_id = $post["produk"];
+                    $this->barang_id = $post["barang_id"];
 
                     $this->jumlah = $post["jumlah"];
                     $this->catatan = $post["catatan"];
@@ -55,7 +55,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     $this->tanggal_pemesanan = $post["old_date"];
 
                     // $pelanggan = $this->db->get_where('pelanggan', ["username" => $post["pelanggan"]])->row();
-                    $this->pelanggan_id = $post["pelanggan"];
+                    $this->pelanggan_id = $this->session->userdata('id_user');
 
                     $this->s = $post["s"];
                     $this->m = $post["m"];
@@ -63,6 +63,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     $this->xl = $post["xl"];
                     $this->xxl = $post["xxl"];
                     $this->xxxl = $post["xxxl"];
+                    $this->status_id = 1;
 
                     if (!empty($_FILES["desain"]["name"])) {
                         $this->desain = $this->uploadImage();
@@ -71,6 +72,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     }
 
                     $this->db->update($this->_table, $this, array('id_pemesanan' => $post['id_pemesanan']));
+                }
+
+                public function getById($id)
+                {
+                   return $this->db->get_where('pemesanan', ["id_pemesanan" => $id])->row();
                 }
 
                 public function delete($id)
@@ -115,10 +121,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                 private function deleteImage($id)
                 {
+                    $id = $this->session->userdata('kode');
                     $pemesanan = $this->getById($id);
                     if ($pemesanan->desain != "default.jpg") {
                         $filename = explode(".", $pemesanan->desain)[0];
                         return array_map('unlink', glob(FCPATH."upload/pemesanan/$filename.*"));
                     }
+                }
+
+                public function getAllById($id)
+                {
+                    $this->db->select("pemesanan.*, barang.*, user.id_user, user.username, status.status");
+                    $this->db->from("pemesanan");
+                    $this->db->join("barang", "barang.id = pemesanan.barang_id");
+                    $this->db->join("user", "user.id_user = pemesanan.pelanggan_id");
+                    $this->db->join("status", "status.id = pemesanan.status_id");
+                    $this->db->where("pemesanan.pelanggan_id", $id);
+                    $this->db->order_by("pemesanan.tanggal_pemesanan", "asc");
+                    $query = $this->db->get();
+                    return $query->result();
                 }
         }

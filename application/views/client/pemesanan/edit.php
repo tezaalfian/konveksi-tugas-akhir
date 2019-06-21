@@ -7,6 +7,20 @@
     <?php $this->load->view('partial/client/header2');?>
 
         <div class="container">
+            <div class="row pt-3">
+            	<div class="col-md-12">
+            		<?php if ($this->session->flashdata('success')): ?>
+                        <div class="alert alert-success" role="alert">
+                            <?php echo $this->session->flashdata('success'); ?>
+                        </div>
+                    <?php endif; ?>
+                    <a href="<?= base_url('home/chart'); ?>">
+                        <button type="button" class="btn btn-info">
+                            <i class="fa fa-angle-left"></i>&nbsp; Kembali
+                    	</button>
+                    </a>
+            	</div>
+            </div>
             <div class="row py-3">
                 <div class="col-md-4">
 					<!-- <label for="pelanggan"><b>Sampel</b></label> -->
@@ -22,7 +36,7 @@
                 		
                 	</div>
                 	
-                	<form class="my-4" action="<?= base_url('pemesanan/tambah')?>" method="post" enctype="multipart/form-data">
+                	<form class="my-4" id="form-edit" action="" method="post" enctype="multipart/form-data">
 			            <div class="form-group">
 			                <label for="pelanggan"><b>Ukuran*</b></label>
 				                <div class="row">
@@ -83,6 +97,9 @@
 			            </div>
 			            <!-- <input class="form-control" type="hidden" id="harga" name="harga"> -->
 			            <input class="form-control" type="hidden" id="barang_id" name="barang_id">
+			            <input class="form-control" type="hidden" id="old_date" name="old_date">
+			            <input class="form-control" type="hidden" id="old_desain" name="old_desain">
+			            <input class="form-control" type="hidden" id="id_pemesanan" name="id_pemesanan">
 
 			            <div class="row">
 			            	<div class="col-md-6">
@@ -111,7 +128,7 @@
 			            	<div class="col-md-6">
 			            		<div class="form-group">
 					                <label for="pelanggan"><b>Catatan</b></label>
-					                <textarea rows="4" class="form-control <?php echo form_error('catatan') ? 'is-invalid':'' ?>" name="catatan" id="catatan2" placeholder="Catatan khusus admin..."></textarea>
+					                <textarea rows="4" class="form-control <?php echo form_error('catatan') ? 'is-invalid':'' ?>" name="catatan" id="catatan" placeholder="Catatan khusus admin..."></textarea>
 					            </div>
 			            	</div>
 			            	<div class="col-md-6">
@@ -132,7 +149,7 @@
 			            	</div>
 			            </div>
 
-			            <button class="btn btn-info" type="submit" name="btn">Tambah ke Keranjang</button>
+			            <button class="btn btn-info" type="submit" name="btn">Simpan Perubahan</button>
 			        </form>
                 </div>
             </div>
@@ -162,10 +179,10 @@
 
 <!-- LIBRARY JS -->
 <script type="text/javascript">
-		var result = <?= $produk ?>;
+		var result = <?= $pemesanan ?>;
         var pelanggan = document.getElementById('pelanggan');
         var jenis_produk = document.getElementById('produk');
-        var harga = result.harga;
+        var harga = result[0].harga;
         var s = document.getElementById('size1');
         var m = document.getElementById('size2');
         var l = document.getElementById('size3');
@@ -176,15 +193,29 @@
         var tagihan = document.getElementById('tagihan');
         var catatan = document.getElementById('ket_ukuran');
         var catatan2 = document.getElementById('catatan2');
-        var allCatatan = document.getElementById('catatan');
+        var catatan = document.getElementById('catatan');
         var ukuran = document.getElementsByClassName('ukuran');
         var barang = document.getElementById('barang_id');
+        var old_desain = document.getElementById('old_desain');
+        var old_date = document.getElementById('old_date');
+        var id_pemesanan = document.getElementById('id_pemesanan');
 
-        var string = "<h3 class='text-dark'>"+result.nama+"- <span class='text-dark'>"+result.deskripsi+"</span></h3><h4 class='text-info'><b>Rp.&nbsp;"+result.harga+"</b></h4>";
+        var string = "<h3 class='text-dark'>"+result[0].nama+"- <span class='text-dark'>"+result[0].deskripsi+"</span></h3><h4 class='text-info'><b>Rp.&nbsp;"+result[0].harga+"</b></h4>";
 
         document.getElementById('keterangan').innerHTML = string;
-        barang.value = result.id;
-        
+        barang.value = result[0].barang_id;
+        s.value = result[0].s;
+        m.value = result[0].m;
+        l.value = result[0].l;
+        xl.value = result[0].xl;
+        xxl.value = result[0].xxl;
+        xxxl.value = result[0].xxxl;
+        jumlah.value = result[0].jumlah;
+        tagihan.value = result[0].tagihan;
+        catatan.value = result[0].catatan;
+        old_desain.value = result[0].old_desain;
+        old_date.value = result[0].old_date;
+        id_pemesanan.value = result[0].id_pemesanan;
 
         s.addEventListener('change', (event)=>{
             jumlah.value = parseInt(s.value) + parseInt(m.value) + parseInt(l.value) + parseInt(xl.value) +parseInt(xxl.value) +parseInt(xxxl.value);
@@ -230,9 +261,10 @@
 
     <?php $this->load->view('partial/client/js');?>
     <script type="text/javascript">
-    	var result = <?= $produk ?>;
-        $("#foto_produk").attr("src", "<?= base_url('upload/produk/')?>"+result.foto);
-        $("#foto-modal").attr("src", "<?= base_url('upload/produk/')?>"+result.foto);
+    	var result= <?= $pemesanan ?>;
+        $("#foto_produk").attr("src", "<?= base_url('upload/pemesanan/')?>"+result[0].desain);
+        $("#foto-modal").attr("src", "<?= base_url('upload/pemesanan/')?>"+result[0].desain);
+        $("#form-edit").attr("action", "<?= base_url('pemesanan/edit/')?>"+result[0].id_pemesanan);
     	// $("#barang_id").val(result.barang_id);
     </script>
     

@@ -19,5 +19,16 @@
         padding: 0;
       }
 
-     
+     html,
+    body {
+      height: 100%;
+    }
+
+    #page-content {
+      flex: 1 0 auto;
+    }
+
+    #sticky-footer {
+      flex-shrink: none;
+    }
     </style>

@@ -5,7 +5,7 @@
     <?php $this->load->view('partial/client/css');?>
 </head>
 <body>
-    <?php $this->load->view('partial/client/header2');?>
+    <?php $this->load->view('partial/client/header3');?>
 
         <div class="container">
             <div class="row py-5">

@@ -8,6 +8,7 @@ class Home extends CI_Controller {
         $this->load->model("m_produk");
         $this->load->model("m_pelanggan");
         $this->load->model("m_pemesanan");
+        $this->load->model("c_pemesanan");
 
         $user = $this->session->userdata('username');
 
@@ -57,12 +58,28 @@ class Home extends CI_Controller {
         $this->load->view("client/home/pemesanan", $data);
 	}
 
-	public function pengiriman()
+  public function chart()
+  {
+    $user = $this->session->userdata('username');
+    $data["user"] = $this->m_pelanggan->getByName($user);
+    $data["produk"] = $this->m_produk->getAllProduk();
+
+    $kode = $this->session->userdata('id_user');
+
+    $data['pemesanan'] = $this->c_pemesanan->getAllById($kode);
+    if (!$data["pemesanan"]){
+      $this->session->set_flashdata('kosong', '<div class="alert alert-danger" role="alert">Keranjang anda kosong!</div>');
+    }
+        
+    $this->load->view("client/home/chart", $data);
+  }
+
+	public function pengiriman($id)
 	{
 		$user = $this->session->userdata('username');
 		$data["user"] = $this->m_pelanggan->getByName($user);
 		$data["produk"] = $this->m_produk->getAllProduk();
-       
+    $data["pemesanan"] = $this->m_pemesanan->getAllById($id);  
   //       $product = $this->m_produk;
   //       $validation = $this->form_validation;
   //       $validation->set_rules($product->rules());
@@ -71,13 +88,10 @@ class Home extends CI_Controller {
   //           $product->update();
   //           $this->session->set_flashdata('success', 'Berhasil disimpan');
   //       }
-      $kode = $this->session->userdata('kode');
+      // $kode = $this->session->userdata('kode');
 
-        $data['pemesanan'] = $this->m_pemesanan->getAllById($kode);
-        if (!$data["pemesanan"]) show_404();
-
-        // var_dump($data['produk']);
-        // die;
+      //   $data['pemesanan'] = $this->m_pemesanan->getAllById($kode);
+        // if (!$data["pemesanan"]) show_404();
         
         $this->load->view("client/home/tambah-pengiriman", $data);
 	}
