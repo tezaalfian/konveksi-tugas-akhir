@@ -7,6 +7,9 @@
     	#tengah {
     		vertical-align: middle;
     	}
+    	#ongkir, #total_tagihan {
+    		text-align: right;
+    	}
     </style>
 </head>
 <body class="d-flex flex-column">
@@ -77,26 +80,34 @@
                 	<div class="card" style="width: 100%;">
 						<div class="card-body">
 							<h5 class="card-title text-dark"><b>Ringkasan Belanja</b></h5>
-							<ul class="list-inline">
-								<li class="list-inline-item">Jenis Barang :</li>
-								<li class="list-inline-item float-right"><?= $pemesanan[0]->nama ?></li>
-							</ul>
-							<ul class="list-inline">
-								<li class="list-inline-item">Total Harga :&nbsp;(<?= $pemesanan[0]->jumlah ?>&nbsp;item)</li>
-								<li class="list-inline-item float-right">Rp.&nbsp;<?= $pemesanan[0]->tagihan ?></li>
-							</ul>
-							<ul class="list-inline">
-								<li class="list-inline-item">Berat :</li>
-								<li class="list-inline-item float-right"><?= $pemesanan[0]->berat ?>&nbsp;gram</li>
-							</ul>
-							<ul class="list-inline">
-								<li class="list-inline-item">Ongkos Kirim :</li>
-								<li class="list-inline-item float-right" name="ongkir" id="ongkir">Rp. 012000</li>
-							</ul><hr>
-							<ul class="list-inline">
-								<li class="list-inline-item text-dark"><b>Total Tagihan :</b></li>
-								<input class="list-inline-item float-right" name="total_tagihan" id="total_tagihan" value="Rp. 20.000.000" readonly>
-							</ul>
+							<div class="row py-2">
+								<div class="col-auto">Jenis Barang :</div>
+								<div class="col text-right"><?= $pemesanan[0]->nama ?></div>
+							</div>
+							<div class="row py-2">
+								<div class="col-auto">Total Harga :&nbsp;(<?= $pemesanan[0]->jumlah ?>&nbsp;item)</div>
+								<div class="col text-right">Rp.&nbsp;<?= $pemesanan[0]->tagihan ?></div>
+							</div>
+							<div class="row py-2">
+								<div class="col-auto">Berat :</div>
+								<div class="col text-right"><?= $pemesanan[0]->berat ?>&nbsp;gram</div>
+							</div>
+							<div class="row">
+								<div class="col-auto">
+									<label for="ongkir" class="col-form-label">Ongkos Kirim :</label>
+								</div>
+								<div class="col-auto">
+									<input class="form-control-plaintext" name="ongkir" id="ongkir" readonly>
+								</div>
+							</div><hr>
+							<div class="row">
+								<div class="col-auto text-dark">
+									<label for="total_tagihan" class="col-form-label"><b>Total Tagihan :</b></label>
+								</div>
+								<div class="col-auto">
+									<input class="form-control-plaintext text-dark" name="total_tagihan" id="total_tagihan" readonly>
+								</div>
+							</div><br>
 							<button class="btn btn-info btn-block" type="submit" name="btn">Lanjut ke Pembayaran</button>
 						</div>
 					</div>
@@ -136,8 +147,10 @@
     	var getId_prov;
     	var getId_kota;
     	var kota = "";
+    	var cost = "";
     	var list_kota = "";
     	var list_pos = "";
+    	var list_kurir = "";
 
     	for (var i = provinsi.rajaongkir.results.length - 1; i >= 0; i--) {
     		prov += "<option value='"+provinsi.rajaongkir.results[i].province_id+"'>"+provinsi.rajaongkir.results[i].province+"</option>";
@@ -164,6 +177,15 @@
 	    				list_kota += "<option value='"+kota.rajaongkir.results[i].city_id+"'>"+kota.rajaongkir.results[i].type+" "+kota.rajaongkir.results[i].city_name+"</option>";
 	    			}
 	    			$('#kota').html(list_kota);
+
+	    			list_kurir = "";
+	    			for (var i = cost.rajaongkir.results[0].costs.length - 1; i >= 0; i--) {
+	    				list_kurir += "<option value='"+cost.rajaongkir.results[0].costs[i].cost[0].value+"'>"+cost.rajaongkir.results[0].code+" - "+cost.rajaongkir.results[0].costs[i].service+" "+cost.rajaongkir.results[0].costs[i].cost[0].etd+" Hari"+"</option>";
+	    			}
+	    			$('#kurir').html(list_kurir);
+	    			var ongkir = $('#kurir option:selected').val();
+		    		$('#ongkir').val(ongkir);
+		    		$('#total_tagihan').val(parseInt(produk[0].tagihan) + parseInt($('#ongkir').val()));
 	    		}
 	    	});
     	});
@@ -173,20 +195,28 @@
     		getId_kota = $('#kota option:selected').val();
     		var url_get = "<?= base_url('home/cost/'); ?>";
     		$.ajax({
-	    		url: url_get,
+	    		url: url_get+getId_kota+"/"+produk[0].berat,
 	    		type: 'post',
 	    		dataType: 'json',
-	    		contentType: "application/json",
-	    		data: {
-	    			'origin': '431',
-	    			'destination': getId_kota,
-	    			'weight': produk[0].berat,
-	    			'courier': 'jne'
-	    		},
 	    		success: function(result) {
 	    			console.log(result);
+	    			cost = result;
+	    			list_kurir = "";
+	    			for (var i = cost.rajaongkir.results[0].costs.length - 1; i >= 0; i--) {
+	    				list_kurir += "<option value='"+cost.rajaongkir.results[0].costs[i].cost[0].value+"'>"+cost.rajaongkir.results[0].code+" - "+cost.rajaongkir.results[0].costs[i].service+" "+cost.rajaongkir.results[0].costs[i].cost[0].etd+" Hari"+"</option>";
+	    			}
+	    			$('#kurir').html(list_kurir);
+	    			var ongkir = $('#kurir option:selected').val();
+		    		$('#ongkir').val(ongkir);
+		    		$('#total_tagihan').val(parseInt(produk[0].tagihan) + parseInt($('#ongkir').val()));
 	    		}
 	    	});
+    	});
+
+    	$('#kurir').on('change', function(){
+    		 var ongkir = $('#kurir option:selected').val();
+    		 $('#ongkir').val(ongkir);
+    		 $('#total_tagihan').val(parseInt(produk[0].tagihan) + parseInt($('#ongkir').val()));
     	});
 
     </script>

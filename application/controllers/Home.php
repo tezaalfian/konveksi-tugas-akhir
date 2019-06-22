@@ -83,6 +83,9 @@ class Home extends CI_Controller {
     $data["produk"] = json_encode($this->m_pemesanan->getAllById($id));
     $data["provinsi"] = $this->rajaongkir->provinsi();
     $data["kota"] = $this->rajaongkir->kota();
+    $dest = "114";
+    $weight = 1500;
+    $data["cost"] = $this->cost($dest, $weight);
   //       $product = $this->m_produk;
   //       $validation = $this->form_validation;
   //       $validation->set_rules($product->rules());
@@ -133,7 +136,7 @@ class Home extends CI_Controller {
       }
   }
 
-  public function cost()
+  public function cost($dest, $weight)
   {
     $curl = curl_init();
 
@@ -145,7 +148,7 @@ class Home extends CI_Controller {
       CURLOPT_TIMEOUT => 30,
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => "POST",
-      CURLOPT_POSTFIELDS => "origin=501&destination=114&weight=1700&courier=jne",
+      CURLOPT_POSTFIELDS => "origin=431&destination=".$dest."&weight=".$weight."&courier=jne",
       CURLOPT_HTTPHEADER => array(
         "content-type: application/x-www-form-urlencoded",
         "key: 6b2693fdcd367bfa028faa8e9e69b3ff"
