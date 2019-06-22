@@ -99,4 +99,9 @@ class Home extends CI_Controller {
     $this->load->view("client/home/tambah-pengiriman", $data);
 	}
 
+  public function pengiriman($id)
+  {
+    var_dump($this->input->post('total_tagihan'));
+  }
+
 }

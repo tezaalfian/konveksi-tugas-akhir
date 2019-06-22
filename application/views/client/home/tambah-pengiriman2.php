@@ -18,7 +18,7 @@
                 <div class="col-md-8">
                 	<h4 class="text-dark"><b>Checkout</b></h4>
                 	<h5 class="text-dark">Alamat Pengiriman</h5><hr>
-                	<form action="<?= base_url('home/pengiriman/'.$pemesanan[0]->id_pemesanan) ?>" method="post" enctype="multipart/form-data">
+                	<form action="" method="post" enctype="multipart/form-data">
                 		<div class="form-group">
                 			<label for="harga">Label Alamat</label>
 			                <input class="form-control" type="text" name="label" placeholder="Alamat Rumah, Alamat Kantor, dll">
@@ -27,13 +27,13 @@
                 			<div class="col-sm-6">
                 				<div class="form-group">
 		                			<label for="harga">Nama Penerima</label>
-					                <input class="form-control" type="text" name="nama_penerima" value="<?= $pemesanan[0]->username ?>">
+					                <input class="form-control" type="text" name="label" value="<?= $pemesanan[0]->username ?>">
 		                		</div>
                 			</div>
                 			<div class="col-sm-6">
                 				<div class="form-group">
 		                			<label for="harga">Nomor Telpon Penerima</label>
-					                <input class="form-control" type="text" name="no_hp" value="<?= $pemesanan[0]->no_hp ?>">
+					                <input class="form-control" type="text" name="label" value="<?= $pemesanan[0]->no_hp ?>">
 		                		</div>
                 			</div>
                 		</div>
@@ -55,7 +55,7 @@
                 			<div class="col-sm-12">
                 				<div class="form-group">
 		                			<label for="pelanggan">Alamat</label>
-			                		<textarea name="provinsi" id="alamat" class="form-control"></textarea>
+			                		<textarea name="provinsi" id="provinsi" class="form-control"></textarea>
 		                		</div>
                 			</div>
                 		</div>
@@ -74,11 +74,11 @@
 							</ul>
 							<ul class="list-inline">
 								<li class="list-inline-item">Ongkos Kirim :</li>
-								<li class="list-inline-item float-right" name="ongkir" id="ongkir">Rp. 012000</li>
+								<li class="list-inline-item float-right" name="ongkir" id="ongkir"></li>
 							</ul><hr>
 							<ul class="list-inline">
 								<li class="list-inline-item">Total Tagihan :</li>
-								<input class="list-inline-item float-right" name="total_tagihan" id="total_tagihan" value="Rp. 20.000.000" readonly>
+								<li class="list-inline-item float-right" name="total_tagihan" id="total_tagihan"></li>
 							</ul>
 							<button class="btn btn-info btn-block" type="submit" name="btn">Lanjut ke Pembayaran</button>
 						</div>
@@ -131,9 +131,7 @@
 	    	$.ajax({
 	    		url:'https://api.rajaongkir.com/starter/city',
 	    		headers: { 
-	    			'Access-Control-Allow-Origin': "*",
-	    			'Access-Control-Allow-Headers': "Content-Type",
-	    			'Access-Control-Allow-Methods': "GET"	
+	    			"content-type": "application/json",	
 				},
 	    		type: 'get',
 	    		dataType: 'json',

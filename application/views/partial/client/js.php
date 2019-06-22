@@ -1,6 +1,7 @@
-    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="<?= base_url('vendor_assets/jquery/jquery.min.js'); ?>"></script>
     <script src="<?= base_url('vendor_assets/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
     <script src="<?= base_url('vendor_assets/bootstrap/js/sb-admin-2.min.js'); ?>"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
    
 
     <script type="text/javascript">
