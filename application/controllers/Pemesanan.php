@@ -67,6 +67,8 @@ class Pemesanan extends CI_Controller {
         // }
         // var_dump($this->input->post("tagihan"));
         // die;
+        // var_dump($this->input->post());
+        // die;
         if ($this->input->post('jumlah') == null) {
             // $id = $this->input->post('barang_id');
             $this->session->set_flashdata('error', '<div class="invalid-feedback">Masukkan jumlah barang!</div>');
@@ -79,9 +81,9 @@ class Pemesanan extends CI_Controller {
         }
             $user = $this->session->userdata('username');
             $data["user"] = $this->m_pelanggan->getByName($user);
-            $data["produk"] = $this->m_produk->getAllProduk();
 
-            $data['pemesanan'] = json_encode($this->m_pemesanan->getAllById($id));
+            $data['pemesanan'] = $this->m_pemesanan->getAllById($id);
+            $data['produk'] = json_encode($this->m_pemesanan->getAllById($id));
             $this->load->view("client/pemesanan/edit", $data);
         // $data['pemesanan'] = $this->db->get("pemesanan")->last_row();
     }

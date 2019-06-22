@@ -70,7 +70,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     } else {
                         $this->desain = $post["old_desain"];
                     }
-
+                    // var_dump($this);
+                    // die;
                     $this->db->update($this->_table, $this, array('id_pemesanan' => $post['id_pemesanan']));
                 }
 
@@ -98,6 +99,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     $this->load->library('upload');
                     $this->upload->initialize($config);
 
+
+
                     if ($this->upload->do_upload('desain')) {
                         $gbr = $this->upload->data();
                 //Compress Image
@@ -116,12 +119,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         return $this->upload->data("file_name");
                     }
                     // print_r($this->upload->display_errors());
-                    // return "default.jpg";
+                    return "default.jpg";
                 }
 
                 private function deleteImage($id)
                 {
-                    $id = $this->session->userdata('kode');
+                    // $id = $this->session->userdata('kode');
                     $pemesanan = $this->getById($id);
                     if ($pemesanan->desain != "default.jpg") {
                         $filename = explode(".", $pemesanan->desain)[0];

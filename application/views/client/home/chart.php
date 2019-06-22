@@ -49,7 +49,7 @@
 										  <li class="list-inline-item">Total Tagihan :</li>
 										  <li class="list-inline-item float-right">Rp.&nbsp;<?= $order->tagihan ?></li>
 										</ul>
-									    <a href="<?= base_url('home/pengiriman/'.$order->id_pemesanan); ?>" class="btn btn-info btn-block">Pesan Sekarang</a>
+									    <a href="<?= base_url('home/checkout/'.$order->id_pemesanan); ?>" class="btn btn-info btn-block">Pesan Sekarang</a>
 									  </div>
 									</div>
 						      	</th>

@@ -1,170 +1,148 @@
-<?= var_dump($pemesanan); ?>
+<?php var_dump($kota); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <?php $this->load->view('partial/client/css');?>
+    <style type="text/css">
+    	#tengah {
+    		vertical-align: middle;
+    	}
+    </style>
 </head>
-<body>
-    <?php $this->load->view('partial/client/header3');?>
+<body class="d-flex flex-column">
+<div id="page-content">
+    <?php $this->load->view('partial/client/header2');?>
 
         <div class="container">
-            <div class="row py-5">
-                <div class="col-md-4">
-					<!-- <label for="pelanggan"><b>Sampel</b></label> -->
-                	<img style="cursor: pointer;}" id="foto_produk" data-toggle="modal" data-target="#exampleModal" src="" class="img-thumbnail">
-					<div id="myModal" class="modal">
-					  <span class="close">&times;</span>
-					  <img class="modal-content" id="img01">
-					  <div id="caption"></div>
-					</div>
-                </div>
+            <div class="row py-3">
                 <div class="col-md-8">
-                	<div id="keterangan">
-                		
-                	</div>
-                	
-                	<form class="my-4" action="<?= base_url('pemesanan/tambah')?>" method="post" enctype="multipart/form-data">
-			            <div class="form-group">
-			                <label for="pelanggan"><b>Ukuran</b></label>
-				                <div class="row">
-				                    <div class="col-sm-4">
-										<div class="input-group mb-1">
-					                        <div class="input-group-prepend">
-										       <div class="input-group-text"><b>S</b></div>
-										    </div>
-					                        <input type="number" id="size1" name="s"class="form-control ukuran" value="0" min="0">
-						                </div>    
-					                </div>
-					                <div class="col-sm-4">
-										<div class="input-group mb-1">
-					                        <div class="input-group-prepend">
-										       <div class="input-group-text"><b>M</b></div>
-										    </div>
-					                        <input type="number" id="size2" name="m"class="form-control ukuran" value="0" min="0">
-						                </div>    
-					                </div>
-					                <div class="col-sm-4">
-										<div class="input-group mb-1">
-					                        <div class="input-group-prepend">
-										       <div class="input-group-text"><b>L</b></div>
-										    </div>
-					                        <input type="number" id="size3" name="l"class="form-control ukuran" value="0" min="0">
-						                </div>    
-					                </div>
-					                <div class="col-sm-4">
-										<div class="input-group mb-1">
-					                        <div class="input-group-prepend">
-										       <div class="input-group-text"><b>XL</b></div>
-										    </div>
-					                        <input type="number" id="size4" name="xl"class="form-control ukuran" value="0" min="0">
-						                </div>    
-					                </div>
-					                <div class="col-sm-4">
-										<div class="input-group mb-1">
-					                        <div class="input-group-prepend">
-										       <div class="input-group-text"><b>XXL</b></div>
-										    </div>
-					                        <input type="number" id="size5" name="xxl"class="form-control ukuran" value="0" min="0">
-						                </div>    
-					                </div>
-					                <div class="col-sm-4">
-										<div class="input-group mb-1">
-					                        <div class="input-group-prepend">
-										       <div class="input-group-text"><b>Other</b></div>
-										    </div>
-					                        <input type="number" id="size6" name="xxxl"class="form-control ukuran" value="0" min="0">
-						                </div>    
-					                </div>
-					            </div>
-					        <i><small>*Untuk ukuran selain yang ada diatas silahkan masukkan ukurannya di Other dengan menjelaskan keterangannya di Catatan </small></i>
-			                <div class="invalid-feedback">
-			                    <?php echo form_error('pelanggan') ?>
-			                </div>
-			            </div>
-			            <!-- <input class="form-control" type="hidden" id="harga" name="harga"> -->
-			            <input class="form-control" type="hidden" id="barang_id" name="barang_id">
-
-			            <div class="row">
-			            	<div class="col-md-6">
-			            		<div class="form-group">
-					                <label for="pelanggan"><b>Jumlah</b></label>
-					                <input class="bg-white form-control <?php echo form_error('jumlah') ? 'is-invalid':'' ?>" type="number" name="jumlah" id="jumlah" readonly>
-					                <div class="invalid-feedback">
-					                    <?php echo form_error('jumlah') ?>
-					                </div>
-					            </div>
-			            	</div>
-			            	<div class="col-md-6">
-			            		<div class="form-group">
-					                <label for="pelanggan"><b>Total</b></label>
-					                <div class="input-group mb-1">
-						                <div class="input-group-prepend">
-											<div class="input-group-text"><b>Rp.</b></div>
-										</div>
-						                <input class="bg-white form-control <?php echo form_error('tagihan') ? 'is-invalid':'' ?>" type="number" name="tagihan" id="tagihan" readonly>
-							        </div>
-					            </div>
-			            	</div>
-			            </div>
-
-			            <div class="row">
-			            	<div class="col-md-6">
-			            		<div class="form-group">
-					                <label for="pelanggan"><b>Catatan</b></label>
-					                <textarea rows="4" class="form-control <?php echo form_error('catatan') ? 'is-invalid':'' ?>" name="catatan" id="catatan2" placeholder="Catatan khusus admin..."></textarea>
-					            </div>
-			            	</div>
-			            	<div class="col-md-6">
-			                    <div class="form-group">
-			                    	<label for="pelanggan"><b>Desain</b></label>
-		                            <!-- <img src="<?=base_url('upload/pelanggan/default.jpg'); ?>" class="img-thumbnail"> -->
-			                        <div class="custom-file">
-	                                    <input type="file" class="custom-file-input" id="customFilen" name="desain" accept=".jpg,.jpeg,.png">
-	                                    <label class="custom-file-label" for="customFile">Upload Desain Anda</label>
-	                                </div>
-			                        <i>
-			                            <small>*Besar file : maksimum 10 Mb</small><br>
-			                            <small>*Ekstensi file yang diperbolehkan : .JPG .JPEG .PNG</small>
-			                        </i>
-			                    </div>
-			            	</div>
-			            </div>
-
-			            <button class="btn btn-info" type="submit" name="btn">Pesan Sekarang</button>
-			        </form>
+                	<h4 class="text-dark"><b>Checkout</b></h4>
+                	<h5 class="text-dark">Alamat Pengiriman</h5><hr>
+                	<form action="" method="post" enctype="multipart/form-data">
+                		<div class="form-group">
+                			<label for="harga">Label Alamat</label>
+			                <input class="form-control" type="text" name="label" placeholder="Alamat Rumah, Alamat Kantor, dll">
+                		</div>
+                		<div class="row">
+                			<div class="col-sm-6">
+                				<div class="form-group">
+		                			<label for="harga">Nama Penerima</label>
+					                <input class="form-control" type="text" name="label" value="<?= $pemesanan[0]->username ?>">
+		                		</div>
+                			</div>
+                			<div class="col-sm-6">
+                				<div class="form-group">
+		                			<label for="harga">Nomor Telpon Penerima</label>
+					                <input class="form-control" type="text" name="label" value="<?= $pemesanan[0]->no_hp ?>">
+		                		</div>
+                			</div>
+                		</div>
+                		<div class="row">
+                			<div class="col-sm-6">
+                				<div class="form-group">
+		                			<label for="pelanggan">Provinsi</label>
+			                		<select name="provinsi" id="provinsi" class="form-control"></select>
+		                		</div>
+                			</div>
+                			<div class="col-sm-6">
+                				<div class="form-group">
+		                			<label for="pelanggan">Kota</label>
+			                		<select name="kota" id="kota" class="form-control"></select>
+		                		</div>
+                			</div>
+                		</div>
+                		<div class="row">
+                			<div class="col-sm-12">
+                				<div class="form-group">
+		                			<label for="pelanggan">Alamat</label>
+			                		<textarea name="provinsi" id="provinsi" class="form-control"></textarea>
+		                		</div>
+                			</div>
+                		</div>
+                </div>
+                <div class="col-md-4 d-flex  align-items-start justify-content-end">
+                	<div class="card" style="width: 100%;">
+						<div class="card-body">
+							<h5 class="card-title text-dark"><b>Ringkasan Belanja</b></h5>
+							<ul class="list-inline">
+								<li class="list-inline-item">Jumlah Barang :</li>
+								<li class="list-inline-item float-right"><?= $pemesanan[0]->jumlah ?></li>
+							</ul>
+							<ul class="list-inline">
+								<li class="list-inline-item">Total Harga :</li>
+								<li class="list-inline-item float-right">Rp.&nbsp;<?= $pemesanan[0]->tagihan ?></li>
+							</ul>
+							<ul class="list-inline">
+								<li class="list-inline-item">Ongkos Kirim :</li>
+								<li class="list-inline-item float-right" name="ongkir" id="ongkir"></li>
+							</ul><hr>
+							<ul class="list-inline">
+								<li class="list-inline-item">Total Tagihan :</li>
+								<li class="list-inline-item float-right" name="total_tagihan" id="total_tagihan"></li>
+							</ul>
+							<button class="btn btn-info btn-block" type="submit" name="btn">Lanjut ke Pembayaran</button>
+						</div>
+					</div>
+					</form>
                 </div>
             </div>
         </div>
-
-        <!-- Modal -->
-		<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		  <div class="modal-dialog modal-lg" role="document">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <h5 class="modal-title" id="exampleModalLabel">Desain</h5>
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		          <span aria-hidden="true">&times;</span>
-		        </button>
-		      </div>
-		      <div class="modal-body">
-		        <img id="foto-modal" data-toggle="modal" data-target="#exampleModal" src="" class="img-thumbnail">
-		      </div>
-		    </div>
-		  </div>
-		</div>
-
     <!-- FOOTER -->
+</div>
             <?php $this->load->view('partial/client/footer');?>
         </div>
     </div>
 
 <!-- LIBRARY JS -->
     <?php $this->load->view('partial/client/js');?>
+    <!-- <script type="text/javascript">
+    	var provinsi = <?= $provinsi ?>;
+    	var prov = "";
+    	var id_prov = "";
+    	var province = document.getElementById('provinsi');
+
+    	prov += "<option></option>";
+
+    	for (var i = provinsi.rajaongkir.results.length - 1; i >= 0; i--) {
+    		prov += "<option>"+provinsi.rajaongkir.results[i].province+"</option>";
+    		id_prov = provinsi.rajaongkir.results[i].province_id;
+    	}
+    	province.innerHTML = prov;
+    </script> -->
+
     <script type="text/javascript">
-    	var result = <?= $produk ?>;
-        $("#foto_produk").attr("src", "<?= base_url('upload/produk/')?>"+result.foto);
-        $("#foto-modal").attr("src", "<?= base_url('upload/produk/')?>"+result.foto);
-    	// $("#barang_id").val(result.barang_id);
+    	var provinsi = <?= $provinsi ?>;
+    	var prov = "";
+    	var id_prov = 0;
+    	var id;
+    	var kota = "";
+
+    	prov += "<option></option>";
+
+    	for (var i = provinsi.rajaongkir.results.length - 1; i >= 0; i--) {
+    		prov += "<option value='"+provinsi.rajaongkir.results[i].province_id+"'>"+provinsi.rajaongkir.results[i].province+"</option>";
+    	}
+
+    	$('#provinsi').html(prov);
+
+    	$('#provinsi').on('change', function() {
+    		id = $('#provinsi option:selected').val();
+	    	$.ajax({
+	    		url:'https://api.rajaongkir.com/starter/city',
+	    		headers: { "Api": "6b2693fdcd367bfa028faa8e9e69b3ff" },
+	    		type: 'get',
+	    		dataType: 'json',
+	    		data: {
+	    			'key': '6b2693fdcd367bfa028faa8e9e69b3ff',
+	    			'province': id 
+	    		},
+	    		success: function(kota) {
+	    			console.log(kota);
+	    		}
+	    	});
+    	});
+
+
     </script>
     
 </body>

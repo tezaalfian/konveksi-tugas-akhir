@@ -1,3 +1,4 @@
+<!-- <?= var_dump($pemesanan); var_dump($produk); ?> -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +25,7 @@
             <div class="row py-3">
                 <div class="col-md-4">
 					<!-- <label for="pelanggan"><b>Sampel</b></label> -->
-                	<img style="cursor: pointer;}" id="foto_produk" data-toggle="modal" data-target="#exampleModal" src="" class="img-thumbnail">
+                	<img style="cursor: pointer;}" id="foto_produk" data-toggle="modal" data-target="#exampleModal" src="<?= base_url('upload/pemesanan/'.$pemesanan[0]->desain) ?>" class="img-thumbnail">
 					<div id="myModal" class="modal">
 					  <span class="close">&times;</span>
 					  <img class="modal-content" id="img01">
@@ -33,10 +34,13 @@
                 </div>
                 <div class="col-md-8">
                 	<div id="keterangan">
-                		
+                		<h3 class='text-dark'><?= $pemesanan[0]->nama ?>- 
+                			<span class='text-dark'><?= $pemesanan[0]->deskripsi ?></span>
+                		</h3>
+                		<h4 class='text-info'><b>Rp.&nbsp;<?= $pemesanan[0]->harga ?></b></h4>
                 	</div>
                 	
-                	<form class="my-4" id="form-edit" action="" method="post" enctype="multipart/form-data">
+                	<form class="my-4" id="form-edit" action="<?= base_url('pemesanan/edit/'.$pemesanan[0]->id_pemesanan) ?>" method="post" enctype="multipart/form-data">
 			            <div class="form-group">
 			                <label for="pelanggan"><b>Ukuran*</b></label>
 				                <div class="row">
@@ -45,7 +49,7 @@
 					                        <div class="input-group-prepend">
 										       <div class="input-group-text"><b>S</b></div>
 										    </div>
-					                        <input type="number" id="size1" name="s"class="form-control ukuran" value="0" min="0">
+					                        <input type="number" id="size1" name="s"class="form-control ukuran" value="<?= $pemesanan[0]->s; ?>" min="0">
 						                </div>    
 					                </div>
 					                <div class="col-sm-4">
@@ -53,7 +57,7 @@
 					                        <div class="input-group-prepend">
 										       <div class="input-group-text"><b>M</b></div>
 										    </div>
-					                        <input type="number" id="size2" name="m"class="form-control ukuran" value="0" min="0">
+					                        <input type="number" id="size2" name="m"class="form-control ukuran" value="<?= $pemesanan[0]->m; ?>" min="0">
 						                </div>    
 					                </div>
 					                <div class="col-sm-4">
@@ -61,7 +65,7 @@
 					                        <div class="input-group-prepend">
 										       <div class="input-group-text"><b>L</b></div>
 										    </div>
-					                        <input type="number" id="size3" name="l"class="form-control ukuran" value="0" min="0">
+					                        <input type="number" id="size3" name="l"class="form-control ukuran" value="<?= $pemesanan[0]->l; ?>" min="0">
 						                </div>    
 					                </div>
 					                <div class="col-sm-4">
@@ -69,7 +73,7 @@
 					                        <div class="input-group-prepend">
 										       <div class="input-group-text"><b>XL</b></div>
 										    </div>
-					                        <input type="number" id="size4" name="xl"class="form-control ukuran" value="0" min="0">
+					                        <input type="number" id="size4" name="xl"class="form-control ukuran" value="<?= $pemesanan[0]->xl; ?>" min="0">
 						                </div>    
 					                </div>
 					                <div class="col-sm-4">
@@ -77,7 +81,7 @@
 					                        <div class="input-group-prepend">
 										       <div class="input-group-text"><b>XXL</b></div>
 										    </div>
-					                        <input type="number" id="size5" name="xxl"class="form-control ukuran" value="0" min="0">
+					                        <input type="number" id="size5" name="xxl"class="form-control ukuran" value="<?= $pemesanan[0]->xxl; ?>" min="0">
 						                </div>    
 					                </div>
 					                <div class="col-sm-4">
@@ -85,7 +89,7 @@
 					                        <div class="input-group-prepend">
 										       <div class="input-group-text"><b>Other</b></div>
 										    </div>
-					                        <input type="number" id="size6" name="xxxl"class="form-control ukuran" value="0" min="0">
+					                        <input type="number" id="size6" name="xxxl"class="form-control ukuran" value="<?= $pemesanan[0]->xxxl; ?>" min="0">
 						                </div>    
 					                </div>
 					            </div>
@@ -96,16 +100,16 @@
 			                </div>
 			            </div>
 			            <!-- <input class="form-control" type="hidden" id="harga" name="harga"> -->
-			            <input class="form-control" type="hidden" id="barang_id" name="barang_id">
-			            <input class="form-control" type="hidden" id="old_date" name="old_date">
-			            <input class="form-control" type="hidden" id="old_desain" name="old_desain">
-			            <input class="form-control" type="hidden" id="id_pemesanan" name="id_pemesanan">
+			            <input class="form-control" type="hidden" id="barang_id" name="barang_id" value="<?= $pemesanan[0]->barang_id ?>">
+			            <input class="form-control" type="hidden" id="old_date" name="old_date" value="<?= $pemesanan[0]->tanggal_pemesanan ?>">
+			            <input class="form-control" type="hidden" id="old_desain" name="old_desain" value="<?= $pemesanan[0]->desain ?>">
+			            <input class="form-control" type="hidden" id="id_pemesanan" name="id_pemesanan" value="<?= $pemesanan[0]->id_pemesanan ?>">
 
 			            <div class="row">
 			            	<div class="col-md-6">
 			            		<div class="form-group">
 					                <label for="pelanggan"><b>Jumlah</b></label>
-					                <input class="bg-white form-control <?php echo form_error('jumlah') ? 'is-invalid':'' ?>" type="number" name="jumlah" id="jumlah" readonly>
+					                <input value="<?= $pemesanan[0]->jumlah; ?>" class="bg-white form-control <?php echo form_error('jumlah') ? 'is-invalid':'' ?>" type="number" name="jumlah" id="jumlah" readonly>
 					                <!-- <div class="invalid-feedback">
 					                    <?php echo form_error('jumlah') ?>
 					                </div> -->
@@ -118,7 +122,7 @@
 						                <div class="input-group-prepend">
 											<div class="input-group-text"><b>Rp.</b></div>
 										</div>
-						                <input class="bg-white form-control <?php echo form_error('tagihan') ? 'is-invalid':'' ?>" type="number" name="tagihan" id="tagihan" readonly>
+						                <input value="<?= $pemesanan[0]->tagihan; ?>" class="bg-white form-control <?php echo form_error('tagihan') ? 'is-invalid':'' ?>" type="number" name="tagihan" id="tagihan" readonly>
 							        </div>
 					            </div>
 			            	</div>
@@ -128,7 +132,7 @@
 			            	<div class="col-md-6">
 			            		<div class="form-group">
 					                <label for="pelanggan"><b>Catatan</b></label>
-					                <textarea rows="4" class="form-control <?php echo form_error('catatan') ? 'is-invalid':'' ?>" name="catatan" id="catatan" placeholder="Catatan khusus admin..."></textarea>
+					                <textarea rows="4" class="form-control <?php echo form_error('catatan') ? 'is-invalid':'' ?>" name="catatan" id="catatan" placeholder="Catatan khusus admin..."><?= $pemesanan[0]->catatan; ?></textarea>
 					            </div>
 			            	</div>
 			            	<div class="col-md-6">
@@ -142,7 +146,7 @@
 			                        <i>
 			                            <small>*Besar file : maksimum 10 Mb</small><br>
 			                            <small>*Ekstensi file yang diperbolehkan : .JPG .JPEG .PNG</small><br>
-			                            <small class="text-danger">*Harus diisi!</small>
+			                            
 			                        </i>
 					                <?= $this->session->flashdata('error'); ?>
 			                    </div>
@@ -166,7 +170,7 @@
 		        </button>
 		      </div>
 		      <div class="modal-body">
-		        <img width="100%" id="foto-modal" data-toggle="modal" data-target="#exampleModal" src="" class="img-thumbnail">
+		        <img width="100%" id="foto-modal" data-toggle="modal" data-target="#exampleModal" src="<?= base_url('upload/pemesanan/'.$pemesanan[0]->desain) ?>" class="img-thumbnail">
 		      </div>
 		    </div>
 		  </div>
@@ -179,85 +183,66 @@
 
 <!-- LIBRARY JS -->
 <script type="text/javascript">
-		var result = <?= $pemesanan ?>;
-        var pelanggan = document.getElementById('pelanggan');
-        var jenis_produk = document.getElementById('produk');
-        var harga = result[0].harga;
-        var s = document.getElementById('size1');
-        var m = document.getElementById('size2');
-        var l = document.getElementById('size3');
-        var xl = document.getElementById('size4');
-        var xxl = document.getElementById('size5');
-        var xxxl = document.getElementById('size6');        
-        var jumlah = document.getElementById('jumlah');
-        var tagihan = document.getElementById('tagihan');
-        var catatan = document.getElementById('ket_ukuran');
-        var catatan2 = document.getElementById('catatan2');
-        var catatan = document.getElementById('catatan');
-        var ukuran = document.getElementsByClassName('ukuran');
-        var barang = document.getElementById('barang_id');
-        var old_desain = document.getElementById('old_desain');
-        var old_date = document.getElementById('old_date');
-        var id_pemesanan = document.getElementById('id_pemesanan');
+		var string = "";
+		var pelanggan = document.getElementById('pelanggan');
+		var jenis_produk = document.getElementById('produk');
+		var result = <?= $produk ?>;
+		var s = document.getElementById('size1');
+		var m = document.getElementById('size2');
+		var l = document.getElementById('size3');
+		var xl = document.getElementById('size4');
+		var xxl = document.getElementById('size5');
+		var xxxl = document.getElementById('size6');		
+		var jumlah = document.getElementById('jumlah');
+		var tagihan = document.getElementById('tagihan');
+		var catatan = document.getElementById('ket_ukuran');
+		var catatan2 = document.getElementById('catatan2');
+		var allCatatan = document.getElementById('catatan');
+		var harga = parseInt(result[0].harga);
 
-        var string = "<h3 class='text-dark'>"+result[0].nama+"- <span class='text-dark'>"+result[0].deskripsi+"</span></h3><h4 class='text-info'><b>Rp.&nbsp;"+result[0].harga+"</b></h4>";
+		s.addEventListener('change', (event)=>{
+			jumlah.value = parseInt(s.value) + parseInt(m.value) + parseInt(l.value) + parseInt(xl.value) +parseInt(xxl.value) +parseInt(xxxl.value);
+			tagihan.value = parseInt(jumlah.value) * parseInt(harga);
+			// catatan.value = "KETERANGAN UKURAN : S = "+s.value+", M = "+m.value+", L = "+l.value+", XL = "+xl.value+", XXL = "+xxl.value+", XXXL = "+xxxl.value+" | ";
+			// allCatatan.value = catatan.value + catatan2.value;
+		});
 
-        document.getElementById('keterangan').innerHTML = string;
-        barang.value = result[0].barang_id;
-        s.value = result[0].s;
-        m.value = result[0].m;
-        l.value = result[0].l;
-        xl.value = result[0].xl;
-        xxl.value = result[0].xxl;
-        xxxl.value = result[0].xxxl;
-        jumlah.value = result[0].jumlah;
-        tagihan.value = result[0].tagihan;
-        catatan.value = result[0].catatan;
-        old_desain.value = result[0].old_desain;
-        old_date.value = result[0].old_date;
-        id_pemesanan.value = result[0].id_pemesanan;
+		m.addEventListener('change', (event)=>{
+			jumlah.value = parseInt(s.value) + parseInt(m.value) + parseInt(l.value) + parseInt(xl.value) +parseInt(xxl.value) +parseInt(xxxl.value);
+			tagihan.value = parseInt(jumlah.value) * parseInt(harga);
+			// catatan.value = "KETERANGAN UKURAN : S = "+s.value+", M = "+m.value+", L = "+l.value+", XL = "+xl.value+", XXL = "+xxl.value+", XXXL = "+xxxl.value+" | ";
+			// allCatatan.value = catatan.value + catatan2.value;
+		});
+		l.addEventListener('change', (event)=>{
+			jumlah.value = parseInt(s.value) + parseInt(m.value) + parseInt(l.value) + parseInt(xl.value) +parseInt(xxl.value) +parseInt(xxxl.value);
+			tagihan.value = parseInt(jumlah.value) * parseInt(harga);
+			// catatan.value = "KETERANGAN UKURAN : S = "+s.value+", M = "+m.value+", L = "+l.value+", XL = "+xl.value+", XXL = "+xxl.value+", XXXL = "+xxxl.value+" | ";
+			// allCatatan.value = catatan.value + catatan2.value;
+		});
+		xl.addEventListener('change', (event)=>{
+			jumlah.value = parseInt(s.value) + parseInt(m.value) + parseInt(l.value) + parseInt(xl.value) +parseInt(xxl.value) +parseInt(xxxl.value);
+			tagihan.value = parseInt(jumlah.value) * parseInt(harga);
+			// catatan.value = "KETERANGAN UKURAN : S = "+s.value+", M = "+m.value+", L = "+l.value+", XL = "+xl.value+", XXL = "+xxl.value+", XXXL = "+xxxl.value+" | ";
+			// allCatatan.value = catatan.value + catatan2.value;
+		});
+		xxl.addEventListener('change', (event)=>{
+			jumlah.value = parseInt(s.value) + parseInt(m.value) + parseInt(l.value) + parseInt(xl.value) +parseInt(xxl.value) +parseInt(xxxl.value);
+			tagihan.value = parseInt(jumlah.value) * parseInt(harga);
+			// catatan.value = "KETERANGAN UKURAN : S = "+s.value+", M = "+m.value+", L = "+l.value+", XL = "+xl.value+", XXL = "+xxl.value+", XXXL = "+xxxl.value+" | ";
+			// allCatatan.value = catatan.value + catatan2.value;
+		});
+		xxxl.addEventListener('change', (event)=>{
+			jumlah.value = parseInt(s.value) + parseInt(m.value) + parseInt(l.value) + parseInt(xl.value) +parseInt(xxl.value) +parseInt(xxxl.value);
+			tagihan.value = parseInt(jumlah.value) * parseInt(harga);
+			// catatan.value = "KETERANGAN UKURAN : S = "+s.value+", M = "+m.value+", L = "+l.value+", XL = "+xl.value+", XXL = "+xxl.value+", XXXL = "+xxxl.value+" | ";
+			// allCatatan.value = catatan.value + catatan2.value;
+		});
 
-        s.addEventListener('change', (event)=>{
-            jumlah.value = parseInt(s.value) + parseInt(m.value) + parseInt(l.value) + parseInt(xl.value) +parseInt(xxl.value) +parseInt(xxxl.value);
-            tagihan.value = parseInt(jumlah.value) * parseInt(harga);
-        });
+		catatan2.addEventListener('change', (event)=>{
+			allCatatan.value = catatan.value + catatan2.value;	
+		});
 
-        m.addEventListener('change', (event)=>{
-            jumlah.value = parseInt(s.value) + parseInt(m.value) + parseInt(l.value) + parseInt(xl.value) +parseInt(xxl.value) +parseInt(xxxl.value);
-            tagihan.value = parseInt(jumlah.value) * parseInt(harga);
-            // catatan.value = "KETERANGAN UKURAN : S = "+s.value+", M = "+m.value+", L = "+l.value+", XL = "+xl.value+", XXL = "+xxl.value+", XXXL = "+xxxl.value+" | ";
-            // allCatatan.value = catatan.value + catatan2.value;
-        });
-        l.addEventListener('change', (event)=>{
-            jumlah.value = parseInt(s.value) + parseInt(m.value) + parseInt(l.value) + parseInt(xl.value) +parseInt(xxl.value) +parseInt(xxxl.value);
-            tagihan.value = parseInt(jumlah.value) * parseInt(harga);
-            // catatan.value = "KETERANGAN UKURAN : S = "+s.value+", M = "+m.value+", L = "+l.value+", XL = "+xl.value+", XXL = "+xxl.value+", XXXL = "+xxxl.value+" | ";
-            // allCatatan.value = catatan.value + catatan2.value;
-        });
-        xl.addEventListener('change', (event)=>{
-            jumlah.value = parseInt(s.value) + parseInt(m.value) + parseInt(l.value) + parseInt(xl.value) +parseInt(xxl.value) +parseInt(xxxl.value);
-            tagihan.value = parseInt(jumlah.value) * parseInt(harga);
-            // catatan.value = "KETERANGAN UKURAN : S = "+s.value+", M = "+m.value+", L = "+l.value+", XL = "+xl.value+", XXL = "+xxl.value+", XXXL = "+xxxl.value+" | ";
-            // allCatatan.value = catatan.value + catatan2.value;
-        });
-        xxl.addEventListener('change', (event)=>{
-            jumlah.value = parseInt(s.value) + parseInt(m.value) + parseInt(l.value) + parseInt(xl.value) +parseInt(xxl.value) +parseInt(xxxl.value);
-            tagihan.value = parseInt(jumlah.value) * parseInt(harga);
-            // catatan.value = "KETERANGAN UKURAN : S = "+s.value+", M = "+m.value+", L = "+l.value+", XL = "+xl.value+", XXL = "+xxl.value+", XXXL = "+xxxl.value+" | ";
-            // allCatatan.value = catatan.value + catatan2.value;
-        });
-        xxxl.addEventListener('change', (event)=>{
-            jumlah.value = parseInt(s.value) + parseInt(m.value) + parseInt(l.value) + parseInt(xl.value) +parseInt(xxl.value) +parseInt(xxxl.value);
-            tagihan.value = parseInt(jumlah.value) * parseInt(harga);
-            // catatan.value = "KETERANGAN UKURAN : S = "+s.value+", M = "+m.value+", L = "+l.value+", XL = "+xl.value+", XXL = "+xxl.value+", XXXL = "+xxxl.value+" | ";
-            // allCatatan.value = catatan.value + catatan2.value;
-        });
-
-        catatan2.addEventListener('change', (event)=>{
-            allCatatan.value = catatan.value + catatan2.value;  
-        });
-
-    </script>
+	</script>
 
     <?php $this->load->view('partial/client/js');?>
     <script type="text/javascript">

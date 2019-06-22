@@ -14,7 +14,7 @@ class Auth extends CI_Controller {
 	{
 		$user = $this->session->userdata('username');
 		if ($user) {
-			redirect('home');
+			redirect(base_url());
 		}
 		$auth = $this->m_auth;
         $validation = $this->form_validation;

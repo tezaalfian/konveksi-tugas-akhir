@@ -9,6 +9,7 @@ class Home extends CI_Controller {
         $this->load->model("m_pelanggan");
         $this->load->model("m_pemesanan");
         $this->load->model("c_pemesanan");
+        $this->load->model('rajaongkir');
 
         $user = $this->session->userdata('username');
 
@@ -74,12 +75,14 @@ class Home extends CI_Controller {
     $this->load->view("client/home/chart", $data);
   }
 
-	public function pengiriman($id)
+	public function checkout($id)
 	{
 		$user = $this->session->userdata('username');
 		$data["user"] = $this->m_pelanggan->getByName($user);
-		$data["produk"] = $this->m_produk->getAllProduk();
-    $data["pemesanan"] = $this->m_pemesanan->getAllById($id);  
+    $data["pemesanan"] = $this->m_pemesanan->getAllById($id);
+    $data["produk"] = json_encode($this->m_pemesanan->getAllById($id));
+    $data["provinsi"] = $this->rajaongkir->provinsi();
+    $data["kota"] = $this->rajaongkir->kota();
   //       $product = $this->m_produk;
   //       $validation = $this->form_validation;
   //       $validation->set_rules($product->rules());
@@ -93,7 +96,7 @@ class Home extends CI_Controller {
       //   $data['pemesanan'] = $this->m_pemesanan->getAllById($kode);
         // if (!$data["pemesanan"]) show_404();
         
-        $this->load->view("client/home/tambah-pengiriman", $data);
+    $this->load->view("client/home/tambah-pengiriman", $data);
 	}
 
 }

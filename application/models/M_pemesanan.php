@@ -30,7 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                 public function getAll()
                 {
-                    $this->db->select("pemesanan.*, barang.*, user.id_user, user.username, status.status");
+                    $this->db->select("pemesanan.*, barang.*, user.id_user, user.username, user.no_hp, user.alamat, status.status");
                     $this->db->from("pemesanan");
                     $this->db->join("barang", "barang.id = pemesanan.barang_id");
                     $this->db->join("user", "user.id_user = pemesanan.pelanggan_id");
@@ -42,7 +42,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                 public function getAllById($id)
                 {
-                    $this->db->select("pemesanan.*, barang.*, user.id_user, user.username, status.status");
+                    $this->db->select("pemesanan.*, barang.*, user.id_user, user.username, user.no_hp, user.alamat, status.status");
                     $this->db->from("pemesanan");
                     $this->db->join("barang", "barang.id = pemesanan.barang_id");
                     $this->db->join("user", "user.id_user = pemesanan.pelanggan_id");
