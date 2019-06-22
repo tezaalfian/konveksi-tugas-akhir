@@ -47,7 +47,7 @@
                 			<div class="col-sm-6">
                 				<div class="form-group">
 		                			<label for="pelanggan">Kota</label>
-			                		<select name="kota" id="kota" class="form-control"></select>
+			                		<input name="kode_pos" id="pos" class="form-control">
 		                		</div>
                 			</div>
                 		</div>

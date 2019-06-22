@@ -1,4 +1,4 @@
-<?php var_dump($kota); ?>
+<?php var_dump($produk); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +15,7 @@
 
         <div class="container">
             <div class="row py-3">
-                <div class="col-md-8">
+                <div class="col-lg-8">
                 	<h4 class="text-dark"><b>Checkout</b></h4>
                 	<h5 class="text-dark">Alamat Pengiriman</h5><hr>
                 	<form action="<?= base_url('home/pengiriman/'.$pemesanan[0]->id_pemesanan) ?>" method="post" enctype="multipart/form-data">
@@ -38,46 +38,63 @@
                 			</div>
                 		</div>
                 		<div class="row">
-                			<div class="col-sm-6">
+                			<div class="col-sm-4">
                 				<div class="form-group">
 		                			<label for="pelanggan">Provinsi</label>
 			                		<select name="provinsi" id="provinsi" class="form-control"></select>
 		                		</div>
                 			</div>
-                			<div class="col-sm-6">
+                			<div class="col-sm-4">
                 				<div class="form-group">
-		                			<label for="pelanggan">Kota</label>
+		                			<label for="pelanggan">Kota / Kabupaten</label>
 			                		<select name="kota" id="kota" class="form-control"></select>
 		                		</div>
                 			</div>
+                			<div class="col-sm-4">
+                				<div class="form-group">
+		                			<label for="pelanggan">Kode Pos</label>
+			                		<input name="kode_pos" id="kode_pos" class="form-control">
+		                		</div>
+                			</div>
+                			
                 		</div>
                 		<div class="row">
-                			<div class="col-sm-12">
+                			<div class="col-sm-8">
                 				<div class="form-group">
 		                			<label for="pelanggan">Alamat</label>
 			                		<textarea name="provinsi" id="alamat" class="form-control"></textarea>
 		                		</div>
                 			</div>
+                			<div class="col-sm-4">
+                				<div class="form-group">
+		                			<label for="pelanggan">Kurir</label>
+			                		<select name="kurir" id="kurir" class="form-control"></select>
+		                		</div>
+                			</div>
                 		</div>
                 </div>
-                <div class="col-md-4 d-flex  align-items-start justify-content-end">
+                <div class="col-lg-4 d-flex  align-items-start justify-content-end">
                 	<div class="card" style="width: 100%;">
 						<div class="card-body">
 							<h5 class="card-title text-dark"><b>Ringkasan Belanja</b></h5>
 							<ul class="list-inline">
-								<li class="list-inline-item">Jumlah Barang :</li>
-								<li class="list-inline-item float-right"><?= $pemesanan[0]->jumlah ?></li>
+								<li class="list-inline-item">Jenis Barang :</li>
+								<li class="list-inline-item float-right"><?= $pemesanan[0]->nama ?></li>
 							</ul>
 							<ul class="list-inline">
-								<li class="list-inline-item">Total Harga :</li>
+								<li class="list-inline-item">Total Harga :&nbsp;(<?= $pemesanan[0]->jumlah ?>&nbsp;item)</li>
 								<li class="list-inline-item float-right">Rp.&nbsp;<?= $pemesanan[0]->tagihan ?></li>
+							</ul>
+							<ul class="list-inline">
+								<li class="list-inline-item">Berat :</li>
+								<li class="list-inline-item float-right"><?= $pemesanan[0]->berat ?>&nbsp;gram</li>
 							</ul>
 							<ul class="list-inline">
 								<li class="list-inline-item">Ongkos Kirim :</li>
 								<li class="list-inline-item float-right" name="ongkir" id="ongkir">Rp. 012000</li>
 							</ul><hr>
 							<ul class="list-inline">
-								<li class="list-inline-item">Total Tagihan :</li>
+								<li class="list-inline-item text-dark"><b>Total Tagihan :</b></li>
 								<input class="list-inline-item float-right" name="total_tagihan" id="total_tagihan" value="Rp. 20.000.000" readonly>
 							</ul>
 							<button class="btn btn-info btn-block" type="submit" name="btn">Lanjut ke Pembayaran</button>
@@ -112,13 +129,15 @@
 
     <script type="text/javascript">
     	var provinsi = <?= $provinsi ?>;
+    	var allKota = <?= $kota ?>;
+    	var produk = <?= $produk ?>;
     	var prov = "";
     	var id_prov = 0;
-    	var id;
+    	var getId_prov;
+    	var getId_kota;
     	var kota = "";
-
-    	var url = 'Ys1cV1dhiLseSm0E4nFzzqJBFvAzzCw60FJ1wNTZ6Z8dxjVAfC';
-    	prov += "<option></option>";
+    	var list_kota = "";
+    	var list_pos = "";
 
     	for (var i = provinsi.rajaongkir.results.length - 1; i >= 0; i--) {
     		prov += "<option value='"+provinsi.rajaongkir.results[i].province_id+"'>"+provinsi.rajaongkir.results[i].province+"</option>";
@@ -126,37 +145,50 @@
 
     	$('#provinsi').html(prov);
 
+    	for (var i = allKota.rajaongkir.results.length - 1; i >= 0; i--) {
+	    	list_kota += "<option value='"+allKota.rajaongkir.results[i].city_id+"'>"+allKota.rajaongkir.results[i].type+" "+allKota.rajaongkir.results[i].city_name+"</option>";
+	    }
+	    $('#kota').html(list_kota);
+
     	$('#provinsi').on('change', function() {
-    		id = $('#provinsi option:selected').val();
+    		getId_prov = $('#provinsi option:selected').val();
+    		var url_get = "<?= base_url('home/kota/'); ?>";
 	    	$.ajax({
-	    		url:'https://api.rajaongkir.com/starter/city',
-	    		headers: { 
-	    			'Access-Control-Allow-Origin': "*",
-	    			'Access-Control-Allow-Headers': "Content-Type",
-	    			'Access-Control-Allow-Methods': "GET"	
-				},
+	    		url: url_get+getId_prov,
 	    		type: 'get',
 	    		dataType: 'json',
-	    		data: {
-	    			'key': '6b2693fdcd367bfa028faa8e9e69b3ff',
-	    			'province': id 
-	    		},
-	    		success: function(kota) {
-	    			console.log(kota);
+	    		success: function(result) {
+	    			kota = result;
+	    			list_kota = "";
+	    			for (var i = kota.rajaongkir.results.length - 1; i >= 0; i--) {
+	    				list_kota += "<option value='"+kota.rajaongkir.results[i].city_id+"'>"+kota.rajaongkir.results[i].type+" "+kota.rajaongkir.results[i].city_name+"</option>";
+	    			}
+	    			$('#kota').html(list_kota);
 	    		}
 	    	});
     	});
 
+    	$('#kota').on('change', function(){
+    		getId_prov = $('#provinsi option:selected').val();
+    		getId_kota = $('#kota option:selected').val();
+    		var url_get = "<?= base_url('home/cost/'); ?>";
     		$.ajax({
-	    		url:'https://x.rajaapi.com/poe',
-
-	    		type: 'get',
+	    		url: url_get,
+	    		type: 'post',
 	    		dataType: 'json',
-
-	    		success: function(kota) {
-	    			console.log(kota);
+	    		contentType: "application/json",
+	    		data: {
+	    			'origin': '431',
+	    			'destination': getId_kota,
+	    			'weight': produk[0].berat,
+	    			'courier': 'jne'
+	    		},
+	    		success: function(result) {
+	    			console.log(result);
 	    		}
 	    	});
+    	});
+
     </script>
     
 </body>
