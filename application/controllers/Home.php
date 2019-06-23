@@ -9,6 +9,9 @@ class Home extends CI_Controller {
         $this->load->model("m_pelanggan");
         $this->load->model("m_pemesanan");
         $this->load->model("c_pemesanan");
+        $this->load->model("c_pengiriman");
+        $this->load->model("c_pembayaran");
+        $this->load->library("form_validation");
         $this->load->model('rajaongkir');
 
         $user = $this->session->userdata('username');
@@ -104,7 +107,37 @@ class Home extends CI_Controller {
 
   public function pengiriman($id)
   {
-    var_dump($this->input->post('total_tagihan'));
+    $post = $this->input->post();
+    $provinsi = json_decode($this->rajaongkir->oneprovinsi($post["provinsi"]));
+    $kota = json_decode($this->rajaongkir->onekota($post["kota"]));
+
+    $this->form_validation->set_rules('alamat', 'Alamat', 'required');
+    $this->form_validation->set_rules('nama_penerima', 'Penerima', 'required');
+    $this->form_validation->set_rules('no_hp', 'No Hp', 'required');
+    $this->form_validation->set_rules('kode_pos', 'Kode Pos', 'required');
+    $this->form_validation->set_rules('label', 'Label', 'required');
+
+    $data_pengiriman = array(
+        "id_pengiriman" => base_convert(microtime(FALSE), 8, 16),
+        "label" => $post["label"],
+        "nama_penerima" => $post["nama_penerima"],
+        "no_hp" => $post["no_hp"],
+        "alamat" => $post["alamat"],
+        "pemesanan_id" => $post["pemesanan_id"],
+        "ongkir" => $post["ongkir"],
+        "kode_pos" => $post["kode_pos"],
+        // "kurir" => 
+        "provinsi" => $provinsi->rajaongkir->results->province,
+        "kota" => $kota->rajaongkir->results->city_name
+    );
+
+    if ($this->form_validation->run() == true) {
+      $this->c_pengiriman->insert_pengiriman($data_pengiriman);
+      $this->c_pembayaran->insert();
+      $this->c_pengiriman->menunggu_bayar();
+    }
+
+    var_dump(json_encode($this->input->post()));
   }
 
   public function kota($url)
@@ -120,7 +153,7 @@ class Home extends CI_Controller {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => array(
-          "key: 6b2693fdcd367bfa028faa8e9e69b3ff"
+          "key: fe911660a009a11d0a2ad2613f934654"
         ),
       ));
 
@@ -151,7 +184,7 @@ class Home extends CI_Controller {
       CURLOPT_POSTFIELDS => "origin=431&destination=".$dest."&weight=".$weight."&courier=jne",
       CURLOPT_HTTPHEADER => array(
         "content-type: application/x-www-form-urlencoded",
-        "key: 6b2693fdcd367bfa028faa8e9e69b3ff"
+        "key: fe911660a009a11d0a2ad2613f934654"
       ),
     ));
 

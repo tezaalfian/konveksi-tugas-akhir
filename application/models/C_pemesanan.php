@@ -144,4 +144,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     $query = $this->db->get();
                     return $query->result();
                 }
+
+                public function menunggu_bayar()
+                {
+                    $post = $this->input->post();
+                    $this->status_id = 2;
+
+                    $this->db->update("pemesanan", $this, array('id_pemesanan' => $post['pemesanan_id']));
+                }
         }

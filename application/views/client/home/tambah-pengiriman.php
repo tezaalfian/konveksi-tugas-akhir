@@ -1,4 +1,4 @@
-<?php var_dump($produk); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,21 +22,31 @@
                 	<h4 class="text-dark"><b>Checkout</b></h4>
                 	<h5 class="text-dark">Alamat Pengiriman</h5><hr>
                 	<form action="<?= base_url('home/pengiriman/'.$pemesanan[0]->id_pemesanan) ?>" method="post" enctype="multipart/form-data">
+                		<input type="hidden" name="pemesanan_id" value="<?= $pemesanan[0]->id_pemesanan?>">
                 		<div class="form-group">
                 			<label for="harga">Label Alamat</label>
 			                <input class="form-control" type="text" name="label" placeholder="Alamat Rumah, Alamat Kantor, dll">
+			                <div class="invalid-feedback">
+			                    <?php echo form_error('label')?>
+			                </div>
                 		</div>
                 		<div class="row">
                 			<div class="col-sm-6">
                 				<div class="form-group">
 		                			<label for="harga">Nama Penerima</label>
 					                <input class="form-control" type="text" name="nama_penerima" value="<?= $pemesanan[0]->username ?>">
+					                <div class="invalid-feedback">
+					                    <?php echo form_error('nama_penerima')?>
+					                </div>
 		                		</div>
                 			</div>
                 			<div class="col-sm-6">
                 				<div class="form-group">
 		                			<label for="harga">Nomor Telpon Penerima</label>
 					                <input class="form-control" type="text" name="no_hp" value="<?= $pemesanan[0]->no_hp ?>">
+					                <div class="invalid-feedback">
+					                    <?php echo form_error('no_hp')?>
+					                </div>
 		                		</div>
                 			</div>
                 		</div>
@@ -65,7 +75,10 @@
                 			<div class="col-sm-8">
                 				<div class="form-group">
 		                			<label for="pelanggan">Alamat</label>
-			                		<textarea name="provinsi" id="alamat" class="form-control"></textarea>
+			                		<textarea name="alamat" id="alamat" class="form-control"></textarea>
+			                		<div class="invalid-feedback">
+					                    <?php echo form_error('alamat')?>
+					                </div>
 		                		</div>
                 			</div>
                 			<div class="col-sm-4">
@@ -97,18 +110,18 @@
 									<label for="ongkir" class="col-form-label">Ongkos Kirim :</label>
 								</div>
 								<div class="col-auto">
-									<input class="form-control-plaintext" name="ongkir" id="ongkir" readonly>
+									<input type="text" class="form-control-plaintext" name="ongkir" id="ongkir" readonly>
 								</div>
 							</div><hr>
 							<div class="row">
-								<div class="col-auto text-dark">
+								<div class="col-6">
 									<label for="total_tagihan" class="col-form-label"><b>Total Tagihan :</b></label>
 								</div>
-								<div class="col-auto">
-									<input class="form-control-plaintext text-dark" name="total_tagihan" id="total_tagihan" readonly>
+								<div class="col-6">
+									<input type="text" class="form-control-plaintext" name="total_tagihan" id="total_tagihan" readonly>
 								</div>
 							</div><br>
-							<button class="btn btn-info btn-block" type="submit" name="btn">Lanjut ke Pembayaran</button>
+							<button class="btn btn-info btn-block" type="submit">Lanjut ke Pembayaran</button>
 						</div>
 					</div>
 					</form>
