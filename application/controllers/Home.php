@@ -124,7 +124,7 @@ class Home extends CI_Controller {
         "pemesanan_id" => $post["pemesanan_id"],
         "ongkir" => $post["ongkir"],
         "kode_pos" => $post["kode_pos"],
-        "kurir" => $pos["kuris"],
+        "kurir" => $post["kurir"],
         "provinsi" => $provinsi->rajaongkir->results->province,
         "kota" => $kota->rajaongkir->results->city_name
     );
@@ -135,7 +135,7 @@ class Home extends CI_Controller {
       $this->c_pengiriman->menunggu_bayar();
     }
 
-    $this->load->view("client/home/tambah-pembayaran");
+    redirect('pembayaran/tambah');
   }
 
   public function kota($url)

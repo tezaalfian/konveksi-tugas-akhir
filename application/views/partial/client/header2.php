@@ -125,7 +125,7 @@
                     Spending Alert: We've noticed unusually high spending for your account.
                   </div>
                 </a>
-                <a class="dropdown-item text-center small text-gray-500" href="<?=base_url('pemesanan/daftar') ?>">Tampilkan Semua</a>
+                <a class="dropdown-item text-center small text-gray-500" href="<?=base_url('pemesanan/list') ?>">Tampilkan Semua</a>
               </div>
             </li>
 

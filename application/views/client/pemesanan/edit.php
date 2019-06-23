@@ -1,4 +1,3 @@
-<!-- <?= var_dump($pemesanan); var_dump($produk); ?> -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -106,7 +105,7 @@
 			            <input class="form-control" type="hidden" id="id_pemesanan" name="id_pemesanan" value="<?= $pemesanan[0]->id_pemesanan ?>">
 
 			            <div class="row">
-			            	<div class="col-md-6">
+			            	<div class="col-md-5">
 			            		<div class="form-group">
 					                <label for="pelanggan"><b>Jumlah</b></label>
 					                <input value="<?= $pemesanan[0]->jumlah; ?>" class="bg-white form-control <?php echo form_error('jumlah') ? 'is-invalid':'' ?>" type="number" name="jumlah" id="jumlah" readonly>
@@ -115,7 +114,7 @@
 					                </div> -->
 					            </div>
 			            	</div>
-			            	<div class="col-md-6">
+			            	<div class="col-md-5">
 			            		<div class="form-group">
 					                <label for="pelanggan"><b>Total</b></label>
 					                <div class="input-group mb-1">
@@ -124,6 +123,12 @@
 										</div>
 						                <input value="<?= $pemesanan[0]->tagihan; ?>" class="bg-white form-control <?php echo form_error('tagihan') ? 'is-invalid':'' ?>" type="number" name="tagihan" id="tagihan" readonly>
 							        </div>
+					            </div>
+			            	</div>
+			            	<div class="col-md-2">
+			            		<div class="form-group">
+					                <label for="pelanggan"><b>Berat</b></label>
+					                <input value="<?= $pemesanan[0]->berat; ?>" class="bg-white form-control <?php echo form_error('jumlah') ? 'is-invalid':'' ?>" type="number" name="berat" id="berat" readonly>
 					            </div>
 			            	</div>
 			            </div>
@@ -199,10 +204,12 @@
 		var catatan2 = document.getElementById('catatan2');
 		var allCatatan = document.getElementById('catatan');
 		var harga = parseInt(result[0].harga);
+		var berat = document.getElementById('berat');
 
 		s.addEventListener('change', (event)=>{
 			jumlah.value = parseInt(s.value) + parseInt(m.value) + parseInt(l.value) + parseInt(xl.value) +parseInt(xxl.value) +parseInt(xxxl.value);
 			tagihan.value = parseInt(jumlah.value) * parseInt(harga);
+			berat.value = parseInt(jumlah.value) * parseInt(result[0].weight);
 			// catatan.value = "KETERANGAN UKURAN : S = "+s.value+", M = "+m.value+", L = "+l.value+", XL = "+xl.value+", XXL = "+xxl.value+", XXXL = "+xxxl.value+" | ";
 			// allCatatan.value = catatan.value + catatan2.value;
 		});
@@ -210,30 +217,35 @@
 		m.addEventListener('change', (event)=>{
 			jumlah.value = parseInt(s.value) + parseInt(m.value) + parseInt(l.value) + parseInt(xl.value) +parseInt(xxl.value) +parseInt(xxxl.value);
 			tagihan.value = parseInt(jumlah.value) * parseInt(harga);
+			berat.value = parseInt(jumlah.value) * parseInt(result[0].weight);
 			// catatan.value = "KETERANGAN UKURAN : S = "+s.value+", M = "+m.value+", L = "+l.value+", XL = "+xl.value+", XXL = "+xxl.value+", XXXL = "+xxxl.value+" | ";
 			// allCatatan.value = catatan.value + catatan2.value;
 		});
 		l.addEventListener('change', (event)=>{
 			jumlah.value = parseInt(s.value) + parseInt(m.value) + parseInt(l.value) + parseInt(xl.value) +parseInt(xxl.value) +parseInt(xxxl.value);
 			tagihan.value = parseInt(jumlah.value) * parseInt(harga);
+			berat.value = parseInt(jumlah.value) * parseInt(result[0].weight);
 			// catatan.value = "KETERANGAN UKURAN : S = "+s.value+", M = "+m.value+", L = "+l.value+", XL = "+xl.value+", XXL = "+xxl.value+", XXXL = "+xxxl.value+" | ";
 			// allCatatan.value = catatan.value + catatan2.value;
 		});
 		xl.addEventListener('change', (event)=>{
 			jumlah.value = parseInt(s.value) + parseInt(m.value) + parseInt(l.value) + parseInt(xl.value) +parseInt(xxl.value) +parseInt(xxxl.value);
 			tagihan.value = parseInt(jumlah.value) * parseInt(harga);
+			berat.value = parseInt(jumlah.value) * parseInt(result[0].weight);
 			// catatan.value = "KETERANGAN UKURAN : S = "+s.value+", M = "+m.value+", L = "+l.value+", XL = "+xl.value+", XXL = "+xxl.value+", XXXL = "+xxxl.value+" | ";
 			// allCatatan.value = catatan.value + catatan2.value;
 		});
 		xxl.addEventListener('change', (event)=>{
 			jumlah.value = parseInt(s.value) + parseInt(m.value) + parseInt(l.value) + parseInt(xl.value) +parseInt(xxl.value) +parseInt(xxxl.value);
 			tagihan.value = parseInt(jumlah.value) * parseInt(harga);
+			berat.value = parseInt(jumlah.value) * parseInt(result[0].weight);
 			// catatan.value = "KETERANGAN UKURAN : S = "+s.value+", M = "+m.value+", L = "+l.value+", XL = "+xl.value+", XXL = "+xxl.value+", XXXL = "+xxxl.value+" | ";
 			// allCatatan.value = catatan.value + catatan2.value;
 		});
 		xxxl.addEventListener('change', (event)=>{
 			jumlah.value = parseInt(s.value) + parseInt(m.value) + parseInt(l.value) + parseInt(xl.value) +parseInt(xxl.value) +parseInt(xxxl.value);
 			tagihan.value = parseInt(jumlah.value) * parseInt(harga);
+			berat.value = parseInt(jumlah.value) * parseInt(result[0].weight);
 			// catatan.value = "KETERANGAN UKURAN : S = "+s.value+", M = "+m.value+", L = "+l.value+", XL = "+xl.value+", XXL = "+xxl.value+", XXXL = "+xxxl.value+" | ";
 			// allCatatan.value = catatan.value + catatan2.value;
 		});

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -85,7 +86,7 @@
 			            <input class="form-control" type="hidden" id="barang_id" name="barang_id">
 
 			            <div class="row">
-			            	<div class="col-md-6">
+			            	<div class="col-md-5">
 			            		<div class="form-group">
 					                <label for="pelanggan"><b>Jumlah</b></label>
 					                <input class="bg-white form-control <?php echo form_error('jumlah') ? 'is-invalid':'' ?>" type="number" name="jumlah" id="jumlah" readonly>
@@ -94,7 +95,7 @@
 					                </div> -->
 					            </div>
 			            	</div>
-			            	<div class="col-md-6">
+			            	<div class="col-md-5">
 			            		<div class="form-group">
 					                <label for="pelanggan"><b>Total</b></label>
 					                <div class="input-group mb-1">
@@ -102,6 +103,14 @@
 											<div class="input-group-text"><b>Rp.</b></div>
 										</div>
 						                <input class="bg-white form-control <?php echo form_error('tagihan') ? 'is-invalid':'' ?>" type="number" name="tagihan" id="tagihan" readonly>
+							        </div>
+					            </div>
+			            	</div>
+			            	<div class="col-md-2">
+			            		<div class="form-group">
+					                <label for="pelanggan"><b>Berat</b></label>
+					                <div class="input-group mb-1">
+						                <input class="bg-white form-control <?php echo form_error('jumlah') ? 'is-invalid':'' ?>" type="number" name="berat" id="berat" readonly>
 							        </div>
 					            </div>
 			            	</div>
@@ -179,6 +188,7 @@
         var allCatatan = document.getElementById('catatan');
         var ukuran = document.getElementsByClassName('ukuran');
         var barang = document.getElementById('barang_id');
+        var berat = document.getElementById('berat');
 
         var string = "<h3 class='text-dark'>"+result.nama+"- <span class='text-dark'>"+result.deskripsi+"</span></h3><h4 class='text-info'><b>Rp.&nbsp;"+result.harga+"</b></h4>";
 
@@ -189,35 +199,41 @@
         s.addEventListener('change', (event)=>{
             jumlah.value = parseInt(s.value) + parseInt(m.value) + parseInt(l.value) + parseInt(xl.value) +parseInt(xxl.value) +parseInt(xxxl.value);
             tagihan.value = parseInt(jumlah.value) * parseInt(harga);
+            berat.value = parseInt(jumlah.value) * parseInt(result.weight);
         });
 
         m.addEventListener('change', (event)=>{
             jumlah.value = parseInt(s.value) + parseInt(m.value) + parseInt(l.value) + parseInt(xl.value) +parseInt(xxl.value) +parseInt(xxxl.value);
             tagihan.value = parseInt(jumlah.value) * parseInt(harga);
+            berat.value = parseInt(jumlah.value) * parseInt(result.weight);
             // catatan.value = "KETERANGAN UKURAN : S = "+s.value+", M = "+m.value+", L = "+l.value+", XL = "+xl.value+", XXL = "+xxl.value+", XXXL = "+xxxl.value+" | ";
             // allCatatan.value = catatan.value + catatan2.value;
         });
         l.addEventListener('change', (event)=>{
             jumlah.value = parseInt(s.value) + parseInt(m.value) + parseInt(l.value) + parseInt(xl.value) +parseInt(xxl.value) +parseInt(xxxl.value);
             tagihan.value = parseInt(jumlah.value) * parseInt(harga);
+            berat.value = parseInt(jumlah.value) * parseInt(result.weight);
             // catatan.value = "KETERANGAN UKURAN : S = "+s.value+", M = "+m.value+", L = "+l.value+", XL = "+xl.value+", XXL = "+xxl.value+", XXXL = "+xxxl.value+" | ";
             // allCatatan.value = catatan.value + catatan2.value;
         });
         xl.addEventListener('change', (event)=>{
             jumlah.value = parseInt(s.value) + parseInt(m.value) + parseInt(l.value) + parseInt(xl.value) +parseInt(xxl.value) +parseInt(xxxl.value);
             tagihan.value = parseInt(jumlah.value) * parseInt(harga);
+            berat.value = parseInt(jumlah.value) * parseInt(result.weight);
             // catatan.value = "KETERANGAN UKURAN : S = "+s.value+", M = "+m.value+", L = "+l.value+", XL = "+xl.value+", XXL = "+xxl.value+", XXXL = "+xxxl.value+" | ";
             // allCatatan.value = catatan.value + catatan2.value;
         });
         xxl.addEventListener('change', (event)=>{
             jumlah.value = parseInt(s.value) + parseInt(m.value) + parseInt(l.value) + parseInt(xl.value) +parseInt(xxl.value) +parseInt(xxxl.value);
             tagihan.value = parseInt(jumlah.value) * parseInt(harga);
+            berat.value = parseInt(jumlah.value) * parseInt(result.weight);
             // catatan.value = "KETERANGAN UKURAN : S = "+s.value+", M = "+m.value+", L = "+l.value+", XL = "+xl.value+", XXL = "+xxl.value+", XXXL = "+xxxl.value+" | ";
             // allCatatan.value = catatan.value + catatan2.value;
         });
         xxxl.addEventListener('change', (event)=>{
             jumlah.value = parseInt(s.value) + parseInt(m.value) + parseInt(l.value) + parseInt(xl.value) +parseInt(xxl.value) +parseInt(xxxl.value);
             tagihan.value = parseInt(jumlah.value) * parseInt(harga);
+            berat.value = parseInt(jumlah.value) * parseInt(result.weight);
             // catatan.value = "KETERANGAN UKURAN : S = "+s.value+", M = "+m.value+", L = "+l.value+", XL = "+xl.value+", XXL = "+xxl.value+", XXXL = "+xxxl.value+" | ";
             // allCatatan.value = catatan.value + catatan2.value;
         });

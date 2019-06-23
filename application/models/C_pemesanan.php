@@ -14,6 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 public $pelanggan_id;
                 public $s, $m, $l, $xl, $xxl, $xxxl;
                 public $status_id;
+                public $berat;
 
                 public function insert()
                 {
@@ -35,6 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     $this->xxl = $post["xxl"];
                     $this->xxxl = $post["xxxl"];
                     $this->status_id = 1;
+                    $this->berat = $post["berat"];
 
                     $this->db->insert($this->_table, $this);
 
@@ -64,6 +66,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     $this->xxl = $post["xxl"];
                     $this->xxxl = $post["xxxl"];
                     $this->status_id = 1;
+                    $this->berat = $post["berat"];
 
                     if (!empty($_FILES["desain"]["name"])) {
                         $this->desain = $this->uploadImage();

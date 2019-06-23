@@ -1,3 +1,4 @@
+<!-- <?php var_dump($pemesanan); ?> -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,50 +17,13 @@
             <div class="row py-3 border-bottom">
                 <div class="col-md-12">
                 	<div id="keterangan">
-                		<h4 class="text-dark"><b>Keranjang</b></h4>
-                		<?= $this->session->flashdata('kosong'); ?>
+                		<h4 class="text-dark"><b>Pemesanan</b></h4>
                     </div>
                 </div>
             </div>
-            <?php foreach ($pemesanan as $order): ?>
-            <div class="row py-3 border-bottom d-flex align-items-center">
-                <div class="col-md-3">
-                    <img src="<?= base_url('upload/pemesanan/'.$order->desain) ?>" height="100" />
-                </div>
-                <div class="col-md-4">
-                    <h5 class="text-dark"><b><?= $order->nama ?></b></h5>
-                    <span><?= $order->deskripsi ?></span>
-                    <h6 class="text-info"><b>Rp.&nbsp;<?= $order->harga ?></b></h6>
-                    <span>Catatan :&nbsp;<?= $order->catatan ?></span>
-                </div>
-                <div class="col-md-2 d-flex justify-content-end">
-                    <ul class="list-inline">
-                      <li class="list-inline-item px-2">
-                        <a href="<?= base_url('pemesanan/edit/'.$order->id_pemesanan); ?>"><h3 class="text-success"><i class="fa fa-pencil"></i></h3></a>  
-                      </li>
-                      <li class="list-inline-item px-2">
-                        <a href="" data-toggle="modal" data-target="#mediumModal"><h3 class="text-danger"><i class="fa fa-trash"></i></h3></a>  
-                      </li>
-                    </ul>
-                </div>
-                <div class="col-md-3 d-flex justify-content-end">
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title text-dark"><b>Ringkasan Belanja</b></h5>
-                            <ul class="list-inline">
-                                <li class="list-inline-item">Jumlah :</li>
-                                <li class="list-inline-item float-right"><?= $order->jumlah ?></li>
-                            </ul>
-                            <ul class="list-inline">
-                                <li class="list-inline-item">Total Tagihan :</li>
-                                <li class="list-inline-item float-right">Rp.&nbsp;<?= $order->tagihan ?></li>
-                            </ul>
-                            <a href="<?= base_url('home/checkout/'.$order->id_pemesanan); ?>" class="btn btn-info btn-block">Pesan Sekarang</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-			<?php endforeach; ?>		        
+            <div id="filter">
+                <?php $this->load->view('client/kategori/menunggu-pembayaran') ?>
+            </div>		        
         </div>
     <!-- FOOTER -->
 </div>
@@ -93,10 +57,8 @@
 <!-- LIBRARY JS -->
     <?php $this->load->view('partial/client/js');?>
     <script type="text/javascript">
-    	var result = <?= $produk ?>;
-        $("#foto_produk").attr("src", "<?= base_url('upload/produk/')?>"+result.foto);
-        $("#foto-modal").attr("src", "<?= base_url('upload/produk/')?>"+result.foto);
-    	// $("#barang_id").val(result.barang_id);
+    	
+    	
     </script>
     
 </body>
