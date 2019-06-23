@@ -11,6 +11,7 @@ class Home extends CI_Controller {
         $this->load->model("c_pemesanan");
         $this->load->model("c_pengiriman");
         $this->load->model("c_pembayaran");
+        $this->load->model("c_kategori");
         $this->load->library("form_validation");
         $this->load->model('rajaongkir');
 
@@ -70,7 +71,7 @@ class Home extends CI_Controller {
 
     $kode = $this->session->userdata('id_user');
 
-    $data['pemesanan'] = $this->c_pemesanan->getAllById($kode);
+    $data['pemesanan'] = $this->c_kategori->keranjang($kode);
     if (!$data["pemesanan"]){
       $this->session->set_flashdata('kosong', '<div class="alert alert-danger" role="alert">Keranjang anda kosong!</div>');
     }
@@ -86,9 +87,6 @@ class Home extends CI_Controller {
     $data["produk"] = json_encode($this->m_pemesanan->getAllById($id));
     $data["provinsi"] = $this->rajaongkir->provinsi();
     $data["kota"] = $this->rajaongkir->kota();
-    $dest = "114";
-    $weight = 1500;
-    $data["cost"] = $this->cost($dest, $weight);
   //       $product = $this->m_produk;
   //       $validation = $this->form_validation;
   //       $validation->set_rules($product->rules());
@@ -126,7 +124,7 @@ class Home extends CI_Controller {
         "pemesanan_id" => $post["pemesanan_id"],
         "ongkir" => $post["ongkir"],
         "kode_pos" => $post["kode_pos"],
-        // "kurir" => 
+        "kurir" => $pos["kuris"],
         "provinsi" => $provinsi->rajaongkir->results->province,
         "kota" => $kota->rajaongkir->results->city_name
     );
@@ -137,7 +135,7 @@ class Home extends CI_Controller {
       $this->c_pengiriman->menunggu_bayar();
     }
 
-    var_dump(json_encode($this->input->post()));
+    $this->load->view("client/home/tambah-pembayaran");
   }
 
   public function kota($url)

@@ -9,6 +9,7 @@ class Pemesanan extends CI_Controller {
         $this->load->model("m_pelanggan");
         $this->load->model("m_pemesanan");
         $this->load->model("c_pemesanan");
+        $this->load->model("c_kategori");
         $this->load->library('form_validation');
 
         $user = $this->session->userdata('username');
@@ -54,6 +55,21 @@ class Pemesanan extends CI_Controller {
             redirect('home/chart');
         }
         // $data['pemesanan'] = $this->db->get("pemesanan")->last_row();
+    }
+
+    public function daftar() {
+        $user = $this->session->userdata('username');
+        $data["user"] = $this->m_pelanggan->getByName($user);
+        $data["produk"] = $this->m_produk->getAllProduk();
+
+        $kode = $this->session->userdata('id_user');
+
+        $data['pemesanan'] = $this->c_kategori->menunggu_bayar($kode);
+        if (!$data["pemesanan"]){
+          $this->session->set_flashdata('kosong', '<div class="alert alert-danger" role="alert">Keranjang anda kosong!</div>');
+        }
+
+        $this->load->view("client/home/list-pemesanan", $data);
     }
 
     public function edit($id) {
