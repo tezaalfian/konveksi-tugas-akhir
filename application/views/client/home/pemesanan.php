@@ -23,7 +23,7 @@
                 		
                 	</div>
                 	
-                	<form class="my-4" action="<?= base_url('pemesanan/tambah')?>" method="post" enctype="multipart/form-data">
+                	<form class="my-4" action="<?= base_url('pemesanan/tambah2')?>" method="post" enctype="multipart/form-data">
 			            <div class="form-group">
 			                <label for="pelanggan"><b>Ukuran*</b></label>
 				                <div class="row">
@@ -134,8 +134,7 @@
 			                    </div>
 			            	</div>
 			            </div>
-
-			            <button class="btn btn-info" type="submit" name="btn">Tambah ke Keranjang</button>
+			            <button class="btn btn-info" type="submit">Pesan Sekarang</button>
 			        </form>
                 </div>
             </div>

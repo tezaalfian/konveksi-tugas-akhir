@@ -57,6 +57,31 @@ class Pemesanan extends CI_Controller {
         // $data['pemesanan'] = $this->db->get("pemesanan")->last_row();
     }
 
+    public function tambah2() {
+        // $data["produk"] = json_encode($this->m_produk->getAllProduk());
+        
+        $this->form_validation->set_rules('jumlah', 'Jumlah', 'required');
+        $this->form_validation->set_rules('tagihan', 'Total', 'required');
+        $this->form_validation->set_rules('desain', 'Desain', 'required');
+        // if (empty($_FILES['desain']['name']))
+        // {
+        // }
+        // var_dump($this->input->post("tagihan"));
+        // die;
+        if ($this->input->post('jumlah') == null || empty($_FILES['desain']['name'])) {
+            $id = $this->input->post('barang_id');
+            $this->session->set_flashdata('error', '<div class="invalid-feedback">Masukkan jumlah barang!</div>');
+            redirect('home/pemesanan/'.$id);
+        }else{
+            // var_dump($_FILES['desain']['name']);
+            // die;
+            $this->c_pemesanan->insert();
+            $kode = $this->session->userdata('id_pemesanan');
+            redirect('home/checkout/'.$kode);
+        }
+        // $data['pemesanan'] = $this->db->get("pemesanan")->last_row();
+    }
+
     public function list() {
         $user = $this->session->userdata('username');
         $kode = $this->session->userdata('id_user');

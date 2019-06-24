@@ -40,7 +40,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                     $this->db->insert($this->_table, $this);
 
-                    // $this->session->set_userdata("kode", $this->id_pemesanan);
+                    $this->session->set_userdata("id_pemesanan", $this->id_pemesanan);
                 }
 
                 public function update()

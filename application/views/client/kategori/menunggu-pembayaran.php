@@ -1,18 +1,25 @@
 <?php foreach ($pemesanan as $order): ?>
-            <div class="row py-3 border-bottom d-flex align-items-center">
+    <div class="card">
+      <div class="card-body">
+            <div class="row py-3 d-flex align-items-center">
                 <div class="col-auto">
-                    <img class="img-thumbnail" id="thumbnail" src="<?= base_url('upload/pemesanan/'.$order->desain) ?>">
+                    <img class="rounded" id="thumbnail" src="<?= base_url('upload/pemesanan/'.$order->desain) ?>">
                 </div>
                 <div class="col">
-                    <h5 class="text-dark"><b><?= ucwords($order->nama) ?></b></h5>
+                    <h5 class="text-dark"><b><?= ucwords($order->nama) ?>&nbsp;/&nbsp;
+                    <?= ucwords($order->deskripsi) ?></b></h5>
+                    <h6 class="">
+                            <b>Rp.&nbsp;<?= $order->harga?>&nbsp;</b>
+                            <b><?= $order->jumlah?>&nbsp;Produk&nbsp;
+                            (<?= $order->weight?>&nbsp;gr)</b>
+                    </h6>
+                    <h6>Penerima : <b class="text-dark">&nbsp;<?= $order->nama_penerima?>&nbsp;</b></h6>
+                    <h6><?= $order->alamat?>,&nbsp;<?= $order->kota?>,&nbsp;<?= $order->kode_pos?></b></h6>
                     <h6>Total : <b class="text-success">Rp.&nbsp;<?= $order->total_tagihan ?>&nbsp;</b>
                         |&nbsp;Tanggal Pemesanan :&nbsp;<b><?= $order->tanggal_pemesanan ?></b>
                     </h6>
-                    <h6><b>Alamat Pengiriman</b></h6>
-                    <h6>Penerima : <b class="text-dark">&nbsp;<?= $order->nama_penerima?>&nbsp;</b></h6>
-                    <h6><?= $order->alamat?>,&nbsp;<?= $order->kota?>,&nbsp;<?= $order->kode_pos?></b></h6>
                 </div>
-                <div class="col d-flex justify-content-end">
+                <div class="col d-flex justify-content-end  my-md-3 mx-md-auto">
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
                         <div class="card-title text-center"> 
@@ -24,6 +31,8 @@
                     </div>
                 </div>
             </div>
+      </div>
+    </div>
 <?php endforeach; ?>
 <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg" role="document">

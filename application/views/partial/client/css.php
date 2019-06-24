@@ -49,10 +49,20 @@
         height: 130px;
         object-fit: cover;
       }
+      #img-cart {
+        width: 120px;
+        height: 100px;
+        object-fit: cover;
+      }
 
       #cover {
         width: 70px;
         height: 70px;
+        object-fit: cover;
+      }
+      #img-card {
+        width: 100%;
+        height: 200px;
         object-fit: cover;
       }
     </style>
