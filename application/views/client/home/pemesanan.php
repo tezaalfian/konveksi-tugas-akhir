@@ -78,9 +78,6 @@
 					            </div>
 					        <i><small>*Untuk ukuran selain yang ada diatas silahkan masukkan ukurannya di Other dengan menjelaskan keterangannya di Catatan </small><br>
 					        <small class="text-danger">*Harus diisi!</small></i>
-			                <div class="invalid-feedback">
-			                    <?php echo form_error('pelanggan') ?>
-			                </div>
 			            </div>
 			            <!-- <input class="form-control" type="hidden" id="harga" name="harga"> -->
 			            <input class="form-control" type="hidden" id="barang_id" name="barang_id">
@@ -90,9 +87,7 @@
 			            		<div class="form-group">
 					                <label for="pelanggan"><b>Jumlah</b></label>
 					                <input class="bg-white form-control <?php echo form_error('jumlah') ? 'is-invalid':'' ?>" type="number" name="jumlah" id="jumlah" readonly>
-					                <!-- <div class="invalid-feedback">
-					                    <?php echo form_error('jumlah') ?>
-					                </div> -->
+					                <?= $this->session->flashdata("error"); ?>
 					            </div>
 			            	</div>
 			            	<div class="col-md-5">
@@ -136,7 +131,6 @@
 			                            <small>*Ekstensi file yang diperbolehkan : .JPG .JPEG .PNG</small><br>
 			                            <small class="text-danger">*Harus diisi!</small>
 			                        </i>
-					                <?= $this->session->flashdata('error'); ?>
 			                    </div>
 			            	</div>
 			            </div>

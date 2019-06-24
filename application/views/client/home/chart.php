@@ -13,14 +13,14 @@
     <?php $this->load->view('partial/client/header2');?>
 
         <div class="container my-3">
-            <div class="row py-3 border-bottom">
+            <div class="row my-2 py-3 border-bottom">
                 <div class="col-md-12">
                 	<div id="keterangan">
                 		<h4 class="text-dark"><b>Keranjang</b></h4>
-                		<?= $this->session->flashdata('kosong'); ?>
                     </div>
                 </div>
             </div>
+                		<?= $this->session->flashdata('kosong'); ?>
             <?php foreach ($pemesanan as $order): ?>
             <div class="row py-3 border-bottom d-flex align-items-center">
                 <div class="col-md-3">

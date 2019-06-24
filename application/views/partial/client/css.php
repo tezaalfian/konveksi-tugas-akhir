@@ -19,16 +19,40 @@
         padding: 0;
       }
 
-     html,
-    body {
-      height: 100%;
-    }
+       html,
+      body {
+        height: 100%;
+      }
 
-    #page-content {
-      flex: 1 0 auto;
-    }
+      #page-content {
+        flex: 1 0 auto;
+      }
 
-    #sticky-footer {
-      flex-shrink: none;
-    }
+      #sticky-footer {
+        flex-shrink: none;
+      }
+      #tengah {
+        vertical-align: middle;
+      }
+
+      .masthead {
+        min-height: 500px;
+        min-width: 500px;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 10px;
+      }
+
+      #cover {
+        width: 150px;
+        height: 130px;
+        object-fit: cover;
+      }
+
+      #cover {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+      }
     </style>

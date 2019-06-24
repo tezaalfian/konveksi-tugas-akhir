@@ -114,6 +114,7 @@ class Home extends CI_Controller {
     $this->form_validation->set_rules('no_hp', 'No Hp', 'required');
     $this->form_validation->set_rules('kode_pos', 'Kode Pos', 'required');
     $this->form_validation->set_rules('label', 'Label', 'required');
+    $this->session->set_userdata("kode_pemesanan", $post["pemesanan_id"]);
 
     $data_pengiriman = array(
         "id_pengiriman" => base_convert(microtime(FALSE), 8, 16),
@@ -134,8 +135,8 @@ class Home extends CI_Controller {
       $this->c_pembayaran->insert();
       $this->c_pengiriman->menunggu_bayar();
     }
-
-    redirect('pembayaran/tambah');
+    $kode = $this->session->userdata("kode_pemesanan");
+    redirect('pembayaran/tambah/'.$kode);
   }
 
   public function kota($url)

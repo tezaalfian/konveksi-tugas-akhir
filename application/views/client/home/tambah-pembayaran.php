@@ -1,4 +1,4 @@
-
+<?php var_dump($pembayaran); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,116 +17,44 @@
     <?php $this->load->view('partial/client/header2');?>
 
         <div class="container">
-            <div class="row py-3">
-                <div class="col-lg-8">
-                	<h4 class="text-dark"><b>Checkout</b></h4>
-                	<h5 class="text-dark">Alamat Pengiriman</h5><hr>
-                	<form action="<?= base_url('home/pengiriman/'.$pemesanan[0]->id_pemesanan) ?>" method="post" enctype="multipart/form-data">
-                		<input type="hidden" name="pemesanan_id" value="<?= $pemesanan[0]->id_pemesanan?>">
-                		<div class="form-group">
-                			<label for="harga">Label Alamat</label>
-			                <input class="form-control" type="text" name="label" placeholder="Alamat Rumah, Alamat Kantor, dll">
-			                <div class="invalid-feedback">
-			                    <?php echo form_error('label')?>
-			                </div>
-                		</div>
-                		<div class="row">
-                			<div class="col-sm-6">
-                				<div class="form-group">
-		                			<label for="harga">Nama Penerima</label>
-					                <input class="form-control" type="text" name="nama_penerima" value="<?= $pemesanan[0]->username ?>">
-					                <div class="invalid-feedback">
-					                    <?php echo form_error('nama_penerima')?>
-					                </div>
-		                		</div>
-                			</div>
-                			<div class="col-sm-6">
-                				<div class="form-group">
-		                			<label for="harga">Nomor Telpon Penerima</label>
-					                <input class="form-control" type="text" name="no_hp" value="<?= $pemesanan[0]->no_hp ?>">
-					                <div class="invalid-feedback">
-					                    <?php echo form_error('no_hp')?>
-					                </div>
-		                		</div>
-                			</div>
-                		</div>
-                		<div class="row">
-                			<div class="col-sm-4">
-                				<div class="form-group">
-		                			<label for="pelanggan">Provinsi</label>
-			                		<select name="provinsi" id="provinsi" class="form-control"></select>
-		                		</div>
-                			</div>
-                			<div class="col-sm-4">
-                				<div class="form-group">
-		                			<label for="pelanggan">Kota / Kabupaten</label>
-			                		<select name="kota" id="kota" class="form-control"></select>
-		                		</div>
-                			</div>
-                			<div class="col-sm-4">
-                				<div class="form-group">
-		                			<label for="pelanggan">Kode Pos</label>
-			                		<input name="kode_pos" id="kode_pos" class="form-control">
-		                		</div>
-                			</div>
-                			
-                		</div>
-                		<div class="row">
-                			<div class="col-sm-8">
-                				<div class="form-group">
-		                			<label for="pelanggan">Alamat</label>
-			                		<textarea name="alamat" id="alamat" class="form-control"></textarea>
-			                		<div class="invalid-feedback">
-					                    <?php echo form_error('alamat')?>
-					                </div>
-		                		</div>
-                			</div>
-                			<div class="col-sm-4">
-                				<div class="form-group">
-		                			<label for="pelanggan">Kurir</label>
-			                		<select id="kurir" class="form-control"></select>
-			                		<input type="hidden" name="kurir" id="kurir_paket">
-		                		</div>
-                			</div>
-                		</div>
-                </div>
-                <div class="col-lg-4 d-flex  align-items-start justify-content-end">
-                	<div class="card" style="width: 100%;">
-						<div class="card-body">
-							<h5 class="card-title text-dark"><b>Ringkasan Belanja</b></h5>
-							<div class="row py-2">
-								<div class="col-auto">Jenis Barang :</div>
-								<div class="col text-right"><?= $pemesanan[0]->nama ?></div>
+            <div class="row my-5">
+                <div class="col"></div>
+                <div class="col-lg-6 col-md-8">
+                	<div class="card">
+					  <h5 class="card-header bg-info text-white text-center"><b>PEMBAYARAN</b></h5>
+					  <div class="card-body">
+					  	<div class="text-center">
+					  		<img class="my-4" src="https://image.flaticon.com/icons/svg/164/164436.svg" width="50%">
+					  	</div>
+						<p class="card-title text-dark"><b>Jumlah yang harus dibayar :</b></p>
+						<h5 class="text-success"><b>Rp.&nbsp;<?= $pembayaran->total_tagihan ?></b></h5><hr>
+					    <h6 class="card-title text-dark"><b>Cara Pembayaran</b></h6>
+					    <ul>
+					    	<li>Pembayaran dilakukan melalui transfer ke Bank BNI Syari'ah dengan 
+					    		<b>No. Rekening : 0238272088 </b>atas Nama : <b>Ahmad Mahmud.</b> </li>
+					    	<li>Jumlah pembayaran sesuai dengan total tagihan.</li>
+					    	<li>Setelah melakukan transfer silahkan upload bukti pembayaran ke form berikut.</li>
+					    	<li>Pesanan anda akan dilanjutkan setelah dikonfirmasi oleh pihak kami.</li>
+					    </ul><hr>
+					    <h6 class="card-title text-dark"><b>Upload Bukti Pembayaran</b></h6>
+					    <form method="post" action="<?= base_url('pembayaran/tambah/'.$pembayaran->pemesanan_id); ?>" enctype="multipart/form-data">
+					    	<input type="hidden" name="pemesanan_id" value="<?= $pembayaran->pemesanan_id ?>">
+					    	<div class="input-group">
+							  <div class="custom-file">
+							    <input type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" name="bukti_pembayaran" accept=".jpg,.jpeg,.png,.pdf">
+							    <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+							  </div>
+							  <div class="input-group-append">
+							    <button class="btn btn-outline-dark" type="submit" id="inputGroupFileAddon04">Kirim</button>
+							  </div>
 							</div>
-							<div class="row py-2">
-								<div class="col-auto">Total Harga :&nbsp;(<?= $pemesanan[0]->jumlah ?>&nbsp;item)</div>
-								<div class="col text-right">Rp.&nbsp;<?= $pemesanan[0]->tagihan ?></div>
-							</div>
-							<div class="row py-2">
-								<div class="col-auto">Berat :</div>
-								<div class="col text-right"><?= $pemesanan[0]->berat ?>&nbsp;gram</div>
-							</div>
-							<div class="row">
-								<div class="col-auto">
-									<label for="ongkir" class="col-form-label">Ongkos Kirim :</label>
-								</div>
-								<div class="col-auto">
-									<input type="text" class="form-control-plaintext" name="ongkir" id="ongkir" readonly>
-								</div>
-							</div><hr>
-							<div class="row">
-								<div class="col-6">
-									<label for="total_tagihan" class="col-form-label"><b>Total Tagihan :</b></label>
-								</div>
-								<div class="col-6">
-									<input type="text" class="form-control-plaintext" name="total_tagihan" id="total_tagihan" readonly>
-								</div>
-							</div><br>
-							<button class="btn btn-info btn-block" type="submit">Lanjut ke Pembayaran</button>
-						</div>
+							<small class="text-danger"><i>* File ekstensi yang diperbolehkan : PNG, JPG, JPEG, PDF</i></small>
+							<?= $this->session->flashdata("salah"); ?>
+					    </form>
+					  </div>
 					</div>
-					</form>
                 </div>
+                <div class="col"></div>
             </div>
         </div>
     <!-- FOOTER -->

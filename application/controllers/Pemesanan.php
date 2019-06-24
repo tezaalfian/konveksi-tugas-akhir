@@ -59,11 +59,21 @@ class Pemesanan extends CI_Controller {
 
     public function list() {
         $user = $this->session->userdata('username');
+        $kode = $this->session->userdata('id_user');
         $data["user"] = $this->m_pelanggan->getByName($user);
         $data["produk"] = $this->m_produk->getAllProduk();
 
         $status = $this->input->get("filter");
-        $data['pemesanan'] = $this->filter($status);
+        if ($status) {
+            $data["json_pesan"] = json_encode($this->filter($status));
+            $data['pemesanan'] = $this->filter($status);
+        }else{
+            $data["json_pesan"] = json_encode($data['pemesanan'] = $this->c_kategori->allOrder($kode));
+            $data['pemesanan'] = $this->c_kategori->allOrder($kode);
+        }
+        if (!$data["pemesanan"]){
+            $this->session->set_flashdata('empty', '<div class="alert alert-danger" role="alert">Pesanan anda belum ada!</div>');
+        }
 
         $this->load->view("client/home/list-pemesanan", $data);
     }
@@ -128,7 +138,9 @@ class Pemesanan extends CI_Controller {
         if (!isset($id)) show_404();
         
         if ($this->c_pemesanan->delete($id)) {
-            redirect(site_url('home/list?filter=2'));
+            $this->db->delete('pembayaran', array("pemesanan_id" => $id));
+            $this->db->delete('pengiriman', array("pemesanan_id" => $id));
+            redirect(site_url('pemesanan/list'));
         }
     }
 }

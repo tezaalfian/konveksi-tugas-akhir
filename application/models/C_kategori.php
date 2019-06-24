@@ -32,4 +32,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $query = $this->db->get();
             return $query->result();
         }
+
+        public function allOrder($id)
+        {
+            $this->db->select("pemesanan.*, barang.*, user.id_user, user.username, status.status, pengiriman.*, pembayaran.*");
+            $this->db->from("pemesanan");
+            $this->db->join("barang", "barang.id = pemesanan.barang_id");
+            $this->db->join("user", "user.id_user = pemesanan.pelanggan_id");
+            $this->db->join("status", "status.id = pemesanan.status_id");
+            $this->db->join("pengiriman", "pemesanan.id_pemesanan = pengiriman.pemesanan_id");
+            $this->db->join("pembayaran", "pemesanan.id_pemesanan = pembayaran.pemesanan_id");
+            $this->db->where("pemesanan.pelanggan_id", $id);
+            $this->db->where("pemesanan.status_id", 2);
+            $this->db->or_where("pemesanan.status_id", 3);
+            $this->db->or_where("pemesanan.status_id", 4);
+            $this->db->where("pemesanan.status_id", 5);
+            $this->db->or_where("pemesanan.status_id", 6);
+            $this->db->or_where("pemesanan.status_id", 7);
+            $this->db->order_by("pemesanan.tanggal_pemesanan", "asc");
+            $query = $this->db->get();
+            return $query->result();
+        }
     }

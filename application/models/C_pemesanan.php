@@ -89,6 +89,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     return $this->db->delete('pemesanan', array("id_pemesanan" => $id));
                 }
 
+                
                 private function uploadImage()
                 {
                     $config['upload_path']          = './upload/pemesanan/';
