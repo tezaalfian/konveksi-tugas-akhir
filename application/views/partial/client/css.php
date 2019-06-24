@@ -44,15 +44,15 @@
         border-radius: 10px;
       }
 
-      #cover {
+      #thumbnail {
         width: 150px;
         height: 130px;
         object-fit: cover;
       }
 
       #cover {
-        width: 50px;
-        height: 50px;
+        width: 70px;
+        height: 70px;
         object-fit: cover;
       }
     </style>

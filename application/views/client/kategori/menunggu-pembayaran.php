@@ -1,7 +1,7 @@
 <?php foreach ($pemesanan as $order): ?>
             <div class="row py-3 border-bottom d-flex align-items-center">
                 <div class="col-auto">
-                    <img class="img-thumbnail" id="cover" src="<?= base_url('upload/pemesanan/'.$order->desain) ?>">
+                    <img class="img-thumbnail" id="thumbnail" src="<?= base_url('upload/pemesanan/'.$order->desain) ?>">
                 </div>
                 <div class="col">
                     <h5 class="text-dark"><b><?= ucwords($order->nama) ?></b></h5>

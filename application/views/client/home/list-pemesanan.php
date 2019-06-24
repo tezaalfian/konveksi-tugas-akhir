@@ -9,7 +9,7 @@
     <?php $this->load->view('partial/client/header2');?>
 
         <div class="container my-3">
-            <div class="row my-2 py-3 border-bottom">
+            <div class="row my-2 py-3">
                 <div class="col-md-12">
                 	<div id="keterangan">
                 		<h4 class="text-dark"><b>Pemesanan</b></h4>
