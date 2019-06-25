@@ -37,4 +37,24 @@
           color: white!important;
           background-color: white!important;
         }
+        .thumbnail {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+      }
+      .image {
+          position: relative;
+          height: 0;
+          padding-bottom: 100%;
+        }
+
+        .image-fit {
+          position: absolute;
+          left: 0;
+          top: 0;
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+          object-position: center center;
+        }
     </style>

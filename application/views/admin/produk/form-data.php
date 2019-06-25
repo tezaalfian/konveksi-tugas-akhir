@@ -34,23 +34,32 @@
                         <div class="card-body">
                             <form action="<?= base_url('admin/produk/tambah');?>" method="post" enctype="multipart/form-data">
                                 <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="foto">Foto</label>
-                                            <img src="<?=base_url('upload/produk/default.jpg'); ?>" class="img-thumbnail">
-                                            <div class="custom-file">
-                                                  <input type="file" class="custom-file-input" id="customFilen" name="foto">
-                                                  <label class="custom-file-label" for="customFile">Choose file</label>
+                                    <div class="col-md-4">
+                                        <div class="card" style="border: solid #d4d4d4 1px;">
+                                                <div class="card-body">
+                                                <div class="form-group">
+                                                    <div class="image">
+                                                        <img class="image-fit rounded" src="<?=base_url('upload/produk/default.jpg'); ?>">
+                                                    </div><br>
+                                                    <div class="custom-file">
+                                                      <input type="file" class="custom-file-input" id="customFilen" name="foto" accept=".jpg,.jpeg,.png">
+                                                      <label class="custom-file-label" for="customFile">Pilih Foto</label>
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                        <?php echo form_error('foto')?>
+                                                    </div>
                                                 </div>
-                                            <div class="invalid-feedback">
-                                                <?php echo form_error('foto')?>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <small>Besar file : maksimum 10 Mb</small><br>
+                                                    <small>Ekstensi file yang diperbolehkan : .JPG .JPEG .PNG</small>
+                                                </div>
                                             </div>
-                                        </div>
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-md-8">
                                         <div class="form-group">
                                             <label for="nama">Nama*</label>
-                                            <input class="form-control <?php echo form_error('nama') ? 'is-invalid':'' ?>" type="text" name="nama" placeholder="Nama produk">
+                                            <input class="form-control <?php echo form_error('nama') ? 'is-invalid':'' ?>" type="text" name="nama" placeholder="Nama produk" value="<?= set_value('nama'); ?>">
                                             <div class="invalid-feedback">
                                                 <?php echo form_error('nama') ?>
                                             </div>
@@ -58,15 +67,23 @@
 
                                         <div class="form-group">
                                             <label for="harga">Harga*</label>
-                                            <input class="form-control <?php echo form_error('harga') ? 'is-invalid':'' ?>" type="number" name="harga" min="0" placeholder="Harga produk">
+                                            <input class="form-control <?php echo form_error('harga') ? 'is-invalid':'' ?>" type="number" name="harga" min="0" placeholder="Harga produk" value="<?= set_value('harga'); ?>">
                                             <div class="invalid-feedback">
                                                 <?php echo form_error('harga') ?>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
+                                            <label for="harga">Berat*</label>
+                                            <input class="form-control <?php echo form_error('weight') ? 'is-invalid':'' ?>" type="number" name="weight" min="0" placeholder="Berat produk" value="<?= set_value('weight'); ?>">
+                                            <div class="invalid-feedback">
+                                                <?php echo form_error('weight') ?>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
                                             <label for="deskripsi">Deskripsi*</label>
-                                            <textarea class="form-control <?php echo form_error('deskripsi') ? 'is-invalid':'' ?>" name="deskripsi" placeholder="Deskripsi produk..."></textarea>
+                                            <textarea class="form-control <?php echo form_error('deskripsi') ? 'is-invalid':'' ?>" name="deskripsi" placeholder="Deskripsi produk..."><?= set_value('deskripsi'); ?></textarea>
                                             <div class="invalid-feedback">
                                                 <?= form_error('deskripsi'); ?>
                                             </div>

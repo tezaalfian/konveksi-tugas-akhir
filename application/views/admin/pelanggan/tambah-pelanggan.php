@@ -39,7 +39,9 @@
 		                                <div class="card" style="border: solid #d4d4d4 1px;">
 		                                	<div class="card-body">
 			                                <div class="form-group">
-		                            			<img src="<?=base_url('upload/pelanggan/default.jpg'); ?>" class="img-thumbnail"><br><br>
+			                                	<div class="image">
+			                            			<img class="image-fit rounded" src="<?=base_url('upload/pelanggan/default.jpg'); ?>">
+			                            		</div><br>
 			                                    <div class="custom-file">
 	                                              <input type="file" class="custom-file-input" id="customFilen" name="foto" accept=".jpg,.jpeg,.png">
 	                                              <label class="custom-file-label" for="customFile">Pilih Foto</label>

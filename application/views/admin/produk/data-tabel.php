@@ -18,7 +18,6 @@
             <!-- Animated -->
             <div class="animated fadeIn">
                 <div class="row">
-
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
@@ -35,6 +34,7 @@
                                             <th>Nama</th>
                                             <th>Harga</th>
                                             <th>Foto</th>
+                                            <th>Berat</th>
                                             <th>Deskripsi</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -49,7 +49,10 @@
                                                     Rp.&nbsp;<?php echo $product->harga ?>
                                                 </td>
                                                 <td align="center">
-                                                    <img src="<?= base_url('upload/produk/'.$product->foto) ?>" width="64" />
+                                                    <img src="<?= base_url('upload/produk/'.$product->foto) ?>"class="thumbnail rounded" />
+                                                </td>
+                                                <td>
+                                                    <?php echo $product->weight ?>&nbsp;gram
                                                 </td>
                                                 <td class="small">
                                                     <?php echo substr($product->deskripsi, 0, 120) ?>...</td>
@@ -62,11 +65,6 @@
                                                     </a>
                                                 </td>
                                             </tr>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
                         <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg" role="document">
                                 <div class="modal-content">
@@ -90,6 +88,12 @@
                                 </div>
                             </div>
                         </div>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
             </div>

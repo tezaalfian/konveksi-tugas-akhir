@@ -1,4 +1,4 @@
-<?php var_dump($pembayaran); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,7 +48,7 @@
 							    <button class="btn btn-outline-dark" type="submit" id="inputGroupFileAddon04">Kirim</button>
 							  </div>
 							</div>
-							<small class="text-danger"><i>* File ekstensi yang diperbolehkan : PNG, JPG, JPEG, PDF</i></small>
+							<small class="text-danger"><i>* File ekstensi yang diperbolehkan : PNG, JPG, JPEG, PDF</i></small><br>
 							<?= $this->session->flashdata("salah"); ?>
 					    </form>
 					  </div>

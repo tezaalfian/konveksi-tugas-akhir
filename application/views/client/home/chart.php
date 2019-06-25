@@ -24,7 +24,7 @@
             <?php foreach ($pemesanan as $order): ?>
             <div class="card">
                 <div class="card-body">
-                    <div class="row py-3 d-flex align-items-center">
+                    <div class="row d-flex align-items-center">
                         <div class="col-lg-2 col-md-4">
                             <img class="rounded" id="img-cart" src="<?= base_url('upload/pemesanan/'.$order->desain) ?>" height="100" />
                         </div>
@@ -44,7 +44,7 @@
                               </li>
                             </ul>
                         </div>
-                        <div class="col-lg-4 col-md-8 my-md-3 mx-md-auto d-flex justify-content-lg-end justify-content-md-center">
+                        <div class="col-lg-4 col-md-8 my-lg-1 my-md-3 mx-md-auto d-flex justify-content-lg-end justify-content-md-center">
                             <div class="card" style="width: 100%;">
                                 <div class="card-body">
                                     <h5 class="card-title text-dark"><b>Ringkasan Belanja</b></h5>

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,47 +22,48 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <a href="<?= base_url('admin/pengiriman/tambah'); ?>">
+                                <!-- <a href="<?= base_url('admin/pengiriman/tambah'); ?>">
                                 <button type="button" class="btn btn-info">
                                     <i class="fa fa-plus"></i>&nbsp; Tambah Baru
                                 </button>
-                                </a>
+                                </a> -->
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Kode</th>
-                                            <th>Pelanggan</th>
-                                            <th>Produk</th>
-                                            <th>Tanggal</th>
-                                            <th>Aksi</th>
+                                            <th>Kode Pemesanan</th>
+                                            <th>Alamat Pengiriman</th>
+                                            <th>Tanggal Dikirim</th>
+                                            <th>Tanggal Diterima</th>
                                             <th>Status</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php var_dump($pengiriman); ?>
                                         <?php foreach ($pengiriman as $order): ?>
                                             <tr>
                                                 <td>
-                                                    <?php echo strtoupper($order->id_pengiriman); ?>
+                                                    <?php echo strtoupper($order->pemesanan_id); ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $order->username ?>
+                                                    <?php echo $order->nama_penerima ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $order->nama?>
+                                                    
                                                 </td>
                                                 <td>
-                                                    <?php echo $order->tanggal_pengiriman?>
+                                                    <?php echo $order->tanggal_dikirim?>
                                                 </td>
                                                 <td>
-                                                    diproses
+                                                    <h4><span class="badge badge-primary"><?= ucwords( $order->status)?></span></h4>
                                                 </td>
                                                 <td align="center">
                                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#mediumModal">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
-                                                    <a href="<?= base_url('admin/pengiriman/edit/'.$order->id_pengiriman); ?>" class="btn btn-success btn-sm">
+                                                    <a href="<?= base_url('admin/pengiriman/edit/'.$order->pemesanan_id); ?>" class="btn btn-success btn-sm">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
                                                 </td>
@@ -70,7 +72,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                        <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+                        <!-- <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -92,7 +94,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

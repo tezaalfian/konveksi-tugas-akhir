@@ -9,6 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 public $harga;
                 public $foto = "default.jpg";
                 public $deskripsi;
+                public $weight;
 
                 public function rules()
                 {
@@ -23,7 +24,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             
                             ['field' => 'deskripsi',
                             'label' => 'Deskripsi',
-                            'rules' => 'required']
+                            'rules' => 'required'],
+
+                            ['field' => 'weight',
+                            'label' => 'Berat',
+                            'rules' => 'required|numeric']
                         ];
                 }
 
@@ -49,6 +54,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     $this->harga = $post["harga"];
                     $this->foto = $this->uploadImage();
                     $this->deskripsi = $post["deskripsi"];
+                    $this->weight = $post["weight"];
                     $this->db->insert($this->_table, $this);
                 }
 
@@ -59,6 +65,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     $this->nama = $post["nama"];
                     $this->harga = $post["harga"];
                     $this->deskripsi = $post["deskripsi"];
+                    $this->weight = $post["weight"];
 
                     if (!empty($_FILES["foto"]["name"])) {
                         $this->foto = $this->uploadImage();

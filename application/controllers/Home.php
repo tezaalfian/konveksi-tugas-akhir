@@ -127,7 +127,8 @@ class Home extends CI_Controller {
         "kode_pos" => $post["kode_pos"],
         "kurir" => $post["kurir"],
         "provinsi" => $provinsi->rajaongkir->results->province,
-        "kota" => $kota->rajaongkir->results->city_name
+        "kota" => $kota->rajaongkir->results->city_name,
+        "status" => 9
     );
 
     if ($this->form_validation->run() == true) {

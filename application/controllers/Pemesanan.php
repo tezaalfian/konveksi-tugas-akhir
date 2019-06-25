@@ -9,6 +9,7 @@ class Pemesanan extends CI_Controller {
         $this->load->model("m_pelanggan");
         $this->load->model("m_pemesanan");
         $this->load->model("c_pemesanan");
+        $this->load->model("c_pembayaran");
         $this->load->model("c_kategori");
         $this->load->library('form_validation');
 
@@ -99,7 +100,6 @@ class Pemesanan extends CI_Controller {
         if (!$data["pemesanan"]){
             $this->session->set_flashdata('empty', '<div class="alert alert-danger" role="alert">Pesanan anda belum ada!</div>');
         }
-
         $this->load->view("client/home/list-pemesanan", $data);
     }
 
@@ -163,7 +163,7 @@ class Pemesanan extends CI_Controller {
         if (!isset($id)) show_404();
         
         if ($this->c_pemesanan->delete($id)) {
-            $this->db->delete('pembayaran', array("pemesanan_id" => $id));
+            $this->c_pembayaran->delete($id);
             $this->db->delete('pengiriman', array("pemesanan_id" => $id));
             redirect(site_url('pemesanan/list'));
         }

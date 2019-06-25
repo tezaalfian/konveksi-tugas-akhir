@@ -21,11 +21,11 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <a href="<?= base_url('admin/pemesanan/tambah'); ?>">
+                                <!-- <a href="<?= base_url('admin/pemesanan/tambah'); ?>">
                                 <button type="button" class="btn btn-info">
                                     <i class="fa fa-plus"></i>&nbsp; Tambah Baru
                                 </button>
-                                </a>
+                                </a> -->
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
@@ -55,7 +55,7 @@
                                                     <?php echo $order->tanggal_pemesanan?>
                                                 </td>
                                                 <td align="center">
-                                                    <span class="p-1 bg-primary text-white" style="border-radius: 4px;"><?php echo $order->status?></span>
+                                                    <h4><span class="badge badge-primary"><?= ucwords( $order->status)?></span></h4>
                                                 </td>
                                                 <td align="center">
                                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#mediumModal">
@@ -66,10 +66,6 @@
                                                     </a>
                                                 </td>
                                             </tr>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                </table>
-                            </div>
                         <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg" role="document">
                                 <div class="modal-content">
@@ -93,6 +89,10 @@
                                 </div>
                             </div>
                         </div>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
                     </div>
                 </div>
             </div>

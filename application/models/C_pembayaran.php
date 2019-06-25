@@ -31,6 +31,12 @@ class C_pembayaran extends CI_Model {
         $this->db->update("pemesanan", $data, array('id_pemesanan' => $id));
     }
 
+    public function delete($id)
+    {
+        $this->deleteImage($id);
+        return $this->db->delete('pembayaran', array("pemesanan_id" => $id));
+    }
+
     public function uploadImage()
     {
         $config['upload_path']          = './upload/pembayaran/';
@@ -48,5 +54,14 @@ class C_pembayaran extends CI_Model {
         }
         
         return "default.jpg";
+    }
+
+    public function deleteImage($id)
+    {
+        $product = $this->getById($id);
+        if ($product->bukti_pembayaran != "default.jpg") {
+            $filename = explode(".", $product->bukti_pembayaran)[0];
+            return array_map('unlink', glob(FCPATH."upload/pembayaran/$filename.*"));
+        }
     }
 }

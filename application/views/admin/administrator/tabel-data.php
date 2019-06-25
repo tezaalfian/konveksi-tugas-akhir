@@ -48,7 +48,7 @@
                                                     <?php echo $admin->username ?>
                                                 </td>
                                                 <td align="center">
-                                                    <img src="<?= base_url('upload/administrator/'.$admin->foto) ?>" width="64" />
+                                                    <img class="rounded thumbnail" src="<?= base_url('upload/administrator/'.$admin->foto) ?>"/>
                                                 </td>
                                                 <td align="center">
                                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#mediumModal">
@@ -59,10 +59,6 @@
                                                     </a>
                                                 </td>
                                             </tr>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                </table>
-                            </div>
                         <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg" role="document">
                                 <div class="modal-content">
@@ -86,6 +82,10 @@
                                 </div>
                             </div>
                         </div>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
                     </div>
                 </div>
             </div>

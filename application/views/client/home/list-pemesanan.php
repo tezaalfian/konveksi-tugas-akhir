@@ -108,7 +108,9 @@
                                 <div class="row my-2 border-bottom">
                                     <div class="col-md-12">
                                         <small>Kode Pemesanan</small>
-                                        <h6 class="text-info"><b><?= strtoupper($order->id_pemesanan) ?></b></h6>
+                                        <h6 class="text-info"><b><?= strtoupper($order->id_pemesanan) ?>
+                                        &nbsp;|&nbsp;<a class="text-info" href="<?= base_url('upload/pembayaran/'.$order->bukti_pembayaran) ?>" target="_blank">BUKTI PEMBAYARAN</a>
+                                        </b></h6>
                                         <small>Status</small>
                                         <h6 class="text-info"><b><?= ucwords($order->status) ?></b></h6>
                                         <small>Tanggal Pemesanan</small>
@@ -156,11 +158,13 @@
                                         <small>Total Harga&nbsp;(<?= $order->jumlah?>&nbsp;produk)</small>
                                         <small>Total Ongkos Kirim&nbsp;(<?= $order->berat?>&nbsp;gram)</small>
                                         <small>Total Pembayaran</small>
+                                        <small>Total Tagihan</small>
                                     </div>
                                     <div class="col-md-6 d-flex flex-column border-left">
                                         <h6 class="text-info"><b>Ket.</b></h6>
                                         <small><b>Rp.&nbsp;<?= $order->tagihan?></b></small>
                                         <small><b>Rp.&nbsp;<?= $order->ongkir?></b></small>
+                                        <small><b>Rp.&nbsp;<?= $order->nominal?></b></small>
                                         <small><b class="text-info">Rp.&nbsp;<?= $order->total_tagihan?></b></small>
                                     </div>
                                 </div>

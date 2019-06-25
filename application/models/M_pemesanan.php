@@ -14,6 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 public $pelanggan_id;
                 public $s, $m, $l, $xl, $xxl, $xxxl;
                 public $status_id;
+                public $berat;
 
                 public function rules()
                 {
@@ -81,6 +82,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     $this->xl = $post["xl"];
                     $this->xxl = $post["xxl"];
                     $this->xxxl = $post["xxxl"];
+                    $this->berat = $post["berat"];
                     $this->status_id = 1;
 
                     $this->db->insert($this->_table, $this);
@@ -108,6 +110,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     $this->xl = $post["xl"];
                     $this->xxl = $post["xxl"];
                     $this->xxxl = $post["xxxl"];
+                    $this->berat = $post["berat"];
                     $this->status_id = 1;
 
                     if (!empty($_FILES["desain"]["name"])) {
