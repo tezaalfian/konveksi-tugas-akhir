@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,78 +59,59 @@
                                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#detail">
                                                         <i class="fa fa-info-circle"></i>
                                                     </button>
-                                                    <a href="<?= base_url('admin/pengiriman/edit/'.$order->pemesanan_id); ?>" class="btn btn-success btn-sm">
-                                                        <i class="fa fa-edit"></i>
-                                                    </a>
+                                            <?php if ($order->status_id == 2||$order->status_id == 3||$order->status_id == 4) : ?>
+                                                    <a href="<?= base_url('admin/pengiriman/edit/'.$order->pemesanan_id); ?>" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a>
+                                            <?php endif; ?>
                                                 </td>
                                             </tr>
-        <div class="modal fade" id="detail" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalCenterTitle">Detail Pengiriman</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <small>Kode Pemesanan</small>
-                            <h6 class="text-info"><b><?= strtoupper($order->id_pemesanan) ?></b></h6>
-                        <small>Status</small>
-                            <h6 class="text-info"><b><?= ucwords($order->status) ?></b></h6>
-                    </div>
-                    <div class="col-md-6">
-                        <small>Tanggal Dikirim</small>
-                            <h6 class="text-info"><b><?= strtoupper($order->tanggal_dikirim) ?></b></h6>
-                        <small>Tanggal Diterima</small>
-                            <h6 class="text-info"><b><?= strtoupper($order->tanggal_dikirim) ?></b></h6>
-                    </div>
-                </div><hr>
-                <div class="row">
-                    <div class="col-md-12 d-flex flex-column">
-                        <h6><b>Alamat Pengiriman</b></h6>
-                        <small><?= strtoupper($order->kurir) ?></small>
-                        <small>Dikirim kepada :&nbsp;<b><?= ucwords($order->nama_penerima) ?></b></small>
-                        <small><?= ucwords($order->alamat) ?></small>
-                        <small>Kota&nbsp;<?= ucwords($order->kota) ?>, 
-                                                Kode pos&nbsp;<?= ucwords($order->kode_pos) ?></small>
-                        <small><?= ucwords($order->provinsi) ?></small>
-                        <small>Telp :&nbsp;<?= ucwords($order->no_hp) ?></small>
-                    </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+                                    <div class="modal fade" id="detail" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                      <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h4 class="modal-title" id="exampleModalCenterTitle">Detail Pengiriman</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+                                          </div>
+                                          <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <small>Kode Pemesanan</small>
+                                                        <h6 class="text-info"><b><?= strtoupper($order->id_pemesanan) ?></b></h6>
+                                                    <small>Status</small>
+                                                        <h6 class="text-info"><b><?= ucwords($order->status) ?></b></h6>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <small>Tanggal Dikirim</small>
+                                                        <h6 class="text-info"><b><?= strtoupper($order->tanggal_dikirim) ?></b></h6>
+                                                    <small>Tanggal Diterima</small>
+                                                        <h6 class="text-info"><b><?= strtoupper($order->tanggal_dikirim) ?></b></h6>
+                                                </div>
+                                            </div><hr>
+                                            <div class="row">
+                                                <div class="col-md-6 d-flex flex-column">
+                                                    <small><b>Alamat Pengiriman</b></small>
+                                                    <small><?= strtoupper($order->kurir) ?></small>
+                                                    <small>Dikirim kepada :&nbsp;<b><?= ucwords($order->nama_penerima) ?></b></small>
+                                                    <small><?= ucwords($order->alamat) ?></small>
+                                                    <small>Kota&nbsp;<?= ucwords($order->kota) ?>, 
+                                                                            Kode pos&nbsp;<?= ucwords($order->kode_pos) ?></small>
+                                                    <small><?= ucwords($order->provinsi) ?></small>
+                                                    <small>Telp :&nbsp;<?= ucwords($order->no_hp) ?></small>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <small><b>Ongkos Kirim</b></small>
+                                                        <h6 class="text-info"><b>Rp.&nbsp;<?= strtoupper($order->ongkir) ?></b></h6>
+                                                </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
                                         <?php endforeach; ?>
                                     </tbody>
                                 </table>
                             </div>
-                        <!-- <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title" id="mediumModalLabel">Apakah kamu yakin ?</h4>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>
-                                            Data yang dihapus tidak akan bisa dikembalikan
-                                        </p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                        <a href="<?= base_url('admin/pengiriman/delete/'.$order->id_pengiriman); ?>" class="btn btn-primary">
-                                            Confirm
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
             </div>

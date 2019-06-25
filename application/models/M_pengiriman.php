@@ -16,10 +16,11 @@ class M_pengiriman extends CI_Model {
 
     public function getById($id)
     {
-        $this->db->select("pemesanan.*, pengiriman.*, pengiriman.*");
+        $this->db->select("pemesanan.*, pengiriman.*, pembayaran.*, user.id_user, user.username");
         $this->db->from("pemesanan");
         $this->db->join("pengiriman", "pengiriman.pemesanan_id = pemesanan.id_pemesanan");
         $this->db->join("pembayaran", "pembayaran.pemesanan_id = pemesanan.id_pemesanan");
+        $this->db->join("user", "user.id_user = pemesanan.pelanggan_id");
         $this->db->where("pemesanan.id_pemesanan", $id);
         $query = $this->db->get();
         return $query->result();

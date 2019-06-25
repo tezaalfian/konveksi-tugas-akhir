@@ -57,4 +57,9 @@
           object-fit: cover;
           object-position: center center;
         }
+        #cover {
+        width: 70px;
+        height: 70px;
+        object-fit: cover;
+      }
     </style>

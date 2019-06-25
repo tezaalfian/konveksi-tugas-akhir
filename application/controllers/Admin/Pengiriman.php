@@ -8,6 +8,7 @@ class Pengiriman extends CI_Controller {
 		parent::__construct();
 		$this->load->library('form_validation');
 		$this->load->model("m_pengiriman");
+		$this->load->model('rajaongkir');
 		if ($this->session->userdata('role_id') == 2) {
 			show_404();
 		}		
@@ -28,10 +29,11 @@ class Pengiriman extends CI_Controller {
         //     $pengiriman->update();
         //     $this->session->set_flashdata('success', 'Berhasil disimpan');
         // }
-
-        $data["pengiriman"] = $this->m_pengiriman->getById($id);
-        if (!$data["pengiriman"]) show_404();
-        var_dump($data["pengiriman"]);die;
+	    $data["produk"] = json_encode($this->m_pengiriman->getById($id));
+	    $data["provinsi"] = $this->rajaongkir->provinsi();
+	    $data["kota"] = $this->rajaongkir->kota();
+        $data["pemesanan"] = $this->m_pengiriman->getById($id);
+        if (!$data) show_404();
         
         $this->load->view("admin/pengiriman/edit-pengiriman", $data);
 	}

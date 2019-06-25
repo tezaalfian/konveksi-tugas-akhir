@@ -85,4 +85,4 @@
     		 $('#kurir_paket').val($('#kurir option:selected').html());
     	});
 
-    </script>
+</script>
