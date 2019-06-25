@@ -20,21 +20,18 @@ class Pengiriman extends CI_Controller {
 
 	public function edit($id = null)
 	{
-		// if (!isset($id)) redirect('admin/pengiriman');
-      	$data["produk"] = json_encode($this->m_produk->getAllProduk());
-		$data["pelanggan"] = $this->m_pelanggan->getAll();
-		$data["harga_produk"] = $this->m_pengiriman->getAllById($id);
-        $pengiriman = $this->m_pengiriman;
-        $validation = $this->form_validation;
-        $validation->set_rules($pengiriman->rules());
+        // $pengiriman = $this->m_pengiriman;
+        // $validation = $this->form_validation;
+        // $validation->set_rules($pengiriman->rules());
 
-        if ($validation->run()) {
-            $pengiriman->update();
-            $this->session->set_flashdata('success', 'Berhasil disimpan');
-        }
+        // if ($validation->run()) {
+        //     $pengiriman->update();
+        //     $this->session->set_flashdata('success', 'Berhasil disimpan');
+        // }
 
         $data["pengiriman"] = $this->m_pengiriman->getById($id);
         if (!$data["pengiriman"]) show_404();
+        var_dump($data["pengiriman"]);die;
         
         $this->load->view("admin/pengiriman/edit-pengiriman", $data);
 	}
