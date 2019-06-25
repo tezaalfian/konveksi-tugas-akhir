@@ -34,8 +34,6 @@
                                         <tr>
                                             <th>Kode Pemesanan</th>
                                             <th>Alamat Pengiriman</th>
-                                            <th>Tanggal Dikirim</th>
-                                            <th>Tanggal Diterima</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -48,20 +46,19 @@
                                                     <?php echo strtoupper($order->pemesanan_id); ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $order->nama_penerima ?>
-                                                </td>
-                                                <td>
-                                                    
-                                                </td>
-                                                <td>
-                                                    <?php echo $order->tanggal_dikirim?>
+                                                    <h6><b><?php echo ucwords($order->nama_penerima) ?></b></h6>
+                                                    <span><?= $order->alamat ?>,&nbsp;
+                                                        Kota&nbsp;<?= $order->kota ?>,
+                                                    &nbsp;<?= $order->kode_pos ?>      
+                                                    </span>
+                                                    <h6><?= ucwords($order->provinsi) ?></h6>
                                                 </td>
                                                 <td>
                                                     <h4><span class="badge badge-primary"><?= ucwords( $order->status)?></span></h4>
                                                 </td>
                                                 <td align="center">
-                                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#mediumModal">
-                                                        <i class="fa fa-trash"></i>
+                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#mediumModal">
+                                                        <i class="fa fa-info-circle"></i>
                                                     </button>
                                                     <a href="<?= base_url('admin/pengiriman/edit/'.$order->pemesanan_id); ?>" class="btn btn-success btn-sm">
                                                         <i class="fa fa-edit"></i>
