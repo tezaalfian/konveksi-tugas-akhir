@@ -8,6 +8,7 @@ class Pemesanan extends CI_Controller {
         $this->load->model("m_produk");
         $this->load->model("m_pelanggan");
         $this->load->model("m_pemesanan");
+        $this->load->model("m_pengiriman");
         $this->load->model("c_pemesanan");
         $this->load->model("c_pembayaran");
         $this->load->model("c_kategori");
@@ -109,6 +110,21 @@ class Pemesanan extends CI_Controller {
         return $this->c_kategori->list($kode, $id);
     }
 
+    public function diterima($id){
+        $data_kirim = array(
+            "tanggal_diterima" => date("Y/m/d"),
+            "keterangan" => 7
+        );
+
+        $status = array(
+            "status_id" => 6
+        );
+
+        $this->m_pengiriman->update($data_kirim, $id);
+        $this->c_kategori->status($status, $id);
+        $this->session->set_flashdata('success', 'Terima kasih telah memesan produk kami!');
+        redirect('pemesanan/list');
+    }
     public function edit($id) {
         // $data["produk"] = json_encode($this->m_produk->getAllProduk());
         

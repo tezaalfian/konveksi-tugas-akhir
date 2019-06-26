@@ -32,7 +32,7 @@ class Pembayaran extends CI_Controller {
 		    );
 
 		    $data_bayar = array(
-		    	"ket" => 6,
+		    	"ket" => 11,
 		    	"tanggal_pembayaran" => date("Y/m/d"),
 		    	"nominal" => $post["nominal"]
 		    );

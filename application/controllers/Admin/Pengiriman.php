@@ -105,4 +105,9 @@ class Pengiriman extends CI_Controller {
 		$this->session->set_flashdata('berhasil', 'Konfirmasi pengiriman barang berhasil!');
 		redirect('admin/pengiriman');
 	}
+
+	public function detail($id)
+	{
+		echo json_encode($this->m_pengiriman->getAllById($id));
+	}
 }

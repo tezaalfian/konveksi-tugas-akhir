@@ -136,7 +136,7 @@
     </div>
 
 <!-- LIBRARY JS -->
-    <?php $this->load->view('partial/client/js');?>
+    <?php $this->load->view('partial/admin/js');?>
     <!-- <script type="text/javascript">
     	var provinsi = <?= $provinsi ?>;
     	var prov = "";

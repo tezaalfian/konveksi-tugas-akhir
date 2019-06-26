@@ -78,4 +78,9 @@ class Pemesanan extends CI_Controller {
 		$this->session->set_flashdata('success', 'Segera konfirmasi pengiriman barang ke pelanggan!');
 		redirect('admin/pemesanan');
 	}
+
+	public function detail($id)
+	{
+		echo json_encode($this->m_pemesanan->getAllById($id));
+	}
 }

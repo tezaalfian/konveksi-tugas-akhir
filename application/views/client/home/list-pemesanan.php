@@ -16,6 +16,11 @@
                     </div>
                 </div>
             </div>
+            <?php if ($this->session->flashdata('success')): ?>
+                <div class="alert alert-success" role="alert">
+                    <?php echo $this->session->flashdata('success'); ?>
+                </div>
+            <?php endif; ?>
             <?= $this->session->flashdata('empty'); ?>
             <?= $this->session->flashdata('message'); ?>
             <div id="filter">
@@ -52,7 +57,7 @@
                           </div>
                         </div>
                     <?php endif; ?>
-                    <?php if($order->status_id == 3||$order->status_id == 4||$order->status_id == 5||$order->status_id == 6||$order->status_id == 7) :?>
+                    <?php if($order->status_id == 3||$order->status_id == 4||$order->status_id == 5||$order->status_id == 10||$order->status_id == 6) :?>
                         <div class="card my-3">
                             <div class="card-body">
                                 <div class="row py-2 border-bottom d-flex align-items-center">
@@ -88,7 +93,12 @@
                                             &nbsp;(<?= $order->berat?>&nbsp;gr)</span></b>
                                         </div>
                                         <div class="col-md-2 d-flex flex-column">
-                                            <a data-toggle="modal" data-target=".bd-example-modal-lg" href="#" class="btn btn-info btn-block">Lihat Detail</a>
+                                            <?php if($order->status_id == 10) :?>
+                                                <a href="<?= base_url('pemesanan/diterima/'.$order->id_pemesanan) ?>" class="btn btn-block btn-outline-success">
+                                                    Sudah Diterima ?
+                                                </a>
+                                            <?php endif; ?>
+                                            <button data-toggle="modal" data-target=".bd-example-modal-lg" class="btn btn-info btn-block">Lihat Detail</button>
                                         </div>
                                     </div>
                             </div>
@@ -105,14 +115,16 @@
                                 </button>
                               </div>
                               <div class="modal-body">
-                                <div class="row my-2 border-bottom">
-                                    <div class="col-md-12">
+                                <div class="row py-2 border-bottom">
+                                    <div class="col-md-6">
                                         <small>Kode Pemesanan</small>
                                         <h6 class="text-info"><b><?= strtoupper($order->id_pemesanan) ?>
                                         &nbsp;|&nbsp;<a class="text-info" href="<?= base_url('upload/pembayaran/'.$order->bukti_pembayaran) ?>" target="_blank">BUKTI PEMBAYARAN</a>
                                         </b></h6>
                                         <small>Status</small>
                                         <h6 class="text-info"><b><?= ucwords($order->status) ?></b></h6>
+                                    </div>
+                                    <div class="col-md-6 border-left">
                                         <small>Tanggal Pemesanan</small>
                                         <h6 class="text-info"><b><?= ucwords($order->tanggal_pemesanan) ?></b></h6>
                                     </div>
@@ -141,7 +153,7 @@
                                     </div>
                                 </div>
                                 <div class="row py-2 my-2 border-bottom">
-                                    <div class="col-md-12 d-flex flex-column">
+                                    <div class="col-md-6 d-flex flex-column">
                                         <h6 class="text-info"><b>Pengiriman</b></h6>
                                         <small><?= strtoupper($order->kurir) ?></small>
                                         <small>Dikirim kepada :&nbsp;<b><?= ucwords($order->nama_penerima) ?></b></small>
@@ -151,6 +163,18 @@
                                         <small><?= ucwords($order->provinsi) ?></small>
                                         <small>Telp :&nbsp;<?= ucwords($order->no_hp) ?></small>
                                     </div>
+                                    <?php if($order->status_id == 10||$order->status_id == 6) :?>
+                                    <div class="col-md-6 d-flex flex-column border-left">
+                                        <small>No Resi</small>
+                                        <h6 class="text-info"><b><?= strtoupper($order->no_resi) ?></b></h6>
+                                        <small>Tanggal Dikirim</small>
+                                        <h6 class="text-info"><b><?= strtoupper($order->tanggal_dikirim) ?></b></h6>
+                                    <?php if($order->status_id == 6) :?>
+                                        <small>Tanggal Diterima</small>
+                                        <h6 class="text-info"><b><?= strtoupper($order->tanggal_diterima) ?></b></h6>
+                                    <?php endif; ?>
+                                    </div>
+                                    <?php endif; ?>
                                 </div>
                                 <div class="row py-2 my-2 border-bottom">
                                     <div class="col-md-6 d-flex flex-column">
