@@ -10,6 +10,8 @@ class Pemesanan extends CI_Controller {
 		$this->load->model("m_produk");
 		$this->load->model("m_pelanggan");
 		$this->load->model("m_pemesanan");
+		$this->load->model("m_pengiriman");
+		$this->load->model("m_pembayaran");
 		if ($this->session->userdata('role_id') == 2) {
 			show_404();
 		}		
@@ -46,6 +48,8 @@ class Pemesanan extends CI_Controller {
 		if (!isset($id)) show_404();
         
         if ($this->m_pemesanan->delete($id)) {
+        	$this->m_pembayaran->delete($id);
+        	$this->m_pengiriman->delete($id);
             redirect(site_url('admin/pemesanan'));
         }
 	}

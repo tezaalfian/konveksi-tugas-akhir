@@ -36,23 +36,29 @@
                             <div class="card-body">
 		                        <form action="<?= base_url('admin/pemesanan/edit/'.$pemesanan->id_pemesanan)?>" method="post" enctype="multipart/form-data">
 		                            <div class="row">
-		                                <div class="col-md-3">
-			                                <div class="form-group">
-		                                		<label for="desain">Desain</label>
-		                            			<img src="<?=base_url('upload/pemesanan/'.$pemesanan->desain); ?>" class="img-thumbnail" widht="100%">
-			                                    <div class="custom-file">
-	                                              <input type="file" class="custom-file-input" id="customFilen" name="desain" value="<?= $pemesanan->desain ?>">
-	                                              <label class="custom-file-label" for="customFile">Choose file</label>
-	                                            </div>
-			                                    <input type="hidden" name="old_desain" value="<?= $pemesanan->desain ?>"/>
-			                                    <input type="hidden" name="old_date" value="<?= $pemesanan->tanggal_pemesanan ?>"/>
-			                                    <input type="hidden" name="id_pemesanan" value="<?= $pemesanan->id_pemesanan ?>"/>
-			                                    <div class="invalid-feedback">
-			                                        <?php echo form_error('foto')?>
-			                                    </div>
-			                                </div>
+		                                <div class="col-md-4">
+		                                	<div class="card" style="border: solid #d4d4d4 1px;">
+                                                <div class="card-body">
+                                                <div class="form-group">
+                                                    <div class="image">
+                                                        <img class="image-fit rounded" src="<?=base_url('upload/pemesanan/'.$pemesanan->desain); ?>">
+                                                    </div><br>
+                                                    <div class="custom-file">
+                                                      <input type="file" class="custom-file-input" id="customFilen" name="desain" value="<?= $pemesanan->desain ?>" accept=".jpg,.jpeg,.png">
+                                                      <label class="custom-file-label" for="customFile">Pilih Foto</label>
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                        <?php echo form_error('foto')?>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <small>Besar file : maksimum 10 Mb</small><br>
+                                                    <small>Ekstensi file yang diperbolehkan : .JPG .JPEG .PNG</small>
+                                                </div>
+                                        	</div>
 		                            	</div>
-		                            	<div class="col-md-9">
+		                            	<div class="col-md-8">
 			                                <div class="form-group">
 			                                    <label for="pelanggan">Pelanggan*</label>
 			                                    <select name="pelanggan" id="pelanggan" class="form-control">

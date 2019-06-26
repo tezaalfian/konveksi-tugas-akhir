@@ -8,6 +8,7 @@ class Administrator extends CI_Controller {
 		parent::__construct();
 		$this->load->library('form_validation');
 		$this->load->model("m_administrator");
+		$this->load->model("c_admin");
 		if ($this->session->userdata('role_id') == 2) {
 			show_404();
 		}
@@ -22,7 +23,7 @@ class Administrator extends CI_Controller {
 	{
 		// if (!isset($id)) redirect('admin/administrator');
        
-        $administrator = $this->m_administrator;
+        $administrator = $this->c_admin;
         $validation = $this->form_validation;
         $validation->set_rules($administrator->rules2());
 

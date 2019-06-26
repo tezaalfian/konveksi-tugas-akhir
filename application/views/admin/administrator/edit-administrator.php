@@ -58,6 +58,7 @@
 				                            </div>
 		                            	</div>
 		                            	<div class="col-md-8">
+		                            		<input type="hidden" name="old_foto" value="<?php echo $administrator->foto?>" />
 		                            		<input type="hidden" name="id_user" value="<?php echo $administrator->id_user?>" />
 			                                <div class="form-group">
 			                                    <label for="nama">Nama*</label>

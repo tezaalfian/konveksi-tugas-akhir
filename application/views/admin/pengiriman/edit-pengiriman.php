@@ -36,8 +36,9 @@
                         <div class="card-body">
                         	<div class="row">
                         	<div class="col-lg-7">
-			                    <form action="<?= base_url('home/pengiriman/'.$pemesanan[0]->id_pemesanan) ?>" method="post" enctype="multipart/form-data">
+			                    <form action="<?= base_url('admin/pengiriman/edit/'.$pemesanan[0]->id_pemesanan) ?>" method="post" enctype="multipart/form-data">
 			                        <input type="hidden" name="pemesanan_id" value="<?= $pemesanan[0]->id_pemesanan?>">
+			                        <!-- <input type="hidden" name="Id_pengiriman" value="<?= $pemesanan[0]->id_pengiriman?>"> -->
 			                        <div class="form-group">
 			                            <label for="harga">Label Alamat</label>
 			                            <input class="form-control" type="text" name="label" placeholder="Alamat Rumah, Alamat Kantor, dll" value="<?= $pemesanan[0]->label ?>">
@@ -90,7 +91,7 @@
 			                            <div class="col-sm-8">
 			                                <div class="form-group">
 			                                    <label for="pelanggan">Alamat</label>
-			                                    <textarea name="alamat" id="alamat" class="form-control"><?= $pemesanan[0]->alamat ?>"</textarea>
+			                                    <textarea name="alamat" id="alamat" class="form-control"><?= $pemesanan[0]->alamat ?></textarea>
 			                                    <div class="invalid-feedback">
 			                                        <?php echo form_error('alamat')?>
 			                                    </div>
@@ -133,7 +134,7 @@
 			                                    <input style="text-align: right;" type="text" class="form-control-plaintext" name="total_tagihan" id="total_tagihan" value="<?= $pemesanan[0]->total_tagihan ?>" readonly>
 			                                </div>
 			                            </div><br>
-			                            <button class="btn btn-info btn-block" type="submit">Lanjut ke Pembayaran</button>
+			                            <button class="btn btn-info btn-block" type="submit">Simpan Perubahan</button>
 			                        </div>
 			                    </div>
 			                    </form>
@@ -154,9 +155,8 @@
 
 <!-- LIBRARY JS -->
 
-    <?php $this->load->view('partial/admin/js');?>
-<!--     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <script src="<?= base_url('vendor_assets/jquery/jquery.min.js'); ?>"></script> -->
+    <?php $this->load->view('partial/client/js');?>
+
     <script type="text/javascript">
     	var provinsi = <?= $provinsi ?>;
     	var allKota = <?= $kota ?>;

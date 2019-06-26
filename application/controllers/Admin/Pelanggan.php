@@ -8,6 +8,7 @@ class Pelanggan extends CI_Controller {
 		parent::__construct();
 		$this->load->library('form_validation');
 		$this->load->model("m_pelanggan");
+		$this->load->model("c_pelanggan");
 		if ($this->session->userdata('role_id') == 2) {
 			show_404();
 		}
@@ -22,7 +23,7 @@ class Pelanggan extends CI_Controller {
 	{
 		if (!isset($id)) redirect('admin/pelanggan');
        
-        $pelanggan = $this->m_pelanggan;
+        $pelanggan = $this->c_pelanggan;
         $validation = $this->form_validation;
         $validation->set_rules($pelanggan->rules2());
 

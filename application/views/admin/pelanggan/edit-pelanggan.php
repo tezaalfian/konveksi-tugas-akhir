@@ -57,6 +57,7 @@
 				                                    <div class="custom-file">
 		                                              <input type="file" class="custom-file-input" id="customFilen" name="foto" accept=".jpg,.jpeg,.png">
 		                                              <label class="custom-file-label" for="customFile">Pilih Foto</label>
+		                                              <input type="hidden" name="old_foto" value="<?php echo $pelanggan->foto?>" />
 		                                            </div>
 				                                    <div class="invalid-feedback">
 				                                        <?php echo form_error('foto')?>

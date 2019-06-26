@@ -25,9 +25,9 @@ class Home extends CI_Controller {
   			redirect('login');
   		}
 
-      if ($this->session->userdata('role_id') == 1) {
-        show_404();
-      }
+      // if ($this->session->userdata('role_id') == 1) {
+      //   show_404();
+      // }
   }
 
 	public function index()
@@ -128,7 +128,7 @@ class Home extends CI_Controller {
         "kurir" => $post["kurir"],
         "provinsi" => $provinsi->rajaongkir->results->province,
         "kota" => $kota->rajaongkir->results->city_name,
-        "status" => 9
+        "keterangan" => 9
     );
 
     if ($this->form_validation->run() == true) {

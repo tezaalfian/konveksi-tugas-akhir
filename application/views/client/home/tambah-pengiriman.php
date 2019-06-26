@@ -107,10 +107,10 @@
 								<div class="col text-right"><?= $pemesanan[0]->berat ?>&nbsp;gram</div>
 							</div>
 							<div class="row">
-								<div class="col-auto">
+								<div class="col-6">
 									<label for="ongkir" class="col-form-label">Ongkos Kirim :</label>
 								</div>
-								<div class="col-auto">
+								<div class="col-6">
 									<input type="text" class="form-control-plaintext" name="ongkir" id="ongkir" readonly>
 								</div>
 							</div><hr>

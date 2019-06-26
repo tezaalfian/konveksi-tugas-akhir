@@ -32,7 +32,7 @@
 					    <ul>
 					    	<li>Pembayaran dilakukan melalui transfer ke Bank BNI Syari'ah dengan 
 					    		<b>No. Rekening : 0238272088 </b>atas Nama : <b>Ahmad Mahmud.</b> </li>
-					    	<li>Jumlah pembayaran sesuai dengan total tagihan.</li>
+					    	<li>Jumlah pembayaran minimal 50% dari total tagihan.</li>
 					    	<li>Setelah melakukan transfer silahkan upload bukti pembayaran ke form berikut.</li>
 					    	<li>Pesanan anda akan dilanjutkan setelah dikonfirmasi oleh pihak kami.</li>
 					    </ul><hr>

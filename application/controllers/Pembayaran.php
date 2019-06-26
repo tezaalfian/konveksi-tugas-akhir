@@ -44,7 +44,7 @@ class Pembayaran extends CI_Controller {
             $data_bayar = array(
                 "bukti_pembayaran" => $this->c_pembayaran->uploadImage(),
                 "tanggal_pembayaran" => date("Y/m/d"),
-                "status" => 8
+                "ket" => 8
             );
             $status = array(
                 "status_id" => 3

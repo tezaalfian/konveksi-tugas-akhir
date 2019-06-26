@@ -62,4 +62,9 @@
         height: 70px;
         object-fit: cover;
       }
+      #cover2 {
+        width: 100px;
+        height: 60px;
+        object-fit: cover;
+      }
     </style>

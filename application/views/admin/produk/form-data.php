@@ -54,7 +54,7 @@
                                                     <small>Besar file : maksimum 10 Mb</small><br>
                                                     <small>Ekstensi file yang diperbolehkan : .JPG .JPEG .PNG</small>
                                                 </div>
-                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col-md-8">
                                         <div class="form-group">

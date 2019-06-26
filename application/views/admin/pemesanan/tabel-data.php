@@ -68,7 +68,7 @@
                                                 </td>
                                             </tr>
                                     <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg" role="document">
+                                        <div class="modal-dialog  modal-lg" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h4 class="modal-title" id="mediumModalLabel">Apakah kamu yakin ?</h4>
@@ -121,7 +121,9 @@
                                             <div class="row py-2 my-2 border-bottom">
                                                 <div class="col-md-6">
                                                     <div class="d-flex justify-content-start">
-                                                        <img class="rounded mr-3" id="cover" src="<?= base_url('upload/pemesanan/'.$order->desain) ?>">
+                                                        <a href="<?= base_url('upload/pemesanan/'.$order->desain) ?>" target="_blank">
+                                                            <img class="rounded mr-3" id="cover" src="<?= base_url('upload/pemesanan/'.$order->desain) ?>">
+                                                        </a>
                                                         <div class="d-flex flex-column">
                                                             <small>Data Produk</small>
                                                             <h6 class="text-info"><b>

@@ -25,4 +25,15 @@ class M_pengiriman extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+
+    public function delete($id)
+    {
+        return $this->db->delete('pengiriman', array("pemesanan_id" => $id));
+    }
+
+    public function update($data, $id)
+    {
+        return $this->db->update('pengiriman', $data, array('pemesanan_id' => $id));
+    }
+
 }

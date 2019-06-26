@@ -38,7 +38,6 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php var_dump($pengiriman); ?>
                                         <?php foreach ($pengiriman as $order): ?>
                                             <tr>
                                                 <td>
