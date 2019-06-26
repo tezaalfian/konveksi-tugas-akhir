@@ -21,11 +21,11 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <!-- <a href="<?= base_url('admin/pemesanan/tambah'); ?>">
-                                <button type="button" class="btn btn-info">
-                                    <i class="fa fa-plus"></i>&nbsp; Tambah Baru
-                                </button>
-                                </a> -->
+                                <?php if ($this->session->flashdata('success')): ?>
+                                    <div class="alert alert-success" role="alert">
+                                        <?php echo $this->session->flashdata('success'); ?>
+                                    </div>
+                                <?php endif; ?>
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
@@ -64,6 +64,9 @@
                                         <?php if ($order->status_id == 1) : ?>
                                                     <a href="<?= base_url('admin/pemesanan/edit/'.$order->id_pemesanan); ?>" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a>
                                         <?php endif; ?>
+                                            <?php if ($order->status_id == 4) : ?>
+                                                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#end"><i class="fa fa-edit"></i></button>
+                                            <?php endif; ?>
                                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#detail"><i class="fa fa-info-circle"></i></button>
                                                 </td>
                                             </tr>
@@ -143,6 +146,25 @@
                                                     <h6 class="text-info"><b>Rp.&nbsp;<?= strtoupper($order->tagihan) ?></b></h6>
                                                 </div>
                                             </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="modal fade" id="end" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Konfirmasi Pesanan</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+                                          </div>
+                                          <div class="modal-body">
+                                            Apakah proses pengerjaan barang selesai ?
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                            <a href="<?= base_url('admin/pemesanan/selesai/'.$order->id_pemesanan); ?>" class="btn btn-primary">Konfirmasi</a>
                                           </div>
                                         </div>
                                       </div>

@@ -22,19 +22,23 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <!-- <a href="<?= base_url('admin/pemesanan/tambah'); ?>">
-                                <button type="button" class="btn btn-info">
-                                    <i class="fa fa-plus"></i>&nbsp; Tambah Baru
-                                </button>
-                                </a> -->
+                                <?php if ($this->session->flashdata('success')): ?>
+                                    <div class="alert alert-success" role="alert">
+                                        <?php echo $this->session->flashdata('success'); ?>
+                                    </div>
+                                <?php endif; ?>
+                                <?php if ($this->session->flashdata('gagal')): ?>
+                                    <?php echo $this->session->flashdata('gagal'); ?>
+                                <?php endif; ?>
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
                                             <th>Kode Pemesanan</th>
-                                            <th>Jumlah Pembayaran</th>
+                                            <th>Pembayaran</th>
                                             <th>Total Tagihan</th>
+                                            <th>Tanggal</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -51,6 +55,7 @@
                                                 <td>
                                                     Rp.&nbsp;<?= $order->total_tagihan ?>
                                                 </td>
+                                                <td><?= $order->tanggal_pembayaran ?></td>
                                                 <td class="text-center">
                                                     <h4><span class="badge badge-primary"><?= ucwords( $order->status)?></span></h4>
                                                 </td>
@@ -75,16 +80,15 @@
                                                     <div class="modal-body">
                                                         <div class="row">
                                                             <div class="col-md-6">
-                                                                <small>Kode Pemesanan</small>
-                                                                    <h6 class="text-info"><b><?= strtoupper($order->id_pemesanan) ?></b></h6>
-                                                                <small>Status</small>
-                                                                    <h6 class="text-info"><b><?= ucwords($order->status) ?></b></h6>
+                                                                <small>Kode Pemesanan</small><br>
+                                                                <small><b class="text-info"><?= strtoupper($order->id_pemesanan) ?></b></small><br>
+                                                                <small>Tanggal Pembayaran</small><br>
+                                                                <small><b class="text-info"><?= $order->tanggal_pembayaran ?></b></small>
                                                             </div>
                                                             <div class="col-md-6 border-left">
-                                                                <small>Bukti Pembayaran</small><br>
-                                                                <a class="text-info" href="<?= base_url('upload/pembayaran/'.$order->bukti_pembayaran) ?>" target="_blank">
-                                                                    <img class="rounded mr-3" id="cover2" src="<?= base_url('upload/pembayaran/'.$order->bukti_pembayaran) ?>">
-                                                                </a>
+                                                                <small>Status</small><br>
+                                                                <small><b class="text-info"><?= ucwords($order->status) ?></b></small><br>
+                                                                <a class="text-dark" href="<?= base_url('upload/pembayaran/'.$order->bukti_pembayaran) ?>" target="_blank"><b>BUKTI PEMBAYARAN</b></a>
                                                             </div>
                                                         </div><hr>
                                                         <div class="row">
@@ -109,18 +113,25 @@
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                   <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalCenterTitle">Input Jumlah Pembayaran</h5>
+                                                    <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Pembayaran</h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                       <span aria-hidden="true">&times;</span>
                                                     </button>
                                                   </div>
                                                   <div class="modal-body">
-                                                    <form method="post" action="">
+                                                    <form method="post" action="<?= base_url('admin/pembayaran/tambah/'.$order->id_pemesanan); ?>">
+                                                        <h6><b>Bukti Pembayaran</b></h6><br>
+                                                        <a class="text-info" href="<?= base_url('upload/pembayaran/'.$order->bukti_pembayaran) ?>" target="_blank">
+                                                        <img class="rounded mr-3" id="cover2" src="<?= base_url('upload/pembayaran/'.$order->bukti_pembayaran) ?>"></a>
                                                         <div class="form-group">
-                                                            <input type="email" class="form-control" placeholder="Jumlah yang sudah dibayar" type="number" min="0">
+                                                        <input name="nominal" type="hidden" class="form-control" placeholder="Jumlah yang sudah dibayar" type="number" min="0" value="<?= $order->total_tagihan ?>">
+                                                            <div class="invalid-feedback">
+                                                                <?php echo form_error('nominal')?>
+                                                            </div>
                                                         </div>
-                                                        <button type="submit" class="btn btn-info btn-block">Submit</button>
+                                                        <button type="submit" class="btn btn-info btn-block">Input Pembayaran</button>
                                                     </form>
+                                                    <a href="<?= base_url('admin/pembayaran/batal/'.$order->id_pemesanan); ?>" class="btn btn-outline-danger btn-block">Bukti Pembayaran Tidak Valid</a>
                                                   </div>
                                                 </div>
                                               </div>

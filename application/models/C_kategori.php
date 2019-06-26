@@ -53,4 +53,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $query = $this->db->get();
             return $query->result();
         }
+
+        public function status($data, $id)
+        {
+            return $this->db->update('pemesanan', $data, array('id_pemesanan' => $id));
+        }
     }

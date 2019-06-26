@@ -12,6 +12,7 @@ class Pemesanan extends CI_Controller {
 		$this->load->model("m_pemesanan");
 		$this->load->model("m_pengiriman");
 		$this->load->model("m_pembayaran");
+		$this->load->model("c_kategori");
 		if ($this->session->userdata('role_id') == 2) {
 			show_404();
 		}		
@@ -66,5 +67,15 @@ class Pemesanan extends CI_Controller {
             $this->session->set_flashdata('success', 'Berhasil disimpan');
         }
 		$this->load->view('admin/pemesanan/tambah-pemesanan',$data);
+	}
+
+	public function selesai($id)
+	{
+		$status = array(
+		    "status_id" => 5
+		);
+		$this->c_kategori->status($status, $id);
+		$this->session->set_flashdata('success', 'Segera konfirmasi pengiriman barang ke pelanggan!');
+		redirect('admin/pemesanan');
 	}
 }

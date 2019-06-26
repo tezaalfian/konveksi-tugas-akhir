@@ -21,11 +21,11 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <!-- <a href="<?= base_url('admin/pengiriman/tambah'); ?>">
-                                <button type="button" class="btn btn-info">
-                                    <i class="fa fa-plus"></i>&nbsp; Tambah Baru
-                                </button>
-                                </a> -->
+                                <?php if ($this->session->flashdata('success')): ?>
+                                    <div class="alert alert-success" role="alert">
+                                        <?php echo $this->session->flashdata('success'); ?>
+                                    </div>
+                                <?php endif; ?>
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
@@ -61,6 +61,9 @@
                                             <?php if ($order->status_id == 2||$order->status_id == 3||$order->status_id == 4) : ?>
                                                     <a href="<?= base_url('admin/pengiriman/edit/'.$order->pemesanan_id); ?>" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a>
                                             <?php endif; ?>
+                                            <?php if ($order->status_id == 5) : ?>
+                                                    <button data-toggle="modal" data-target="#kirim" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></button>
+                                            <?php endif; ?>
                                                 </td>
                                             </tr>
                                     <div class="modal fade" id="detail" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -84,7 +87,7 @@
                                                     <small>Tanggal Dikirim</small>
                                                         <h6 class="text-info"><b><?= strtoupper($order->tanggal_dikirim) ?></b></h6>
                                                     <small>Tanggal Diterima</small>
-                                                        <h6 class="text-info"><b><?= strtoupper($order->tanggal_dikirim) ?></b></h6>
+                                                        <h6 class="text-info"><b><?= strtoupper($order->tanggal_diterima) ?></b></h6>
                                                 </div>
                                             </div><hr>
                                             <div class="row">
@@ -107,6 +110,29 @@
                                         </div>
                                       </div>
                                     </div>
+                                        <div class="modal fade" id="kirim" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                  <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Pengiriman Pesanan</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                      <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                    <form method="post" action="<?= base_url('admin/pengiriman/kirim/'.$order->id_pemesanan); ?>">
+                                                        <div class="form-group">
+                                                        <input name="no_resi" type="number" class="form-control" placeholder="Masukkan No Resi" type="number" min="0" required>
+                                                            <div class="invalid-feedback">
+                                                                <?php echo form_error('nominal')?>
+                                                            </div>
+                                                        </div>
+                                                        <button type="submit" class="btn btn-info btn-block">Submit</button>
+                                                    </form>
+                                                  </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <?php endforeach; ?>
                                     </tbody>
                                 </table>

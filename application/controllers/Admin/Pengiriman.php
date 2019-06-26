@@ -9,6 +9,7 @@ class Pengiriman extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->load->model("m_pengiriman");
 		$this->load->model("m_pembayaran");
+		$this->load->model("c_kategori");
 		$this->load->model('rajaongkir');
 		if ($this->session->userdata('role_id') == 2) {
 			show_404();
@@ -87,5 +88,21 @@ class Pengiriman extends CI_Controller {
             $this->session->set_flashdata('success', 'Berhasil disimpan');
         }
 		$this->load->view('admin/pengiriman/tambah-pengiriman',$data);
+	}
+
+	public function kirim($id=null)
+	{  
+		$data_kirim = array(
+	    	"no_resi" => $this->input->post('no_resi'),
+	    	"tanggal_dikirim" => date("Y/m/d"),
+	    	"keterangan" => 10
+		);
+		$status = array(
+		    "status_id" => 10
+		);
+		$this->m_pengiriman->update($data_kirim, $id);
+		$this->c_kategori->status($status, $id);
+		$this->session->set_flashdata('berhasil', 'Konfirmasi pengiriman barang berhasil!');
+		redirect('admin/pengiriman');
 	}
 }

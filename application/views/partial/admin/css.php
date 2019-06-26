@@ -63,8 +63,8 @@
         object-fit: cover;
       }
       #cover2 {
-        width: 100px;
-        height: 60px;
+        width: 100%;
+        height: 100px;
         object-fit: cover;
       }
     </style>

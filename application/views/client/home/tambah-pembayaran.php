@@ -32,7 +32,7 @@
 					    <ul>
 					    	<li>Pembayaran dilakukan melalui transfer ke Bank BNI Syari'ah dengan 
 					    		<b>No. Rekening : 0238272088 </b>atas Nama : <b>Ahmad Mahmud.</b> </li>
-					    	<li>Jumlah pembayaran minimal 50% dari total tagihan.</li>
+					    	<li>Jumlah pembayaran harus sesuai dengan total tagihan.</li>
 					    	<li>Setelah melakukan transfer silahkan upload bukti pembayaran ke form berikut.</li>
 					    	<li>Pesanan anda akan dilanjutkan setelah dikonfirmasi oleh pihak kami.</li>
 					    </ul><hr>
@@ -41,14 +41,14 @@
 					    	<input type="hidden" name="pemesanan_id" value="<?= $pembayaran->pemesanan_id ?>">
 					    	<div class="input-group">
 							  <div class="custom-file">
-							    <input type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" name="bukti_pembayaran" accept=".jpg,.jpeg,.png,.pdf">
+							    <input type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" name="bukti_pembayaran" accept=".jpg,.jpeg,.png">
 							    <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
 							  </div>
 							  <div class="input-group-append">
 							    <button class="btn btn-outline-dark" type="submit" id="inputGroupFileAddon04">Kirim</button>
 							  </div>
 							</div>
-							<small class="text-danger"><i>* File ekstensi yang diperbolehkan : PNG, JPG, JPEG, PDF</i></small><br>
+							<small class="text-danger"><i>* File ekstensi yang diperbolehkan : PNG, JPG, JPEG</i></small><br>
 							<?= $this->session->flashdata("salah"); ?>
 					    </form>
 					  </div>
