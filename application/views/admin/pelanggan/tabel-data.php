@@ -54,7 +54,7 @@
                                                     <?php echo $user->jenis_kelamin?>
                                                 </td>
                                                 <td align="center">
-                                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#mediumModal">
+                                                    <button type="button" class="btn btn-danger btn-sm hapus" data-toggle="modal" data-target="#mediumModal" data="<?= $user->id_user ?>">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                     <a href="<?= base_url('admin/pelanggan/edit/'.$user->id_user); ?>" class="btn btn-success btn-sm">
@@ -62,38 +62,33 @@
                                                     </a>
                                                 </td>
                                             </tr>
-                                            <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-lg" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title" id="mediumModalLabel">Apakah kamu yakin ?</h4>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <p>
-                                                                Data yang dihapus tidak akan bisa dikembalikan
-                                                            </p>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                            <a href="<?= base_url('admin/pelanggan/delete/'.$user->id_user); ?>" class="btn btn-primary">
-                                                                Confirm
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         <?php endforeach; ?>
                                     </tbody>
                                 </table>
+                            <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="mediumModalLabel">Apakah kamu yakin ?</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>
+                                                Data yang dihapus tidak akan bisa dikembalikan
+                                            </p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                            <a href="" class="btn btn-primary delete">Confirm</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        
                     </div>
                 </div>
             </div>
-            <!-- .animated -->
     </div>
 
     <!-- END CONTENT -->
@@ -105,5 +100,11 @@
 <!-- LIBRARY JS -->
     <?php $this->load->view('partial/admin/js');?>
     
+    <script type="text/javascript">
+        $(".hapus").on("click", function(){
+            var link = $(this).attr("data");
+            $('.delete').attr("href", "<?= base_url('admin/pelanggan/delete/');?>"+link)
+        });
+    </script>
 </body>
 </html>

@@ -57,7 +57,7 @@
                                                 <td class="small">
                                                     <?php echo substr($product->deskripsi, 0, 120) ?>...</td>
                                                 <td align="center">
-                                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#mediumModal">
+                                                    <button type="button" class="btn btn-danger btn-sm hapus" data-toggle="modal" data-target="#mediumModal" data="<?= $product->id ?>">
                                                       <i class="fa fa-trash"></i>
                                                     </button>
                                                     <a href="<?= base_url('admin/produk/edit/'.$product->id); ?>" class="btn btn-success btn-sm">
@@ -65,6 +65,9 @@
                                                     </a>
                                                 </td>
                                             </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
                                     <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-lg" role="document">
                                             <div class="modal-content">
@@ -81,16 +84,13 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                    <a href="<?= base_url('admin/produk/delete/'.$product->id); ?>" class="btn btn-primary">
+                                                    <a href="" class="btn btn-primary delete">
                                                         Confirm
                                                     </a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                </table>
                             </div>
                         </div>
                         
@@ -108,6 +108,13 @@
 
 <!-- LIBRARY JS -->
     <?php $this->load->view('partial/admin/js');?>
+
+    <script type="text/javascript">
+        $(".hapus").on("click", function(){
+            var link = $(this).attr("data");
+            $('.delete').attr("href", "<?= base_url('admin/produk/delete/');?>"+link)
+        });
+    </script>
     
 </body>
 </html>

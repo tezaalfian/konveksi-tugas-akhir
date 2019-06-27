@@ -125,6 +125,12 @@ class Pemesanan extends CI_Controller {
         $this->session->set_flashdata('success', 'Terima kasih telah memesan produk kami!');
         redirect('pemesanan/list');
     }
+
+    public function detail($id)
+    {
+        echo json_encode($this->c_kategori->dataPesan($id));
+    }
+
     public function edit($id) {
         // $data["produk"] = json_encode($this->m_produk->getAllProduk());
         

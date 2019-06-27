@@ -51,7 +51,7 @@
                                                     <img class="rounded thumbnail" src="<?= base_url('upload/administrator/'.$admin->foto) ?>"/>
                                                 </td>
                                                 <td align="center">
-                                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#mediumModal">
+                                                    <button type="button" class="btn btn-danger btn-sm hapus" data-toggle="modal" data-target="#mediumModal" data="<?= $admin->id_user ?>">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                     <a href="<?= base_url('admin/administrator/edit/'.$admin->id_user); ?>" class="btn btn-success btn-sm">
@@ -59,6 +59,9 @@
                                                     </a>
                                                 </td>
                                             </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
                         <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg" role="document">
                                 <div class="modal-content">
@@ -75,16 +78,13 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                        <a href="<?= base_url('admin/administrator/delete/'.$admin->id_user); ?>" class="btn btn-primary">
+                                        <a href="" class="btn btn-primary delete">
                                             Confirm
                                         </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                </table>
                             </div>
                     </div>
                 </div>
@@ -101,5 +101,11 @@
 <!-- LIBRARY JS -->
     <?php $this->load->view('partial/admin/js');?>
     
+    <script type="text/javascript">
+        $(".hapus").on("click", function(){
+            var link = $(this).attr("data");
+            $('.delete').attr("href", "<?= base_url('admin/administrator/delete/');?>"+link)
+        });
+    </script>
 </body>
 </html>

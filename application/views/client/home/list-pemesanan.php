@@ -25,6 +25,7 @@
             <?= $this->session->flashdata('message'); ?>
             <div id="filter">
                 <?php foreach ($pemesanan as $order) :?>
+                    <!-- KALO MASIH BELUM BAYAR -->
                     <?php if($order->status_id == 2) :?>
                         <div class="card my-3">
                           <div class="card-body">
@@ -49,7 +50,7 @@
                                     <div class="col-md-3 text-center my-sm-3  my-md-3 mx-md-auto">
                                         <div>
                                             <h6><b class="text-info">&nbsp;<?= ucwords($order->status) ?>&nbsp;</b></h6>
-                                            <button data-toggle="modal" data-target="#mediumModal" class="btn btn-outline-danger btn-block" type="button">Batalkan Pemesanan</button>
+                                            <button data="<?=$order->id_pemesanan ?>" data-toggle="modal" data-target="#mediumModal" class="btn btn-outline-danger btn-block hapus" type="button">Batalkan Pemesanan</button>
                                             <a href="<?= base_url('pembayaran/tambah/'.$order->id_pemesanan); ?>" class="btn btn-info btn-block">Bayar Sekarang</a>
                                         </div>
                                     </div>
@@ -57,6 +58,8 @@
                           </div>
                         </div>
                     <?php endif; ?>
+
+                    <!-- KALO UDAH DIBAYAR -->
                     <?php if($order->status_id == 3||$order->status_id == 4||$order->status_id == 5||$order->status_id == 10||$order->status_id == 6) :?>
                         <div class="card my-3">
                             <div class="card-body">
@@ -98,13 +101,20 @@
                                                     Sudah Diterima ?
                                                 </a>
                                             <?php endif; ?>
-                                            <button data-toggle="modal" data-target=".bd-example-modal-lg" class="btn btn-info btn-block">Lihat Detail</button>
+                                            <button data="<?=$order->id_pemesanan ?>" data-toggle="modal" data-target=".bd-example-modal-lg" class="btn btn-info btn-block detail">Lihat Detail</button>
                                         </div>
                                     </div>
                             </div>
                         </div>
-                        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                          <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </div>		        
+        </div>
+    <!-- FOOTER -->
+</div>
+                    <!-- DETAIL PEMESANAN -->
+                    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
                             <div class="modal-content p-3">
                               <div class="modal-header">
                                 <h5 class="modal-title text-dark" id="exampleModalCenterTitle">
@@ -116,114 +126,74 @@
                               </div>
                               <div class="modal-body">
                                 <div class="row py-2 border-bottom">
-                                    <div class="col-md-6">
-                                        <small>Kode Pemesanan</small>
-                                        <h6 class="text-info"><b><?= strtoupper($order->id_pemesanan) ?>
-                                        &nbsp;|&nbsp;<a class="text-info" href="<?= base_url('upload/pembayaran/'.$order->bukti_pembayaran) ?>" target="_blank">BUKTI PEMBAYARAN</a>
-                                        </b></h6>
-                                        <small>Status</small>
-                                        <h6 class="text-info"><b><?= ucwords($order->status) ?></b></h6>
+                                    <div class="col-md-6 kode">
+                                        
                                     </div>
                                     <div class="col-md-6 border-left">
                                         <small>Tanggal Pemesanan</small>
-                                        <h6 class="text-info"><b><?= ucwords($order->tanggal_pemesanan) ?></b></h6>
+                                        <h6 class="text-info"><b class="tanggal_pemesanan"></b></h6>
                                     </div>
                                 </div>
                                 <div class="row py-2 my-2 border-bottom">
                                     <div class="col-md-6">
-                                        <div class="d-flex justify-content-start">
-                                            <img class="rounded mr-3" id="cover" src="<?= base_url('upload/pemesanan/'.$order->desain) ?>">
-                                            <div class="d-flex flex-column">
-                                                <small>Data Produk</small>
-                                                <h6 class="text-info"><b>
-                                                    <?= ucwords($order->nama) ?>&nbsp;/&nbsp;
-                                                    <?= ucwords($order->deskripsi) ?>
-                                                </b></h6>
-                                                <small class="d-flex justify-content-start">
-                                                    <b><?= $order->jumlah?>&nbsp;Produk&nbsp;
-                                                    (<?= $order->weight?>&nbsp;gr)</b>&nbsp;x&nbsp;
-                                                    <b>Rp.&nbsp;<?= $order->harga?>&nbsp;</b>
-                                                </small>
-                                            </div>
+                                        <div class="d-flex justify-content-start produk">
+                                            
                                         </div>
                                     </div>
                                     <div class="col-md-6 border-left">
                                         <small>Total Harga</small>
-                                        <h6 class="text-info"><b>Rp.&nbsp;<?= strtoupper($order->tagihan) ?></b></h6>
+                                        <h6 class="text-info"><b class="total_harga"></b></h6>
                                     </div>
                                 </div>
                                 <div class="row py-2 my-2 border-bottom">
-                                    <div class="col-md-6 d-flex flex-column">
-                                        <h6 class="text-info"><b>Pengiriman</b></h6>
-                                        <small><?= strtoupper($order->kurir) ?></small>
-                                        <small>Dikirim kepada :&nbsp;<b><?= ucwords($order->nama_penerima) ?></b></small>
-                                        <small><?= ucwords($order->alamat) ?></small>
-                                        <small>Kota&nbsp;<?= ucwords($order->kota) ?>, 
-                                            Kode pos&nbsp;<?= ucwords($order->kode_pos) ?></small>
-                                        <small><?= ucwords($order->provinsi) ?></small>
-                                        <small>Telp :&nbsp;<?= ucwords($order->no_hp) ?></small>
+                                    <div class="col-md-6 d-flex flex-column pengiriman">
+                                        
                                     </div>
                                     <?php if($order->status_id == 10||$order->status_id == 6) :?>
-                                    <div class="col-md-6 d-flex flex-column border-left">
+                                    <div class="col-md-6 d-flex flex-column border-left resi">
                                         <small>No Resi</small>
-                                        <h6 class="text-info"><b><?= strtoupper($order->no_resi) ?></b></h6>
+                                        <h6 class="text-info"><b class="no_resi"></b></h6>
                                         <small>Tanggal Dikirim</small>
-                                        <h6 class="text-info"><b><?= strtoupper($order->tanggal_dikirim) ?></b></h6>
+                                        <h6 class="text-info"><b class="tanggal_dikirim"></b></h6>
                                     <?php if($order->status_id == 6) :?>
                                         <small>Tanggal Diterima</small>
-                                        <h6 class="text-info"><b><?= strtoupper($order->tanggal_diterima) ?></b></h6>
+                                        <h6 class="text-info"><b class="tanggal_diterima"></b></h6>
                                     <?php endif; ?>
                                     </div>
                                     <?php endif; ?>
                                 </div>
-                                <div class="row py-2 my-2 border-bottom">
-                                    <div class="col-md-6 d-flex flex-column">
-                                        <h6 class="text-info"><b>Pembayaran</b></h6>
-                                        <small>Total Harga&nbsp;(<?= $order->jumlah?>&nbsp;produk)</small>
-                                        <small>Total Ongkos Kirim&nbsp;(<?= $order->berat?>&nbsp;gram)</small>
-                                        <small>Total Pembayaran</small>
-                                        <small>Total Tagihan</small>
-                                    </div>
-                                    <div class="col-md-6 d-flex flex-column border-left">
-                                        <h6 class="text-info"><b>Ket.</b></h6>
-                                        <small><b>Rp.&nbsp;<?= $order->tagihan?></b></small>
-                                        <small><b>Rp.&nbsp;<?= $order->ongkir?></b></small>
-                                        <small><b>Rp.&nbsp;<?= $order->nominal?></b></small>
-                                        <small><b class="text-info">Rp.&nbsp;<?= $order->total_tagihan?></b></small>
-                                    </div>
+                                <div class="row py-2 my-2 border-bottom pembayaran">
+                                    
                                 </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                    <?php endif; ?>
-                <?php endforeach; ?>
-            </div>		        
-        </div>
-    <!-- FOOTER -->
-</div>
-<div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="mediumModalLabel">Apakah kamu yakin ?</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>
-                    Data yang dihapus tidak akan bisa dikembalikan
-                </p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <a href="<?= base_url('pemesanan/delete3/'.$order->id_pemesanan); ?>" class="btn btn-primary">Confirm
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
+                    
+                    <!-- HAPUS PEMESANAN -->
+                    <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="mediumModalLabel">Apakah kamu yakin ?</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>
+                                        Data yang dihapus tidak akan bisa dikembalikan
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <a href="" class="btn btn-primary delete">Confirm
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
             <?php $this->load->view('partial/client/footer');?>
         </div>
     </div>
@@ -231,7 +201,79 @@
 <!-- LIBRARY JS -->
     <?php $this->load->view('partial/client/js');?>
     <script type="text/javascript">
-    	
+        var order = "";
+
+        $(".hapus").on("click", function(){
+            var link = $(this).attr("data");
+            $('.delete').attr("href", "<?= base_url('pemesanan/delete3/'); ?>"+link)
+        });
+
+    	$(document).ready(function(){
+            $(".detail").on("click", function(){
+                var url_get = "<?= base_url('pemesanan/detail/') ?>";
+                var id = $(this).attr("data");
+                $.ajax({
+                    url: url_get+id,
+                    type: 'get',
+                    dataType: 'json',
+                    success: function(result) {
+                        order = result;
+                        $('.kode').html(
+                            "<small>Kode Pemesanan</small>"+
+                            "<h6 class='text-info'><b>"+order[0].id_pemesanan.toUpperCase()+
+                            "&nbsp;|&nbsp;<a class='text-info' href='<?= base_url('upload/pembayaran/')?>"+order[0].bukti_pembayaran+"' target='_blank'>BUKTI PEMBAYARAN</a></b></h6>"+
+                            "<small>Status</small>"+
+                            "<h6 class='text-info'><b>"+order[0].status+"</b></h6>"
+                        );
+                        $('.tanggal_pemesanan').html(order[0].tanggal_pemesanan);
+                        $('.produk').html(
+                            "<img class='rounded mr-3' id='cover' src='<?= base_url('upload/pemesanan/')?>"+order[0].desain+"'>"+
+                            "<div class='d-flex flex-column'>"+
+                            "<small>Data Produk</small>"+
+                            "<h6 class='text-info'><b>"+order[0].nama+" / "+
+                            order[0].deskripsi+"</b></h6>"+
+                            "<small class='d-flex justify-content-start'>"+
+                            "<b>"+order[0].jumlah+"&nbsp;Produk&nbsp;"+
+                            "("+order[0].weight+"&nbsp;gr)</b>&nbsp;x&nbsp;"+
+                            "<b>Rp.&nbsp;"+order[0].harga+"&nbsp;</b></small></div>"
+                        );
+                        
+                        $('.pengiriman').html(
+                            "<h6 class='text-info'><b>Pengiriman</b></h6>"+
+                            "<small>"+order[0].kurir.toUpperCase()+"</small>"+
+                            "<small>Dikirim kepada :&nbsp;<b>"+order[0].nama_penerima+"</b></small>"+
+                            "<small>"+order[0].alamat+"</small>"+
+                            "<small>Kota&nbsp;"+order[0].kota+","+
+                            "Kode pos&nbsp;"+order[0].kode_pos+"</small>"+
+                            "<small>"+order[0].provinsi+"</small>"+
+                            "<small>Telp :&nbsp;<?= ucwords($order->no_hp) ?></small>"
+                        );
+
+                        $('.pembayaran').html(
+                            "<div class='col-md-6 d-flex flex-column'>"+
+                                "<h6 class='text-info'><b>Pembayaran</b></h6>"+
+                                "<small>Total Harga&nbsp;("+order[0].jumlah+"&nbsp;produk)</small>"+
+                                "<small>Total Ongkos Kirim&nbsp;("+order[0].berat+"&nbsp;gram)</small>"+
+                                "<small>Total Pembayaran</small>"+
+                                "<small>Total Tagihan</small>"+
+                            "</div>"+
+                            "<div class='col-md-6 d-flex flex-column border-left'>"+
+                                "<h6 class='text-info'><b>Ket.</b></h6>"+
+                                "<small><b>Rp.&nbsp;"+order[0].tagihan+"</b></small>"+
+                                "<small><b>Rp.&nbsp;"+order[0].ongkir+"</b></small>"+
+                                "<small><b>Rp.&nbsp;"+order[0].nominal+"</b></small>"+
+                                "<small><b class='text-info'>Rp.&nbsp;"+order[0].total_tagihan+"</b></small>"+
+                            "</div>"
+                        );
+
+                        $('.total_harga').html("Rp. "+order[0].tagihan);
+                        $('.no_resi').html(order[0].no_resi);
+                        $('.tanggal_diterima').html(order[0].tanggal_diterima);
+                        $('.tanggal_dikirim').html(order[0].tanggal_dikirim);
+                    }
+                });
+            });
+        });
     	
     </script>
     
