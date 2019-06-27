@@ -147,8 +147,8 @@
                     <div class="row py-2 my-2 border-bottom">
                         <div class="col-md-6">
                             <div class="d-flex justify-content-start">
-                                <a href="<?= base_url('upload/pemesanan/'.$order->desain) ?>" target="_blank">
-                                    <img class="rounded mr-3" id="cover" src="<?= base_url('upload/pemesanan/'.$order->desain) ?>">
+                                <a class="link_foto" href="" target="_blank">
+                                    <img class="rounded mr-3 desain" id="cover" src="">
                                 </a>
                                 <div class="d-flex flex-column">
                                     <small>Data Produk</small>
@@ -212,6 +212,8 @@
                     $('.status').html(order[0].status);
                     $('.tanggal_pesan').html(order[0].tanggal_pemesanan);
                     $('.username').html(order[0].username);
+                    $('.link_foto').attr('href', "<?= base_url('upload/pemesanan/')?>"+order[0].desain);
+                    $('.desain').attr('src', "<?= base_url('upload/pemesanan/')?>"+order[0].desain);
                 }
             });
         });

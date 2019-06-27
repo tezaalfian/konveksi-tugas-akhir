@@ -46,4 +46,17 @@ class M_pembayaran extends CI_Model {
     {
         return $this->db->update('pembayaran', $data, array('pemesanan_id' => $id));
     }
+
+    public function getAllById($id)
+    {
+        $this->db->select("pemesanan.*, pembayaran.*, pengiriman.ongkir, status.status");
+        $this->db->from("pembayaran");
+        // $this->db->join("barang", "barang.id = pemesanan.barang_id");
+        $this->db->join("status", "pembayaran.ket = status.id");
+        $this->db->join("pemesanan", "pembayaran.pemesanan_id = pemesanan.id_pemesanan");
+        $this->db->join("pengiriman", "pembayaran.pemesanan_id = pengiriman.pemesanan_id");
+        $this->db->where("pemesanan.id_pemesanan", $id);
+        $query = $this->db->get();
+        return $query->result();
+    }
 }

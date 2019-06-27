@@ -60,4 +60,9 @@ class Pembayaran extends CI_Controller {
 		$this->session->set_flashdata('gagal', 'Permintaan pengiriman ulang akan diteruskan ke pelanggan!');
 		redirect('admin/pemesanan');
 	}
+
+	public function detail($id)
+	{
+		echo json_encode($this->m_pembayaran->getAllById($id));
+	}
 }

@@ -91,25 +91,18 @@
                         </div>
                         <div class="col-md-6">
                             <small>Tanggal Dikirim</small>
-                                <h6 class="text-info"><b><?= strtoupper($order->tanggal_dikirim) ?></b></h6>
+                                <h6 class="text-info"><b class="tanggal_dikirim"></b></h6>
                             <small>Tanggal Diterima</small>
-                                <h6 class="text-info"><b><?= strtoupper($order->tanggal_diterima) ?></b></h6>
+                                <h6 class="text-info"><b class="tanggal_diterima"></b></h6>
                         </div>
                     </div><hr>
                     <div class="row">
-                        <div class="col-md-6 d-flex flex-column">
-                            <small><b>Alamat Pengiriman</b></small>
-                            <small><?= strtoupper($order->kurir) ?></small>
-                            <small>Dikirim kepada :&nbsp;<b><?= ucwords($order->nama_penerima) ?></b></small>
-                            <small><?= ucwords($order->alamat) ?></small>
-                            <small>Kota&nbsp;<?= ucwords($order->kota) ?>, 
-                                                                            Kode pos&nbsp;<?= ucwords($order->kode_pos) ?></small>
-                            <small><?= ucwords($order->provinsi) ?></small>
-                            <small>Telp :&nbsp;<?= ucwords($order->no_hp) ?></small>
+                        <div class="col-md-6 d-flex flex-column alamat">
+                            
                         </div>
                         <div class="col-md-6">
                             <small><b>Ongkos Kirim</b></small>
-                                <h6 class="text-info"><b>Rp.&nbsp;<?= strtoupper($order->ongkir) ?></b></h6>
+                                <h6 class="text-info"><b class="ongkir"></b></h6>
                         </div>
                     </div>
                 </div>
@@ -169,6 +162,20 @@
                 dataType: 'json',
                 success: function(result) {
                     send = result;
+                    $('.id_pemesanan').html(send[0].id_pemesanan.toUpperCase());
+                    $('.status').html(send[0].status);
+                    $('.tanggal_dikirim').html(send[0].tanggal_dikirim);
+                    $('.tanggal_diterima').html(send[0].tanggal_diterima);
+                    $('.ongkir').html("Rp. "+send[0].ongkir);
+                    $('.alamat').html(
+                    "<small><b>Alamat Pengiriman</b></small>"+
+                    "<small>"+send[0].kurir.toUpperCase()+"</small>"+
+                    "<small>Dikirim kepada :&nbsp;<b>"+send[0].nama_penerima.capitalize()+"</b></small>"+
+                    "<small>"+send[0].alamat+"</small>"+
+                    "<small>Kota&nbsp;"+send[0].kota+",Kode pos&nbsp;"+send[0].kode_pos+"</small>"+
+                    "<small>"+send[0].provinsi+"</small>"+
+                    "<small>Telp :&nbsp;"+send[0].no_hp+"</small>"
+                    );
                 }
             });
         });
