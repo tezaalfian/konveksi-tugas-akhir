@@ -187,6 +187,7 @@
 
         $(".hapus").on("click", function(){
             var link = $(this).attr("data");
+            
         });
 
         $(".confirm").on("click", function(){

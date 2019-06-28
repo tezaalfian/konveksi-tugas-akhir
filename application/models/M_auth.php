@@ -55,7 +55,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $this->email = htmlspecialchars($this->input->post("email", true));
             $this->foto = "default.jpg";
             $this->password = password_hash($post["password"], PASSWORD_DEFAULT);
-            $this->is_active = 1;
+            $this->is_active = 0;
             $this->date_created = time();
             $this->role_id = 2;
 

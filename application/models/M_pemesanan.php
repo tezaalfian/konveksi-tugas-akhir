@@ -36,7 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     $this->db->join("barang", "barang.id = pemesanan.barang_id");
                     $this->db->join("user", "user.id_user = pemesanan.pelanggan_id");
                     $this->db->join("status", "status.id = pemesanan.status_id");
-                    $this->db->order_by("pemesanan.status_id", "asc");
+                    $this->db->order_by("pemesanan.tanggal_pemesanan", "desc");
                     $query = $this->db->get();
                     return $query->result();
                 }
