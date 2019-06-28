@@ -60,6 +60,17 @@
         height: 70px;
         object-fit: cover;
       }
+
+      #cover2 {
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+      }
+
+      .radius {
+        border-radius: 100px;
+      }
+
       #img-card {
         width: 100%;
         height: 200px;

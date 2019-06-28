@@ -14,6 +14,17 @@
                 	<div id="keterangan">
                 		<h4 class="text-dark"><b>Pemesanan</b></h4>
                     </div>
+                    <ul class="nav nav-tabs">
+                      <li class="nav-item">
+                        <a class="nav-link" href="">Active</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="">Link</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="" data="6">Selesai</a>
+                      </li>
+                    </ul>
                 </div>
             </div>
             <?php if ($this->session->flashdata('success')): ?>
@@ -273,6 +284,20 @@
                     }
                 });
             });
+        });
+        
+        $('.nav-link').on('click', function(){
+            var url_get = "<?= base_url('pemesanan/list') ?>";
+            var id = $(this).attr("data");
+                $.ajax({
+                    url: url_get+id,
+                    type: 'get',
+                    dataType: 'json',
+                    success: function(result) {
+                        $('.nav-link').removeClass('active');
+                        $(this).addClass('active');
+                    }
+                });
         });
     	
     </script>
