@@ -76,4 +76,20 @@
         height: 200px;
         object-fit: cover;
       }
+
+      .image {
+          position: relative;
+          height: 0;
+          padding-bottom: 70%;
+        }
+
+        .image-fit {
+          position: absolute;
+          left: 0;
+          top: 0;
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+          object-position: center center;
+        }
     </style>

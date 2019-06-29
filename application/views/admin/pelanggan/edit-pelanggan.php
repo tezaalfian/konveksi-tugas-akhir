@@ -111,7 +111,7 @@
 		                                            Laki-Laki &nbsp;
 		                                            <input type="radio" id="inline-radio2" name="jenis_kelamin" value="Perempuan" class="form-check-input"<?=is_checked($pelanggan->jenis_kelamin, "Perempuan"); ?>> 
 		                                            Perempuan
-		                                            <input type="radio" id="inline-radio2" name="jenis_kelamin" value=" " class="form-check-input hidden" checked>
+		                                            
 		                                        </div>
 		                                        <div class="invalid-feedback">
 			                                        <?php echo form_error('jenis_kelamin') ?>

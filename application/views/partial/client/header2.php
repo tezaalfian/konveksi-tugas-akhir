@@ -113,9 +113,9 @@
                   <i class="fa fa-edit fa-sm fa-fw mr-2 text-gray-400"></i>
                   Edit Profil
                 </a>
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="<?= base_url('profil/change_password') ?>">
                   <i class="fa fa-lock fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Ganti Password
+                  Ubah Kata Sandi
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="<?= base_url('logout'); ?>">

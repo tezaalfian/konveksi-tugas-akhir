@@ -5,9 +5,14 @@
    
 
     <script type="text/javascript">
+        $('.custom-file-input').on('change', function(){
+            let fileName = $(this).val().split('\\').pop();
+            $(this).next('.custom-file-label').addClass("selected").html(fileName);
+        });
+
         $(document).ready(function() {
           $('#bootstrap-data-table-export').DataTable();
-      } );
+        });
 
         $('.custom-file-input').on('change', function(){
             let fileName = $(this).val().split('\\').pop();

@@ -14,7 +14,7 @@
                 	<div id="keterangan">
                 		<h4 class="text-dark"><b>Pemesanan</b></h4>
                     </div>
-                    <ul class="nav nav-tabs">
+                    <!-- <ul class="nav nav-tabs">
                       <li class="nav-item">
                         <a class="nav-link" href="">Active</a>
                       </li>
@@ -24,7 +24,7 @@
                       <li class="nav-item">
                         <a class="nav-link" href="" data="6">Selesai</a>
                       </li>
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
             <?php if ($this->session->flashdata('success')): ?>
