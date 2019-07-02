@@ -80,7 +80,7 @@
       .image {
           position: relative;
           height: 0;
-          padding-bottom: 70%;
+          padding-bottom: 100%;
         }
 
         .image-fit {

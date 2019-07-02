@@ -25,7 +25,7 @@
                 		<input type="hidden" name="pemesanan_id" value="<?= $pemesanan[0]->id_pemesanan?>">
                 		<div class="form-group">
                 			<label for="harga">Label Alamat</label>
-			                <input class="form-control" type="text" name="label" placeholder="Alamat Rumah, Alamat Kantor, dll">
+			                <input class="form-control" type="text" name="label" placeholder="Alamat Rumah, Alamat Kantor, dll" required>
 			                <div class="invalid-feedback">
 			                    <?php echo form_error('label')?>
 			                </div>
@@ -34,7 +34,7 @@
                 			<div class="col-sm-6">
                 				<div class="form-group">
 		                			<label for="harga">Nama Penerima</label>
-					                <input class="form-control" type="text" name="nama_penerima" value="<?= $pemesanan[0]->username ?>">
+					                <input required class="form-control" type="text" name="nama_penerima" value="<?= $pemesanan[0]->username ?>">
 					                <div class="invalid-feedback">
 					                    <?php echo form_error('nama_penerima')?>
 					                </div>
@@ -43,7 +43,7 @@
                 			<div class="col-sm-6">
                 				<div class="form-group">
 		                			<label for="harga">Nomor Telpon Penerima</label>
-					                <input class="form-control" type="text" name="no_hp" value="<?= $pemesanan[0]->no_hp ?>">
+					                <input required class="form-control" type="text" name="no_hp" value="<?= $pemesanan[0]->no_hp ?>">
 					                <div class="invalid-feedback">
 					                    <?php echo form_error('no_hp')?>
 					                </div>
@@ -66,7 +66,7 @@
                 			<div class="col-sm-4">
                 				<div class="form-group">
 		                			<label for="pelanggan">Kode Pos</label>
-			                		<input name="kode_pos" id="kode_pos" class="form-control">
+			                		<input name="kode_pos" id="kode_pos" class="form-control" required>
 		                		</div>
                 			</div>
                 			
@@ -75,7 +75,7 @@
                 			<div class="col-sm-8">
                 				<div class="form-group">
 		                			<label for="pelanggan">Alamat</label>
-			                		<textarea name="alamat" id="alamat" class="form-control"></textarea>
+			                		<textarea required name="alamat" id="alamat" class="form-control"><?= $pemesanan[0]->alamat ?></textarea>
 			                		<div class="invalid-feedback">
 					                    <?php echo form_error('alamat')?>
 					                </div>

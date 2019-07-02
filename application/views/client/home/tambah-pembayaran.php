@@ -27,7 +27,7 @@
 					  		<img class="my-4" src="https://image.flaticon.com/icons/svg/164/164436.svg" width="50%">
 					  	</div>
 						<p class="card-title text-dark"><b>Jumlah yang harus dibayar :</b></p>
-						<h5 class="text-success"><b>Rp.&nbsp;<?= $pembayaran->total_tagihan ?></b></h5><hr>
+						<h5 class="text-success"><b>Rp.&nbsp;<?= number_format($pembayaran->total_tagihan) ?></b></h5><hr>
 					    <h6 class="card-title text-dark"><b>Cara Pembayaran</b></h6>
 					    <ul>
 					    	<li>Pembayaran dilakukan melalui transfer ke Bank BNI Syari'ah dengan 

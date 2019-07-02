@@ -54,33 +54,23 @@
 		    </div>
 		    <div class="col-md-6 align-self-center">
 		      <div class="card-body my-auto">
-		        <h4 class="card-title text-info"><b>MASUK</b></h4>
-		        	<form class="mx-lg-5 mx-md-2 mx-sm-3" method="post" action="<?=base_url('login'); ?>">
+		        <h4 class="card-title text-info"><b>LUPA KATA SANDI ?</b></h4>
+		        	<form class="mx-lg-5 mx-md-2 mx-sm-3" method="post" action="<?=base_url('lupasandi'); ?>">
                         <?php echo $this->session->flashdata('message'); ?>
-
 					  <div class="form-group">
-					    <input type="text" name="username" class="form-control <?php echo form_error('username') ? 'is-invalid':'' ?>" placeholder="Username" value="<?= set_value('username'); ?>">
+					    <input required type="email" name="email" class="form-control <?php echo form_error('email') ? 'is-invalid':'' ?>" placeholder="Masukkan email anda" value="<?= set_value('email'); ?>">
 					    <div class="invalid-feedback">
-	                        <?php echo form_error('username')?>
+	                        <?php echo form_error('email')?>
 	                    </div>
 					  </div>
 
-					  <div class="form-group">
-					    <input type="password" name="password" class="form-control <?php echo form_error('password') ? 'is-invalid':'' ?>" placeholder="Password">
-					    <div class="invalid-feedback">
-		                    <?php echo form_error('password')?>
-		                </div>
-					  </div>
-
-					  <button type="submit" class="btn btn-info btn-block radius">Masuk</button><hr>
+					  <button type="submit" class="btn btn-info btn-block radius">Reset Password</button><hr>
 					</form>
-					<small class="text-dark">Belum punya akun ?<a href="<?=base_url('register'); ?>" class="text-info">&nbsp;Daftar</a></small><br>
-					<small class="text-dark"><a href="<?=base_url('lupasandi'); ?>" class="text-dark">Lupa kata sandi?</a></small>
+					<small class="text-dark">Sudah punya akun ?<a href="<?=base_url('login'); ?>" class="text-info">&nbsp;Login</a></small><br>
 		      </div>
 		    </div>
 		  </div>
 		</div>
 	</div>
-<!-- LIBRARY JS -->
 </body>
 </html>

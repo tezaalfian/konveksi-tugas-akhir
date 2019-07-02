@@ -9,9 +9,14 @@ class Administrator extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->load->model("m_administrator");
 		$this->load->model("c_admin");
-		if ($this->session->userdata('role_id') == 2) {
-			show_404();
-		}
+		$user = $this->session->userdata('username');
+		if ($user) {
+			if ($this->session->userdata('role_id') == 2) {
+				show_404();
+			}
+  		} else {
+  			redirect('login');
+  		}
 	}
 
 	public function index() {

@@ -11,9 +11,14 @@ class Pengiriman extends CI_Controller {
 		$this->load->model("m_pembayaran");
 		$this->load->model("c_kategori");
 		$this->load->model('rajaongkir');
-		if ($this->session->userdata('role_id') == 2) {
-			show_404();
-		}		
+		$user = $this->session->userdata('username');
+		if ($user) {
+			if ($this->session->userdata('role_id') == 2) {
+				show_404();
+			}
+  		} else {
+  			redirect('login');
+  		}		
 	}
 
 	public function index() {

@@ -10,8 +10,13 @@ class Produk extends CI_Controller {
         parent::__construct();
         $this->load->model("m_produk");
         $this->load->library('form_validation');
-        if ($this->session->userdata('role_id') == 2) {
-            show_404();
+        $user = $this->session->userdata('username');
+        if ($user) {
+            if ($this->session->userdata('role_id') == 2) {
+                show_404();
+            }
+        } else {
+            redirect('login');
         }        
     }
 

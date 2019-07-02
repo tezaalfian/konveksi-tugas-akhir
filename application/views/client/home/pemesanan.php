@@ -123,7 +123,7 @@
 			                    	<label for="pelanggan"><b>Desain*</b></label>
 		                            <!-- <img src="<?=base_url('upload/pelanggan/default.jpg'); ?>" class="img-thumbnail"> -->
 			                        <div class="custom-file">
-	                                    <input type="file" class="custom-file-input" id="customFilen" name="desain" accept=".jpg,.jpeg,.png">
+	                                    <input type="file" class="custom-file-input" id="customFilen" name="desain" accept=".jpg,.jpeg,.png" required>
 	                                    <label class="custom-file-label" for="customFile">Upload Desain Anda</label>
 	                                </div>
 			                        <i>

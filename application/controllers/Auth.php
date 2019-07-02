@@ -44,7 +44,8 @@ class Auth extends CI_Controller {
 						];
 						$this->session->set_userdata($data);
 						redirect(base_url('home'));
-					} elseif ($user['role_id'] == 1) {
+					} 
+					elseif ($user['role_id'] == 1) {
 						$data = [
 							'username' => $user['username'],
 							'role_id' => $user['role_id'],
@@ -146,7 +147,7 @@ class Auth extends CI_Controller {
 		if ($user) {
 			$user_token = $this->db->get_where('user_token', ['token' => $token])->row_array();
 
-			if ($user_token) {
+			// if ($user_token) {
 				$this->db->set('is_active', 1);
 				$this->db->where('email', $email);
 				$this->db->update('user');
@@ -156,10 +157,10 @@ class Auth extends CI_Controller {
 				$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">'.$email.' telah diaktivasi! silahkan login.</div>');
         		redirect(base_url('login'));
 
-			} else {
-				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Aktivasi akun gagal! Token salah</div>');
-        		redirect(base_url('login'));	
-			}
+			// } else {
+				// $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Aktivasi akun gagal! Token salah</div>');
+    //     		redirect(base_url('login'));	
+			// }
 		} else {
 			$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Aktivasi akun gagal! Email salah</div>');
         	redirect(base_url('login'));
@@ -172,6 +173,31 @@ class Auth extends CI_Controller {
 
 		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Anda berhasil logout!</div>');
         redirect(base_url());
+	}
+
+	public function lupasandi()
+	{
+		$user = $this->session->userdata('username');
+		if ($user) {
+			redirect(base_url());
+		}
+
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+        if ($this->form_validation->run() == false) {
+			$this->load->view('auth/lupa-sandi');        	
+        }else {
+        	$email = $this->input->post('email');
+        	$user = $this->db->get_where('user', array('email' => $email, 'is_active' => 1))->row_array();
+        	if ($user) {
+        		$data['user'] = $user;
+        		$this->load->view('auth/')
+        	}else{
+        		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Email anda tidak terdaftar!</div>');
+        		redirect('lupasandi');
+        	}
+        }
+
+		$this->load->view('auth/lupa-sandi');
 	}
 
 }

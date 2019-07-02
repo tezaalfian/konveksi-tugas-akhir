@@ -32,7 +32,7 @@
                     order = result;
                     if (order.length > 0) {
                         for (var i = order.length - 1; i >= 0; i--) {
-                            string += "<a class='dropdown-item d-flex align-items-center' href='#'>"+
+                            string += "<a class='dropdown-item d-flex align-items-center' href='<?=base_url('pemesanan/list') ?>'>"+
                                 "<div class='dropdown-list-image mr-3'>"+
                                     "<img class='rounded-circle' id='cover2' src='"+foto+order[i].desain+"'>"+
                                 "</div>"+
@@ -44,7 +44,7 @@
                         }
                         $('.count_order').html(order.length);
                     }else {
-                        string += "<a class='dropdown-item d-flex align-items-center' href='#'>"+
+                        string += "<a class='dropdown-item d-flex align-items-center' href='<?=base_url('pemesanan/list') ?>'>"+
                                 "<div class='mr-3'>"+
                                 "</div>"+
                                 "<div>"+
@@ -71,7 +71,7 @@
                     order = result;
                     if (order.length > 0) {
                         for (var i = order.length - 1; i >= 0; i--) {
-                            string += "<a class='dropdown-item d-flex align-items-center' href='#'>"+
+                            string += "<a class='dropdown-item d-flex align-items-center' href='<?= base_url('home/chart'); ?>'>"+
                                 "<div class='dropdown-list-image mr-3'>"+
                                     "<img class='rounded-circle' id='cover2' src='"+foto+order[i].desain+"'>"+
                                 "</div>"+
@@ -83,7 +83,7 @@
                         }
                         $('.count_cart').html(order.length);
                     }else {
-                        string += "<a class='dropdown-item d-flex align-items-center' href='#'>"+
+                        string += "<a class='dropdown-item d-flex align-items-center' href='<?= base_url('home/chart'); ?>'>"+
                                 "<div class='mr-3'>"+
                                 "</div>"+
                                 "<div>"+

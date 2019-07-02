@@ -13,9 +13,14 @@ class Pemesanan extends CI_Controller {
 		$this->load->model("m_pengiriman");
 		$this->load->model("m_pembayaran");
 		$this->load->model("c_kategori");
-		if ($this->session->userdata('role_id') == 2) {
-			show_404();
-		}		
+		$user = $this->session->userdata('username');
+		if ($user) {
+			if ($this->session->userdata('role_id') == 2) {
+				show_404();
+			}
+  		} else {
+  			redirect('login');
+  		}		
 	}
 
 	public function index() {

@@ -8,9 +8,14 @@ class Pegawai extends CI_Controller {
 		parent::__construct();
 		$this->load->library('form_validation');
 		$this->load->model("m_pegawai");
-		if ($this->session->userdata('role_id') == 2) {
-			show_404();
-		}		
+		$user = $this->session->userdata('username');
+		if ($user) {
+			if ($this->session->userdata('role_id') == 2) {
+				show_404();
+			}
+  		} else {
+  			redirect('login');
+  		}		
 	}
 
 	public function index() {

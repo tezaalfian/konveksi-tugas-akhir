@@ -109,11 +109,11 @@ class Home extends CI_Controller {
     $provinsi = json_decode($this->rajaongkir->oneprovinsi($post["provinsi"]));
     $kota = json_decode($this->rajaongkir->onekota($post["kota"]));
 
-    $this->form_validation->set_rules('alamat', 'Alamat', 'required');
-    $this->form_validation->set_rules('nama_penerima', 'Penerima', 'required');
-    $this->form_validation->set_rules('no_hp', 'No Hp', 'required');
-    $this->form_validation->set_rules('kode_pos', 'Kode Pos', 'required');
-    $this->form_validation->set_rules('label', 'Label', 'required');
+    // $this->form_validation->set_rules('alamat', 'Alamat', 'required');
+    // $this->form_validation->set_rules('nama_penerima', 'Penerima', 'required');
+    // $this->form_validation->set_rules('no_hp', 'No Hp', 'required');
+    // $this->form_validation->set_rules('kode_pos', 'Kode Pos', 'required');
+    // $this->form_validation->set_rules('label', 'Label', 'required');
     $this->session->set_userdata("kode_pemesanan", $post["pemesanan_id"]);
 
     $data_pengiriman = array(
@@ -131,13 +131,13 @@ class Home extends CI_Controller {
         "keterangan" => 9
     );
 
-    if ($this->form_validation->run() == true) {
+    // if ($this->form_validation->run()) {
       $this->c_pengiriman->insert_pengiriman($data_pengiriman);
       $this->c_pembayaran->insert();
       $this->c_pengiriman->menunggu_bayar();
-    }
-    $kode = $this->session->userdata("kode_pemesanan");
-    redirect('pembayaran/tambah/'.$kode);
+      $kode = $this->session->userdata("kode_pemesanan");
+      redirect('pembayaran/tambah/'.$kode);
+    // }
   }
 
   public function kota($url)

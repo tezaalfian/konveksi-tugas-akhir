@@ -8,7 +8,7 @@
             <h4 class="card-title">
               <a href="<?= base_url('home/pemesanan/'.$product->id); ?>" class="text-info"><?php echo $product->nama ?></a>
             </h4>
-            <h5>Rp.&nbsp;<?php echo $product->harga ?></h5>
+            <h5>Rp.&nbsp;<?php echo number_format($product->harga); ?></h5>
             <p class="card-text"><?php echo $product->deskripsi ?></p>
           </div>
           <div class="card-footer bg-dark">

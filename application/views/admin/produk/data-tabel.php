@@ -46,7 +46,7 @@
                                                     <?php echo $product->nama ?>
                                                 </td>
                                                 <td>
-                                                    Rp.&nbsp;<?php echo $product->harga ?>
+                                                    Rp.&nbsp;<?php echo number_format($product->harga) ?>
                                                 </td>
                                                 <td align="center">
                                                     <img src="<?= base_url('upload/produk/'.$product->foto) ?>"class="thumbnail rounded" />

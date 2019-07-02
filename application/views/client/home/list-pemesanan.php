@@ -48,13 +48,13 @@
                                         <h5 class="text-dark"><b><?= ucwords($order->nama) ?>&nbsp;/&nbsp;
                                         <?= ucwords($order->deskripsi) ?></b></h5>
                                         <h6 class="">
-                                                <b>Rp.&nbsp;<?= $order->harga?>&nbsp;</b>
+                                                <b>Rp.&nbsp;<?= number_format($order->harga) ?>&nbsp;</b>
                                                 <b><?= $order->jumlah?>&nbsp;Produk&nbsp;
                                                 (<?= $order->weight?>&nbsp;gr)</b>
                                         </h6>
                                         <h6>Penerima : <b class="text-dark">&nbsp;<?= $order->nama_penerima?>&nbsp;</b></h6>
                                         <h6><?= $order->alamat?>,&nbsp;<?= $order->kota?>,&nbsp;<?= $order->kode_pos?></b></h6>
-                                        <h6>Total : <b class="text-success">Rp.&nbsp;<?= $order->total_tagihan ?>&nbsp;</b>
+                                        <h6>Total : <b class="text-success">Rp.&nbsp;<?= number_format($order->total_tagihan) ?>&nbsp;</b>
                                             |&nbsp;Tanggal Pemesanan :&nbsp;<b><?= $order->tanggal_pemesanan ?></b>
                                         </h6>
                                     </div>
@@ -85,7 +85,7 @@
                                     </div>
                                     <div class="col-md-2 d-flex flex-column border-left">
                                          <span><b>Total Tagihan :&nbsp;</b></span>
-                                        <b><span class="text-info">Rp.&nbsp;<?= $order->total_tagihan ?></span></b>
+                                        <b><span class="text-info">Rp.&nbsp;<?= number_format($order->total_tagihan) ?></span></b>
                                     </div>
                                 </div>
                                     <div class="row py-3 border-bottom d-flex align-items-center">
@@ -95,7 +95,7 @@
                                                 <h5 class="text-dark"><b><?= ucwords($order->nama) ?></b></h5>
                                                 <h5 class="text-dark"><b><?= ucwords($order->deskripsi) ?></b></h5>
                                                 <small class="d-flex justify-content-start">
-                                                    <b><div class="text-success">Rp.&nbsp;<?= $order->harga?>&nbsp;</div></b>
+                                                    <b><div class="text-success">Rp.&nbsp;<?= number_format($order->harga) ?>&nbsp;</div></b>
                                                     <b><?= $order->jumlah?>&nbsp;Produk&nbsp;
                                                     (<?= $order->weight?>&nbsp;gr)</b>
                                                 </small>
@@ -103,7 +103,7 @@
                                         </div>
                                         <div class="col-md-4 d-flex flex-column border-left">
                                             <span><b>Total Harga Produk :&nbsp;</b></span>
-                                            <b><span class="text-info">Rp.&nbsp;<?= ucwords($order->tagihan) ?>
+                                            <b><span class="text-info">Rp.&nbsp;<?= number_format($order->tagihan) ?>
                                             &nbsp;(<?= $order->berat?>&nbsp;gr)</span></b>
                                         </div>
                                         <div class="col-md-2 d-flex flex-column">
