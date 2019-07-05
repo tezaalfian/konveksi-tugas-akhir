@@ -28,4 +28,21 @@
             let fileName = $(this).val().split('\\').pop();
             $(this).next('.custom-file-label').addClass("selected").html(fileName);
         });
+        // var order;
+        // $(document).ready(function(){
+        //     var string = "";
+        //     url_get = "<?= base_url('notifikasi/a_order/') ?>";
+        //     var foto = "<?= base_url('upload/pemesanan/');?>";
+        //     $.ajax({
+        //         url: url_get,
+        //         type: 'get',
+        //         dataType: 'json',
+        //         success: function(result) {
+        //             console.log(result);
+        //             order = result;
+        //             $('.count_order').html(order.length);
+        //             $('.order').html(string);
+        //         }
+        //     });
+        // });
     </script>

@@ -23,10 +23,6 @@ class Notifikasi extends CI_Controller {
 		} else {
 			redirect('login');
 		}
-
-        if ($this->session->userdata('role_id') == 1) {
-            show_404();
-        }
     }
 
 	public function index()
@@ -36,7 +32,11 @@ class Notifikasi extends CI_Controller {
 
     public function order() {
        $kode = $this->session->userdata('id_user'); 
-       echo json_encode($this->c_kategori->allOrder($kode));
+       echo json_encode($this->c_kategori->allOrder2($kode));
+    }
+
+    public function a_order() {
+       echo json_encode($this->m_pemesanan->getLast());
     }
 
     public function keranjang() {

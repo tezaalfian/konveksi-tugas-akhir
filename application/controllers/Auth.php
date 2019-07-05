@@ -190,9 +190,9 @@ class Auth extends CI_Controller {
         	$user = $this->db->get_where('user', array('email' => $email, 'is_active' => 1))->row_array();
         	if ($user) {
         		$data['user'] = $user;
-        		$this->load->view('auth/')
+        		$this->load->view('auth/set-sandi', $data);
         	}else{
-        		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Email anda tidak terdaftar!</div>');
+        		$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email anda tidak terdaftar!</div>');
         		redirect('lupasandi');
         	}
         }
@@ -200,4 +200,25 @@ class Auth extends CI_Controller {
 		$this->load->view('auth/lupa-sandi');
 	}
 
+	public function atursandi($id)
+	{
+		$user = $this->session->userdata('username');
+		if ($user) {
+			redirect(base_url());
+		}
+
+		$this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[8]|matches[password2]');
+		$this->form_validation->set_rules('password2', 'Confirm Password', 'required|trim|matches[password]');
+
+        if ($this->form_validation->run() == false) {
+        	$data['user'] = $this->db->get_where('user', array('id_user' => $id))->row_array();
+			$this->load->view('auth/set-sandi', $data);        	
+        }else {
+        	$password = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
+        	$data_user = array('password' => $password);
+        	$this->db->update('user', $data_user, array('id_user' => $id));
+        	$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Password anda berhasil diperbarui!</div>');
+        	redirect('login');
+        }
+	}
 }

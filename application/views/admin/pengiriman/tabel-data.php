@@ -58,7 +58,7 @@
                                                     <button type="button" class="btn btn-info btn-sm detail" data-toggle="modal" data-target="#detail" data="<?= $order->pemesanan_id?>">
                                                         <i class="fa fa-info-circle"></i>
                                                     </button>
-                                            <?php if ($order->status_id == 2||$order->status_id == 3||$order->status_id == 4) : ?>
+                                            <?php if ($order->status_id == 2||$order->status_id == 3) : ?>
                                                     <a href="<?= base_url('admin/pengiriman/edit/'.$order->pemesanan_id); ?>" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a>
                                             <?php endif; ?>
                                             <?php if ($order->status_id == 5) : ?>
