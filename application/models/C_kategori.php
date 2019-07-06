@@ -44,7 +44,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $this->db->join("pembayaran", "pemesanan.id_pemesanan = pembayaran.pemesanan_id");
             $this->db->where("pemesanan.pelanggan_id", $id);
             $this->db->where_not_in("pemesanan.status_id", 1);
-            $this->db->where_not_in("pemesanan.status_id", 6);
             $this->db->order_by("pemesanan.status_id", "asc");
             $query = $this->db->get();
             return $query->result();
