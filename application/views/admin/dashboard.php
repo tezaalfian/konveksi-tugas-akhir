@@ -27,10 +27,7 @@
                         <div class="card text-white bg-flat-color-1">
                             <div class="card-body">
                                 <div class="card-left pt-1 float-left">
-                                    <h3 class="mb-0 fw-r">
-                                        <span class="currency float-left mr-1"></span>
-                                        <span class="count"></span>
-                                    </h3>
+                                    <h3 class="count_order"></h3>
                                     <p class="text-light mt-1 m-0">Pemesanan</p>
                                 </div><!-- /.card-left -->
 
@@ -42,37 +39,25 @@
 
                         </div>
                     </div>
-                    <!--/.col-->
 
                     <div class="col-sm-6 col-lg-3">
-                        <div class="card text-white bg-flat-color-6">
-                            <div class="card-body">
-                                <div class="card-left pt-1 float-left">
-                                    <h3 class="mb-0 fw-r">
-                                        <span class="count float-left">85</span>
-                                        <span>%</span>
-                                    </h3>
-                                    <p class="text-light mt-1 m-0">Dummy text here</p>
-                                </div><!-- /.card-left -->
-
-                                <div class="card-right float-right text-right">
-                                    <div id="flotBar1" class="flotBar1" style="padding: 0px; position: relative;"><canvas class="flot-base" width="76" height="75" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 76px; height: 75px;"></canvas><canvas class="flot-overlay" width="76" height="75" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 76px; height: 75px;"></canvas></div>
-                                </div><!-- /.card-right -->
-
-                            </div>
-
+                        <div class="card bg-flat-color-2">
+                          <div class="card-body d-flex justify-content-center">
+                            <h3 class="mb-0 fw-r">
+                                <span class="count-order"></span>
+                            </h3>
+                          </div>
                         </div>
                     </div>
-                    <!--/.col-->
 
                     <div class="col-sm-6 col-lg-3">
                         <div class="card text-white bg-flat-color-3">
                             <div class="card-body">
                                 <div class="card-left pt-1 float-left">
-                                    <h3 class="mb-0 fw-r">
-                                        <span class="count">6569</span>
+                                    <h3 class="count-user">
+                                        
                                     </h3>
-                                    <p class="text-light mt-1 m-0">Total clients</p>
+                                    <p class="text-light mt-1 m-0">Total Pelanggan</p>
                                 </div><!-- /.card-left -->
 
                                 <div class="card-right float-right text-right">
@@ -118,23 +103,5 @@
 
 <!-- LIBRARY JS -->
     <?php $this->load->view('partial/admin/js');?>
-
-    <script type="text/javascript">
-        var order = "";
-        $(document).ready(function(){
-            url_get = "<?= base_url('admin/dashboard/order') ?>";
-            $.ajax({
-                url: url_get,
-                type: 'get',
-                dataType: 'json',
-                success: function(result) {
-                    console.log(result);
-                    order = result.length;
-                    $('#order').html(order);
-                }
-            });
-        });
-    </script>
-    
 </body>
 </html>

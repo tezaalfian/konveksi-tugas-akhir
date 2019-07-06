@@ -39,6 +39,10 @@ class Notifikasi extends CI_Controller {
        echo json_encode($this->m_pemesanan->getLast());
     }
 
+    public function allOrder() {
+      echo json_encode($this->m_pemesanan->getAll());
+    }
+
     public function keranjang() {
        $kode = $this->session->userdata('id_user'); 
        echo json_encode($this->c_kategori->keranjang($kode));
