@@ -50,10 +50,10 @@
                                                     <?php echo strtoupper($order->pemesanan_id); ?>
                                                 </td>
                                                 <td>
-                                                    Rp.&nbsp;<?= $order->nominal ?>
+                                                    Rp.&nbsp;<?= number_format($order->nominal) ?>
                                                 </td>
                                                 <td>
-                                                    Rp.&nbsp;<?= $order->total_tagihan ?>
+                                                    Rp.&nbsp;<?= number_format($order->total_tagihan) ?>
                                                 </td>
                                                 <td><?= $order->tanggal_pembayaran ?></td>
                                                 <td class="text-center">

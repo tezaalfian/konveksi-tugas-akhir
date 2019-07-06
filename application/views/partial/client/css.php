@@ -27,7 +27,9 @@
       #page-content {
         flex: 1 0 auto;
       }
-
+      .bg-gray {
+        background-color: #3b4147;
+      }
       #sticky-footer {
         flex-shrink: none;
       }
@@ -56,8 +58,8 @@
       }
 
       #cover {
-        width: 70px;
-        height: 70px;
+        width: 100px;
+        height: 100px;
         object-fit: cover;
       }
 

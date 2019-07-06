@@ -42,10 +42,20 @@
         height: 60px;
         object-fit: cover;
       }
+      .thumbnail2 {
+        width: 120px;
+        height: 60px;
+        object-fit: cover;
+      }
       .image {
           position: relative;
           height: 0;
           padding-bottom: 100%;
+        }
+        .image2 {
+          position: relative;
+          height: 0;
+          padding-bottom: 50%;
         }
 
         .image-fit {

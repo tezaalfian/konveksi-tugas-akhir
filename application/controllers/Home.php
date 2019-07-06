@@ -35,7 +35,8 @@ class Home extends CI_Controller {
 		$user = $this->session->userdata('username');
 		$data["user"] = $this->m_pelanggan->getByName($user);
 		$data["produk"] = $this->m_produk->getAllProduk();	
-
+    $data["slide"] = $this->db->get('slide')->result();
+    $data["medsos"] = $this->db->get('medsos')->result();
 		$this->load->view('client/home/after_login', $data);
 	}
 
@@ -60,6 +61,7 @@ class Home extends CI_Controller {
         // var_dump($data['produk']);
         // die;
         
+        $data["medsos"] = $this->db->get('medsos')->result();
         $this->load->view("client/home/pemesanan", $data);
 	}
 
@@ -76,6 +78,7 @@ class Home extends CI_Controller {
       $this->session->set_flashdata('kosong', '<div class="alert alert-danger" role="alert">Keranjang anda kosong!</div>');
     }
         
+    $data["medsos"] = $this->db->get('medsos')->result();
     $this->load->view("client/home/chart", $data);
   }
 
@@ -100,6 +103,7 @@ class Home extends CI_Controller {
       //   $data['pemesanan'] = $this->m_pemesanan->getAllById($kode);
         // if (!$data["pemesanan"]) show_404();
         
+    $data["medsos"] = $this->db->get('medsos')->result();
     $this->load->view("client/home/tambah-pengiriman", $data);
 	}
 

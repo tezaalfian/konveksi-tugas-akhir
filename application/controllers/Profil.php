@@ -36,6 +36,7 @@ class Profil extends CI_Controller {
         $kode = $this->session->userdata('id_user');
         $data["user"] = $this->m_pelanggan->getByName($user);
 
+        $data["medsos"] = $this->db->get('medsos')->result();
         $this->load->view('client/profil/data-profil', $data);
 	}
 
@@ -54,6 +55,7 @@ class Profil extends CI_Controller {
             redirect('profil');
         }
 
+        $data["medsos"] = $this->db->get('medsos')->result();
         $this->load->view('client/profil/edit', $data);
     }
 
@@ -67,6 +69,7 @@ class Profil extends CI_Controller {
 
         if ($this->form_validation->run() == false) {
 
+            $data["medsos"] = $this->db->get('medsos')->result();
             $this->load->view('client/profil/sandi', $data);
         } else {
             $old_password = $this->input->post('old_password');

@@ -1,8 +1,8 @@
 <div class=" bg-info">
         <div class="container">
-          <a href="#"><small class="text-white"><i class="fa fa-facebook px-2"></i></small></a>
-          <a href="#"><small class="text-white"><i class="fa fa-twitter px-2"></i></small></a>
-          <a href="#"><small class="text-white"><i class="fa fa-instagram px-2"></i></small></a>
+          <?php foreach ($medsos as $key) : ?>
+            <a target="_blank" href="<?= $key->link ?>"><small class="text-white px-2"><i class="<?= $key->kode ?>"></i></small></a>
+          <?php endforeach; ?>
         </div>
     </div>
 <nav class="navbar navbar-expand navbar-dark bg-dark topbar mb-4 sticky-top">

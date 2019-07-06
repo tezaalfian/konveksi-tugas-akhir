@@ -148,7 +148,7 @@
                         <div class="col-md-6">
                             <div class="d-flex justify-content-start">
                                 <a class="link_foto" href="" target="_blank">
-                                    <img class="rounded mr-3 desain" id="cover" src="">
+                                    <img class="rounded mr-5 desain" id="cover" src="">
                                 </a>
                                 <div class="d-flex flex-column">
                                     <small>Data Produk</small>

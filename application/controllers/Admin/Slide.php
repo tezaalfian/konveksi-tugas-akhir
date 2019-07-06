@@ -30,15 +30,13 @@ class Slide extends CI_Controller {
 
   public function tambah()
   {
-    $this->form_validation->set_rules('slide', 'Slide', 'required');
-    
-      var_dump($this->input->post('slide')); die;
-    if ($this->form_validation->run()) {
-      $data = [
-        $this->id => time(),
-        $this->slide => $this->_uploadImage()
-      ];
-      $this->db->insert('slide', $data);
+
+    if (!empty($_FILES["slide"]["name"])) {
+      
+      $this->id = time();
+      $this->slide = $this->_uploadImage();
+
+      $this->db->insert('slide', $this);
       $this->session->set_flashdata('success', 'Berhasil disimpan');
     }
 
@@ -47,12 +45,31 @@ class Slide extends CI_Controller {
 
   public function edit($id)
   {
-    
+
+    if (!empty($_FILES["slide"]["name"])) {
+      
+      $this->id = $this->input->post('id');
+      $this->slide = $this->_uploadImage();
+
+      $this->db->update('slide', $this, ['id' => $id]);
+      $this->session->set_flashdata('success', 'Berhasil disimpan');
+    }
+
+    $data["slide"] = $this->db->get_where('slide', ['id' => $id])->row();
+    if (!$data["slide"]) show_404();
+        
+    $this->load->view("admin/slide/edit-slide", $data);
   }
 
   public function hapus($id)
   {
-    
+    $this->delete($id);
+    redirect('admin/slide');
+  }
+
+  private function delete($id){
+    $this->_deleteImage($id);
+    return $this->db->delete('slide', array("id" => $id));
   }
 
   private function _uploadImage()
@@ -76,9 +93,9 @@ class Slide extends CI_Controller {
 
   private function _deleteImage($id)
   {
-      $slide = $this->getById($id);
-      if ($slide->image != "default.jpg") {
-        $filename = explode(".", $slide->image)[0];
+      $slide = $this->db->get_where('slide', ['id' => $id])->row();
+      if ($slide->slide != "default.jpg") {
+        $filename = explode(".", $slide->slide)[0];
       return array_map('unlink', glob(FCPATH."upload/slide/$filename.*"));
       }
   }

@@ -101,6 +101,7 @@ class Pemesanan extends CI_Controller {
         if (!$data["pemesanan"]){
             $this->session->set_flashdata('empty', '<div class="alert alert-danger" role="alert">Pesanan anda belum ada!</div>');
         }
+        $data["medsos"] = $this->db->get('medsos')->result();
         $this->load->view("client/home/list-pemesanan", $data);
     }
 
@@ -159,6 +160,7 @@ class Pemesanan extends CI_Controller {
 
             $data['pemesanan'] = $this->m_pemesanan->getAllById($id);
             $data['produk'] = json_encode($this->m_pemesanan->getAllById($id));
+            $data["medsos"] = $this->db->get('medsos')->result();
             $this->load->view("client/pemesanan/edit", $data);
         // $data['pemesanan'] = $this->db->get("pemesanan")->last_row();
     }

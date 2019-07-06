@@ -1,7 +1,9 @@
 
     <div class=" bg-info">
         <div class="container">
-          <a href="#"><small class="text-white"><i class="fa fa-facebook"></i></small></a>
+          <?php foreach ($medsos as $key) : ?>
+            <a target="_blank" href="<?= $key->link ?>"><small class="text-white px-2"><i class="<?= $key->kode ?>"></i></small></a>
+          <?php endforeach; ?>
         </div>
     </div>
 

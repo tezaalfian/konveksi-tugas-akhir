@@ -21,7 +21,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <a href="<?= base_url('admin/slide/tambah'); ?>">
+                                <a href="<?= base_url('admin/medsos/tambah'); ?>">
                                 <button type="button" class="btn btn-info">
                                     <i class="fa fa-plus"></i>&nbsp; Tambah Baru
                                 </button>
@@ -31,26 +31,34 @@
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th width="50">No</th>
-                                            <th>Slide</th>
-                                            <th width="100">Aksi</th>
+                                            <th>No</th>
+                                            <th>Akun</th>
+                                            <th>Icon</th>
+                                            <th>Link</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php $no = 1; ?>
-                                        <?php foreach ($slide as $fitur): ?>
+                                        <?php foreach ($medsos as $fitur): ?>
                                             <tr>
                                                 <td>
                                                     <?php echo $no++ ?>
                                                 </td>
                                                 <td>
-                                                    <img src="<?= base_url('upload/slide/'.$fitur->slide) ?>"class="thumbnail2 rounded" />
+                                                    <?= $fitur->nama ?>
+                                                </td>
+                                                <td>
+                                                    <?= $fitur->kode ?>
+                                                </td>
+                                                <td>
+                                                    <?= $fitur->link ?>
                                                 </td>
                                                 <td align="center">
                                                     <button type="button" class="btn btn-danger btn-sm hapus" data-toggle="modal" data-target="#mediumModal" data="<?= $fitur->id ?>">
                                                       <i class="fa fa-trash"></i>
                                                     </button>
-                                                    <a href="<?= base_url('admin/slide/edit/'.$fitur->id); ?>" class="btn btn-success btn-sm">
+                                                    <a href="<?= base_url('admin/medsos/edit/'.$fitur->id); ?>" class="btn btn-success btn-sm">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
                                                 </td>
@@ -102,7 +110,7 @@
     <script type="text/javascript">
         $(".hapus").on("click", function(){
             var link = $(this).attr("data");
-            $('.delete').attr("href", "<?= base_url('admin/slide/hapus/');?>"+link)
+            $('.delete').attr("href", "<?= base_url('admin/medsos/hapus/');?>"+link)
         });
     </script>
     

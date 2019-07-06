@@ -56,6 +56,7 @@ class Pembayaran extends CI_Controller {
         }else {
             $this->session->set_flashdata("salah", "<small class='text-danger'><i>* File tidak boleh kosong!</i></small>");
         }
+        $data["medsos"] = $this->db->get('medsos')->result();
         $this->load->view("client/home/tambah-pembayaran", $data);
     }
 }

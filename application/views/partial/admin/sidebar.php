@@ -35,7 +35,9 @@
                             <li><i class="menu-icon fa fa-image <?php echo $this->uri->segment(2) == 'slide' ? 'active': '' ?>"></i>
                                 <a href="<?= base_url('admin/slide'); ?>">&nbsp;Slide</a>
                             </li>
-                            <li><i class="menu-icon fa fa-sign-in"></i><a href="page-register.html">Register</a></li>
+                            <li><i class="menu-icon fa fa-folder <?php echo $this->uri->segment(2) == 'medsos' ? 'active': '' ?>"></i>
+                                <a href="<?= base_url('admin/medsos'); ?>">&nbsp;Medsos</a>
+                            </li>
                         </ul>
                     </li>
                 </ul>
