@@ -14,17 +14,26 @@
                 	<div id="keterangan">
                 		<h4 class="text-dark"><b>Pemesanan</b></h4>
                     </div>
-                    <!-- <ul class="nav nav-tabs">
-                      <li class="nav-item">
-                        <a class="nav-link" href="">Active</a>
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                        <a class="nav-link" href="<?= base_url('pemesanan/list'); ?>">All</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="">Link</a>
+                        <a class="nav-link" href="<?= base_url('pemesanan/list?filter=2'); ?>">Menunggu Pembayaran</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="" data="6">Selesai</a>
+                        <a class="nav-link" href="<?= base_url('pemesanan/list?filter=3'); ?>">Menunggu Konfirmasi</a>
                       </li>
-                    </ul> -->
+                      <li class="nav-item">
+                        <a class="nav-link" href="<?= base_url('pemesanan/list?filter=4'); ?>">Sedang Diproses</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="<?= base_url('pemesanan/list?filter=5'); ?>">Pengerjaan Selesai</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="<?= base_url('pemesanan/list?filter=6'); ?>">Pemesanan Selesai</a>
+                      </li>
+                    </ul> 
                 </div>
             </div>
             <?php if ($this->session->flashdata('success')): ?>

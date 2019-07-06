@@ -14,7 +14,7 @@ class C_pembayaran extends CI_Model {
     public function insert()
     {
     	$post = $this->input->post();
-    	$this->id_pembayaran = base_convert(microtime(FALSE), 8, 16);
+    	$this->id_pembayaran = time();
     	$this->pemesanan_id = $post["pemesanan_id"];
     	$this->total_tagihan = $post["total_tagihan"];
 

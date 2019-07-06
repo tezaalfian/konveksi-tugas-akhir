@@ -117,7 +117,6 @@ class Home extends CI_Controller {
     $this->session->set_userdata("kode_pemesanan", $post["pemesanan_id"]);
 
     $data_pengiriman = array(
-        "id_pengiriman" => base_convert(microtime(FALSE), 8, 16),
         "label" => $post["label"],
         "nama_penerima" => $post["nama_penerima"],
         "no_hp" => $post["no_hp"],

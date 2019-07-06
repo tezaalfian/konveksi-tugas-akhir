@@ -23,14 +23,13 @@
                             </div>
                             <div class="card-body">
                                 <div class="row">
-                    <div class="col-sm-6 col-lg-3">
+                    <div class="col-md-6 col-lg-4">
                         <div class="card text-white bg-flat-color-1">
                             <div class="card-body">
                                 <div class="card-left pt-1 float-left">
                                     <h3 class="count_order"></h3>
                                     <p class="text-light mt-1 m-0">Pemesanan</p>
-                                </div><!-- /.card-left -->
-
+                                </div>
                                 <div class="card-right float-right text-right">
                                     <i class="icon fade-5 icon-lg pe-7s-cart"></i>
                                 </div><!-- /.card-right -->
@@ -40,48 +39,34 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="card bg-flat-color-2">
-                          <div class="card-body d-flex justify-content-center">
-                            <h3 class="mb-0 fw-r">
-                                <span class="count-order"></span>
-                            </h3>
-                          </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="card text-white bg-flat-color-3">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card text-white bg-flat-color-2">
                             <div class="card-body">
                                 <div class="card-left pt-1 float-left">
-                                    <h3 class="count-user">
-                                        
-                                    </h3>
-                                    <p class="text-light mt-1 m-0">Total Pelanggan</p>
-                                </div><!-- /.card-left -->
-
+                                    <h3 class="count-pay"></h3>
+                                    <p class="text-light mt-1 m-0">Uang Masuk</p>
+                                </div>
                                 <div class="card-right float-right text-right">
-                                    <i class="icon fade-5 icon-lg pe-7s-users"></i>
+                                    <i class="icon fade-5 icon-lg far fa-money-bill-alt"></i>
                                 </div><!-- /.card-right -->
 
                             </div>
 
                         </div>
                     </div>
-                    <!--/.col-->
 
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="card text-white bg-flat-color-2">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card text-white bg-flat-color-3">
                             <div class="card-body">
                                 <div class="card-left pt-1 float-left">
-                                    <h3 class="mb-0 fw-r">
-                                        <span class="count">1490</span>
+                                    <h3 class="count-user">
+                                        
                                     </h3>
-                                    <p class="text-light mt-1 m-0">New users</p>
+                                    <p class="text-light mt-1 m-0">Pelanggan</p>
                                 </div><!-- /.card-left -->
 
                                 <div class="card-right float-right text-right">
-                                    <div id="flotLine1" class="flotLine1" style="padding: 0px; position: relative;"><canvas class="flot-base" width="76" height="75" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 76px; height: 75px;"></canvas><canvas class="flot-overlay" width="76" height="75" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 76px; height: 75px;"></canvas></div>
+                                    <i class="icon fade-5 icon-lg pe-7s-users"></i>
                                 </div><!-- /.card-right -->
 
                             </div>

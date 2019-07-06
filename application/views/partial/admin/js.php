@@ -31,19 +31,48 @@
 
         function order() {
             url_get = "<?= base_url('notifikasi/allOrder/') ?>";
-            var foto = "<?= base_url('upload/pemesanan/');?>";
             $.ajax({
                 url: url_get,
                 type: 'get',
                 dataType: 'json',
                 success: function(result) {
                     order = result;
-                    console.log('ok');
                     $('.count_order').html(order.length);
                 }
             });
         }
 
+        function user() {
+            url_get = "<?= base_url('notifikasi/allUser/') ?>";
+            $.ajax({
+                url: url_get,
+                type: 'get',
+                dataType: 'json',
+                success: function(result) {
+                    $('.count-user').html(result.length);
+                }
+            });
+        }
+
+        function payment() {
+            url_get = "<?= base_url('notifikasi/allPay/') ?>";
+            $.ajax({
+                url: url_get,
+                type: 'get',
+                dataType: 'json',
+                success: function(result) {
+                    total = 0;
+                    for (var i = result.length - 1; i >= 0; i--) {
+                        total += parseInt(result[i].nominal);
+                    }
+                    $('.count-pay').html("Rp. "+Number(total));
+                }
+            });
+        }
+
+        user();
+        payment();
         order();
-        setInterval(order, 1000);
+        setInterval(order, 2000);
+        setInterval(payment, 2000);
     </script>

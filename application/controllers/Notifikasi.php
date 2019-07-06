@@ -9,6 +9,7 @@ class Notifikasi extends CI_Controller {
         $this->load->model("m_pelanggan");
         $this->load->model("m_pemesanan");
         $this->load->model("m_pengiriman");
+        $this->load->model("m_pembayaran");
         $this->load->model("c_pemesanan");
         $this->load->model("c_pembayaran");
         $this->load->model("c_kategori");
@@ -41,6 +42,14 @@ class Notifikasi extends CI_Controller {
 
     public function allOrder() {
       echo json_encode($this->m_pemesanan->getAll());
+    }
+
+    public function allPay() {
+      echo json_encode($this->m_pembayaran->getAll());
+    }
+
+    public function allUser() {
+      echo json_encode($this->m_pelanggan->getAll());
     }
 
     public function keranjang() {
