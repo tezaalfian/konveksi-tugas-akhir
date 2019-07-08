@@ -20,7 +20,8 @@
 	              	<div class="col-md-4">
 	              		<a href="https://goo.gl/maps/E9F5uUKhQ3mjD6DV8" target="_blank"><h5 class="text-white"><b>Peta Lokasi</b></h5></a>
 	              		<li style="list-style-type:none;" class="text-white">
-	              			Go to Link!
+	              			<!-- <i class="fa fa-thumbs-up"></i>&nbsp;Lihat Detail -->
+	              			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.8427600005466!2d106.91127871414467!3d-6.9093974695399405!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6849d597ac023b%3A0x89444c6550db9086!2sJl.+Merbabu+No.30%2C+Karang+Tengah%2C+Gn.+Puyuh%2C+Sukabumi%2C+Jawa+Barat+43121!5e0!3m2!1sid!2sid!4v1562544346576!5m2!1sid!2sid" width="100%" height="200" frameborder="0" style="border:0" allowfullscreen></iframe>
 	              		</li>
 	              		<!-- <iframe src="https://goo.gl/maps/E9F5uUKhQ3mjD6DV8" width="100%" height="150px"></iframe> -->
 	              	</div>

@@ -30,7 +30,11 @@
           width: calc(100% - 90px);
           line-height: 60px; /* Vertically center the text there */
         }
-
+      .image-roll {
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+      }
         .hidden {
           display: none!important;
           visibility:hidden;

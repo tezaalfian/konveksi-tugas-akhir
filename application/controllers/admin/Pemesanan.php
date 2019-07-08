@@ -25,6 +25,7 @@ class Pemesanan extends CI_Controller {
 
 	public function index() {
 		$data["pemesanan"] = $this->m_pemesanan->getAll();
+		// var_dump(base_url('upload/administrator/'.$this->session->userdata('foto')));die;
 		$this->load->view('admin/pemesanan/tabel-data', $data);
 	}
 

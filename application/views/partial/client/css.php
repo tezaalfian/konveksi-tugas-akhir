@@ -23,7 +23,12 @@
       body {
         height: 100%;
       }
-
+      .image-roll {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 100px;
+      }
       #page-content {
         flex: 1 0 auto;
       }
