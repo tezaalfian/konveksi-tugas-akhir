@@ -42,6 +42,9 @@ class Home extends CI_Controller {
 
 	public function pemesanan($id)
 	{
+    if ($this->session->userdata('role_id') == 1) {
+        show_404();
+      }
 		$user = $this->session->userdata('username');
 		$data["user"] = $this->m_pelanggan->getByName($user);
 		$data["produk"] = $this->m_produk->getAllProduk();
@@ -77,7 +80,9 @@ class Home extends CI_Controller {
     if (!$data["pemesanan"]){
       $this->session->set_flashdata('kosong', '<div class="alert alert-danger" role="alert">Keranjang anda kosong!</div>');
     }
-        
+    if ($this->session->userdata('role_id') == 1) {
+        show_404();
+    }
     $data["medsos"] = $this->db->get('medsos')->result();
     $this->load->view("client/home/chart", $data);
   }
@@ -102,13 +107,18 @@ class Home extends CI_Controller {
 
       //   $data['pemesanan'] = $this->m_pemesanan->getAllById($kode);
         // if (!$data["pemesanan"]) show_404();
-        
+     if ($this->session->userdata('role_id') == 1) {
+        show_404();
+      }   
     $data["medsos"] = $this->db->get('medsos')->result();
     $this->load->view("client/home/tambah-pengiriman", $data);
 	}
 
   public function pengiriman($id)
   {
+    if ($this->session->userdata('role_id') == 1) {
+        show_404();
+      }
     $post = $this->input->post();
     $provinsi = json_decode($this->rajaongkir->oneprovinsi($post["provinsi"]));
     $kota = json_decode($this->rajaongkir->onekota($post["kota"]));

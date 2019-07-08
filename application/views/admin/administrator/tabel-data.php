@@ -54,9 +54,9 @@
                                                     <button type="button" class="btn btn-danger btn-sm hapus" data-toggle="modal" data-target="#mediumModal" data="<?= $admin->id_user ?>">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
-                                                    <a href="<?= base_url('admin/administrator/edit/'.$admin->id_user); ?>" class="btn btn-success btn-sm">
+                                                    <!-- <a href="<?= base_url('admin/administrator/edit/'.$admin->id_user); ?>" class="btn btn-success btn-sm">
                                                         <i class="fa fa-edit"></i>
-                                                    </a>
+                                                    </a> -->
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>

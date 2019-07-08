@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 02 Jul 2019 pada 04.39
+-- Waktu pembuatan: 08 Jul 2019 pada 04.50
 -- Versi server: 10.1.31-MariaDB
 -- Versi PHP: 7.2.3
 
@@ -42,11 +42,10 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id`, `nama`, `deskripsi`, `harga`, `foto`, `weight`) VALUES
-('49efx8cjowg0', 'Jaket', 'Jaket hoodie bahan grade a', 150000, 'default.jpg', 250),
-('5cef887e6afb6', 'Baju', 'Baju kaos lengan panjang', 50000, '5cef887e6afb6.jpg', 200),
-('5cf02b0c56df4', 'Jaket', 'Jaket organisasi bahan licin', 125000, '5cf02b0c56df4.jpg', 300),
-('5gddcodqz74s', 'Kemeja', 'Kemeja tangan panjang', 80000, 'default.jpg', 200),
-('604v12pqvv4s', 'Celana', 'Celana panjang bahan licin', 90000, 'default.jpg', 120);
+('49efx8cjowg0', 'Jas Almamater', 'Jas almamater bahan drill', 150000, '49efx8cjowg0.jpg', 250),
+('5cef887e6afb6', 'Baju', 'Baju kaos lengan pendek desain sablon bebas', 50000, '5cef887e6afb6.jpg', 150),
+('5cf02b0c56df4', 'Jaket', 'Jaket hoodie bahan grade A tanpa resleting', 125000, '5cf02b0c56df4.jpeg', 300),
+('604v12pqvv4s', 'Kemeja', 'Kemeja lengan panjang bahan katun', 110000, '604v12pqvv4s.jpg', 120);
 
 -- --------------------------------------------------------
 
@@ -62,6 +61,28 @@ CREATE TABLE `jumlah` (
   `XL` int(11) DEFAULT NULL,
   `XXL` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `medsos`
+--
+
+CREATE TABLE `medsos` (
+  `id` int(11) NOT NULL,
+  `kode` varchar(155) NOT NULL,
+  `link` varchar(500) NOT NULL,
+  `nama` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `medsos`
+--
+
+INSERT INTO `medsos` (`id`, `kode`, `link`, `nama`) VALUES
+(2, 'fa fa-facebook', 'https://www.facebook.com/', 'Co Tailor'),
+(3, 'fa fa-envelope', '', 'admin@cotailor.com'),
+(4, 'fa fa-whatsapp', 'https://wa.me/6289631902592', '089631902592');
 
 -- --------------------------------------------------------
 
@@ -84,9 +105,7 @@ CREATE TABLE `pembayaran` (
 --
 
 INSERT INTO `pembayaran` (`id_pembayaran`, `bukti_pembayaran`, `pemesanan_id`, `nominal`, `tanggal_pembayaran`, `total_tagihan`, `ket`) VALUES
-(10, '22100371bd3.png', '22100371bd3', 210000, '2019-06-27', 210000, 11),
-(364, '91000dc7c60d.jpg', '91000dc7c60d', 210000, '2019-06-28', 210000, 11),
-(2147483647, 'c39e01b8cba3.png', 'c39e01b8cba3', 260000, '2019-06-26', 260000, 11);
+(1562435009, 'd175c03728e7.jpg', 'd175c03728e7', 160000, '2019-07-06', 160000, 11);
 
 -- --------------------------------------------------------
 
@@ -134,9 +153,7 @@ CREATE TABLE `pemesanan` (
 --
 
 INSERT INTO `pemesanan` (`id_pemesanan`, `barang_id`, `jumlah_id`, `desain`, `catatan`, `tanggal_pemesanan`, `pelanggan_id`, `tagihan`, `jumlah`, `s`, `m`, `l`, `xl`, `xxl`, `xxxl`, `berat`, `status_id`) VALUES
-('22100371bd3', '5cef887e6afb6', NULL, '22100371bd3.JPG', 'iyaaaaaaaaaaa', '2019-06-26', '67d840370e87', 200000, 4, 4, 0, 0, 0, 0, 0, 800, 6),
-('91000dc7c60d', '5cef887e6afb6', NULL, '91000dc7c60d.jpg', 'ytaaaaaa', '2019-06-28', '67d840370e87', 200000, 4, 4, 0, 0, 0, 0, 0, 800, 6),
-('c39e01b8cba3', '5cef887e6afb6', NULL, 'c39e01b8cba3.png', 'nyokkkkkkkk', '2019-06-25', '67d840370e87', 250000, 5, 5, 0, 0, 0, 0, 0, 1000, 6);
+('d175c03728e7', '5cef887e6afb6', NULL, 'd175c03728e7.jpg', '', '2019-07-06', '2e80372132', 150000, 3, 3, 0, 0, 0, 0, 0, 600, 6);
 
 -- --------------------------------------------------------
 
@@ -167,9 +184,7 @@ CREATE TABLE `pengiriman` (
 --
 
 INSERT INTO `pengiriman` (`Id_pengiriman`, `no_resi`, `label`, `nama_penerima`, `no_hp`, `provinsi`, `kota`, `alamat`, `tanggal_dikirim`, `tanggal_diterima`, `pemesanan_id`, `ongkir`, `kode_pos`, `kurir`, `keterangan`) VALUES
-(327, '123243434356', 'Rumah', 'ikbalmaulana', '083165478965', 'Jawa Barat', 'Bandung Barat', 'Jl. Merbabu', '2019-06-27', '2019-06-27', 'c39e01b8cba3', 10000, 43215, 'jne - OKE 3-5 Hari', 7),
-(328, '12345678', 'Rumah', 'Ahmad', '089493029401', 'Jawa Barat', 'Bogor', 'Jl. merbabu', '2019-07-01', '2019-07-01', '22100371bd3', 10000, 24153, 'jne - OKE 2-3 Hari', 7),
-(548400, '123243434356', 'Rumah', 'ikbalmaulana', '083165478965', 'Jawa Barat', 'Bekasi', 'Jl. merbabu', '2019-06-28', '2019-06-28', '91000dc7c60d', 10000, 43215, 'jne - OKE 2-3 Hari', 7);
+(548402, '12345678', 'rumah', 'alfian', '089631902592', 'Jawa Barat', 'Tasikmalaya', 'Jl. Merbabu, RT.02/10, Kec. Gunung Puyuh, Sukabumi', '2019-07-06', '2019-07-06', 'd175c03728e7', 10000, 43234, 'jne - OKE 5-7 Hari', 7);
 
 -- --------------------------------------------------------
 
@@ -228,6 +243,26 @@ CREATE TABLE `saldo` (
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `slide`
+--
+
+CREATE TABLE `slide` (
+  `id` varchar(155) NOT NULL,
+  `slide` varchar(155) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `slide`
+--
+
+INSERT INTO `slide` (`id`, `slide`) VALUES
+('1562432793', '1562432793.png'),
+('1562432823', '1562432823.png'),
+('1562434191', '1562434191.jpg');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `status`
 --
 
@@ -279,9 +314,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `username`, `nama`, `password`, `email`, `no_hp`, `alamat`, `jenis_kelamin`, `foto`, `is_active`, `date_created`, `role_id`) VALUES
-('1815e00dc71f55', 'alfian', 'Admin', '$2y$10$Av7OMlq87C.zFFBFgJnXSeyK/e5KWmYeeqA0imHgV2UvrNgq0NZm2', NULL, NULL, NULL, NULL, 'default.jpg', 1, 1561617525, 1),
-('259a01b8f1f4', 'tezaalfian', NULL, '$2y$10$LvtAzMTtUe7b5.Rjma8Foe8K8QdkygiPtSyTakXUD47GWG5TWISse', 'tezaalfian2916@gmail.com', NULL, NULL, NULL, 'default.jpg', 1, 1561707684, 2),
-('67d840370e87', 'ikbalmaulana', NULL, '$2y$10$jyk0WdySK30itWJ96aSKZeAA925oesTeALxHTlCT3CRm0daUjQQLC', 'fany@gmail.com', '083165478965', 'Jl. Merbabu, RT.02/10, Kel. Karang Tengah', 'Laki-Laki', '67d840370e87.jpg', 1, 1560997207, 2),
+('2e80372132', 'alfian', NULL, '$2y$10$tsjBUTyBKJaBf2wtvevtb.ZghpjyXYFEKusXsNkSMqTP5A.zsjPbm', 'tezaalfian2916@gmail.com', '089631902592', 'Jl. Merbabu, RT.02/10, Kec. Gunung Puyuh, Sukabumi', 'Laki-Laki', 'default.jpg', 1, 1562049628, 2),
 ('c85e01b889b2', 'admin', 'Teza Alfian', '$2y$10$ymQW1ZNkJHEj8vwyBSFvketh0QB9xXtt1vif8xRzwY3bhsA/SCiRm', 'user@gmail.com', NULL, NULL, NULL, 'c85e01b889b2.jpg', 1, 1561084662, 1);
 
 -- --------------------------------------------------------
@@ -298,6 +331,13 @@ CREATE TABLE `user_token` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Dumping data untuk tabel `user_token`
+--
+
+INSERT INTO `user_token` (`id`, `email`, `token`, `date_created`) VALUES
+(5, 'dokumentasi@tahfizhdulido.com', '7U46/G9Qpy5QU390wGk4z/PX0wfcEDKBomWTxZR3Xgs=', 1562052058);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -312,6 +352,12 @@ ALTER TABLE `barang`
 --
 ALTER TABLE `jumlah`
   ADD PRIMARY KEY (`id_jumlah`);
+
+--
+-- Indeks untuk tabel `medsos`
+--
+ALTER TABLE `medsos`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeks untuk tabel `pembayaran`
@@ -362,6 +408,12 @@ ALTER TABLE `saldo`
   ADD KEY `fk_pembayaran_idx` (`pembayaran_id`);
 
 --
+-- Indeks untuk tabel `slide`
+--
+ALTER TABLE `slide`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `status`
 --
 ALTER TABLE `status`
@@ -391,16 +443,22 @@ ALTER TABLE `jumlah`
   MODIFY `id_jumlah` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT untuk tabel `medsos`
+--
+ALTER TABLE `medsos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2147483647;
+  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1562444176;
 
 --
 -- AUTO_INCREMENT untuk tabel `pengiriman`
 --
 ALTER TABLE `pengiriman`
-  MODIFY `Id_pengiriman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=548401;
+  MODIFY `Id_pengiriman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=548404;
 
 --
 -- AUTO_INCREMENT untuk tabel `role`
@@ -418,7 +476,7 @@ ALTER TABLE `status`
 -- AUTO_INCREMENT untuk tabel `user_token`
 --
 ALTER TABLE `user_token`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

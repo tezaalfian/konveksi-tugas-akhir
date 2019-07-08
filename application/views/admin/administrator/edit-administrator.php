@@ -26,11 +26,11 @@
                     	<?php endif; ?>
                         <div class="card">
                             <div class="card-header">
-                                <a href="<?= base_url('admin/administrator'); ?>">
+                                <!-- <a href="<?= base_url('admin/administrator'); ?>">
 	                                <button type="button" class="btn btn-info">
 	                                    <i class="fa fa-angle-left"></i>&nbsp; Kembali
 	                                </button>
-                            	</a>
+                            	</a> -->
                             </div>
                             <div class="card-body">
 		                        <form action="<?= base_url('admin/administrator/edit/').$administrator->id_user;?>" method="post" enctype="multipart/form-data">

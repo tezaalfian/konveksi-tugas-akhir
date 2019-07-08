@@ -101,7 +101,12 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $user['username']; ?></span>
-                <img class="img-profile rounded-circle" src="<?=base_url('upload/pelanggan/'.$user['foto']);?>">
+                <?php if($this->session->userdata('role_id') == 1) {
+                  $url = base_url('upload/administrator/'.$this->session->userdata('foto'));
+                }else{
+                  $url = base_url('upload/pelanggan/'.$user['foto']);
+                } ?>
+                <img class="img-profile image-roll rounded-circle" src="<?= $url;?>">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

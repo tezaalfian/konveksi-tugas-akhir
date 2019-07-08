@@ -17,11 +17,9 @@
                         </a>
 
                         <div class="user-menu dropdown-menu">
-                            <!-- <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
+                            <a class="nav-link" href="<?= base_url('admin/administrator/edit/'.$this->session->userdata('id_user')); ?>"><i class="fa fa- user"></i>Edit Profil</a>
 
-                            <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span class="count">13</span></a>
-
-                            <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a> -->
+                            <a class="nav-link" href="<?= base_url('admin/administrator/sandi'); ?>"><i class="fa fa -cog"></i>Ubah Sandi</a>
 
                             <a class="nav-link" href="<?= base_url('logout'); ?>"><i class="fa fa-power -off"></i>Logout</a>
                         </div>
