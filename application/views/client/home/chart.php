@@ -22,7 +22,7 @@
             </div>
                 		<?= $this->session->flashdata('kosong'); ?>
             <?php foreach ($pemesanan as $order): ?>
-            <div class="card">
+            <div class="card mb-3">
                 <div class="card-body">
                     <div class="row d-flex align-items-center">
                         <div class="col-lg-2 col-md-4">

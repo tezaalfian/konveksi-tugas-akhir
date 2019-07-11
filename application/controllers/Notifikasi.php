@@ -41,7 +41,11 @@ class Notifikasi extends CI_Controller {
     }
 
     public function allOrder() {
-      echo json_encode($this->m_pemesanan->getAll());
+      echo json_encode($this->db->get('pemesanan')->result());
+    }
+
+    public function allOrder2() {
+      echo json_encode($this->m_pemesanan->allOrder());
     }
 
     public function allPay() {

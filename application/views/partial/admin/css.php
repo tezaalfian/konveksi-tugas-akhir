@@ -30,9 +30,26 @@
           width: calc(100% - 90px);
           line-height: 60px; /* Vertically center the text there */
         }
+
+        .count-order2 {
+          border-radius: 50%;
+          color: #fff;
+          font-size: 11px;
+          height: 15px;
+          width: 15px;
+          line-height: 15px;
+          right: 0;
+          top: 12px;
+          position: absolute;
+        }
       .image-roll {
         width: 40px;
         height: 40px;
+        object-fit: cover;
+      }
+      .image-roll2 {
+        width: 50px;
+        height: 50px;
         object-fit: cover;
       }
         .hidden {

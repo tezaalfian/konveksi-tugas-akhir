@@ -9,6 +9,17 @@
             <div class="top-right bg-dark">
                 <div class="header-menu bg-dark">
                     <div class="header-left">
+                        <div class="dropdown for-notification">
+                            <div class="dropdown for-message">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="message" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-shopping-cart"></i>
+                                    <span class="count-order2 bg-primary"></span>
+                                </button>
+                                <div class="dropdown-menu" id="order" aria-labelledby="message">
+                                    
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="user-area dropdown float-right">

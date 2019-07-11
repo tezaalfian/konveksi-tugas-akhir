@@ -41,6 +41,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     return $query->result();
                 }
 
+                public function allOrder()
+                {
+                    $this->db->select("pemesanan.*, barang.*, user.id_user, user.username, user.no_hp, user.alamat, status.status");
+                    $this->db->from("pemesanan");
+                    $this->db->join("barang", "barang.id = pemesanan.barang_id");
+                    $this->db->join("user", "user.id_user = pemesanan.pelanggan_id");
+                    $this->db->join("status", "status.id = pemesanan.status_id");
+                    $this->db->where_not_in('pemesanan.status_id', 6);
+                    $this->db->order_by("pemesanan.tanggal_pemesanan", "desc");
+                    $query = $this->db->get();
+                    return $query->result();
+                }
+
                 public function getLast()
                 {
                     $this->db->select("pemesanan.*, barang.*, user.id_user, user.username, user.no_hp, user.alamat, status.status");

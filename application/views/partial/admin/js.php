@@ -28,8 +28,8 @@
             let fileName = $(this).val().split('\\').pop();
             $(this).next('.custom-file-label').addClass("selected").html(fileName);
         });
-
-        function order() {
+        var order = "";
+        function count_order() {
             url_get = "<?= base_url('notifikasi/allOrder/') ?>";
             $.ajax({
                 url: url_get,
@@ -37,7 +37,44 @@
                 dataType: 'json',
                 success: function(result) {
                     order = result;
-                    $('.count_order').html(order.length);
+                    $('.count_order').html(result.length);
+                }
+            });
+        }
+
+        function notifOrder() {
+            var string = "";
+            url_get = "<?= base_url('notifikasi/allOrder2/') ?>";
+            var foto = "<?= base_url('upload/pemesanan/') ?>";
+            $.ajax({
+                url: url_get,
+                type: 'get',
+                dataType: 'json',
+                success: function(result) {
+                    // console.log(result);
+                    order = result;
+                    $('.count-order2').html(result.length);
+                    if (order.length > 0) {
+                        for (var i = order.length - 1; i >= 0; i--) {
+                            string += "<a class='dropdown-item media' href=''>"+
+                            "<span class=''></span>"+
+                                        "<div class='message media-body'>"+
+                                            "<span class='name float-left text-info'><b>"+order[i].tanggal_pemesanan+"</b></span>"+
+                                            "<span class='time float-right text-danger'>"+"Status : "+order[i].status+"</span>"+
+                                            "<p class='text-dark'>"+order[i].nama+" | "+order[i].deskripsi+"</p>"+
+                                        "</div></a>";
+                        }
+                        $('.count_order').html(result.length);
+                        $('#order').html(string);
+                    }else {
+                        string += "<a class='dropdown-item d-flex align-items-center' href='<?=base_url('pemesanan/list') ?>'>"+
+                                "<div class='mr-3'>"+
+                                "</div>"+
+                                "<div>"+
+                                    "<span class='font-weight-bold'>Anda belum memiliki pesanan</span>"+
+                                "</div>"+
+                            "</a>";
+                    }
                 }
             });
         }
@@ -70,9 +107,12 @@
             });
         }
 
+        notifOrder();
         user();
         payment();
-        order();
-        setInterval(order, 2000);
+        count_order();
+        setInterval(count_order, 2000);
+        setInterval(notifOrder, 2000);
+        setInterval(user, 2000);
         setInterval(payment, 2000);
     </script>

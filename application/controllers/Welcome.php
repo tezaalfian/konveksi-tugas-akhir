@@ -14,9 +14,7 @@ class Welcome extends CI_Controller {
 		$user = $this->session->userdata('username');
 
 		if ($user) {
-			$data["user"] = $this->m_pelanggan->getByName($user);
-			$data["produk"] = $this->m_produk->getAllProduk();
-			$this->load->view('client/home/after_login', $data);
+			redirect('home');
 		} else {
 			$data["produk"] = $this->m_produk->getAllProduk();
 			$data["slide"] = $this->db->get('slide')->result();

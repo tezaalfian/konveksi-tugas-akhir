@@ -18,7 +18,8 @@ class Dashboard extends CI_Controller {
 
 	public function index() 
 	{
-		$this->load->view('admin/dashboard');
+		$data['pemesanan'] = $this->db->get('pemesanan')->result();
+		$this->load->view('admin/dashboard', $data);
 	}
 
 	public function order()
