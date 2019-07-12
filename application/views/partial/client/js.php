@@ -11,13 +11,13 @@
         });
 
         $(document).ready(function(){
-          $(".alur").mouseover(function(){
-            $(".i-order").addClass("bg-dark text-white");
-            $(".i-order").removeClass("text-dark");
+          $(".i-order").mouseover(function(){
+            $(this).addClass("text-dark");
+            $(this).removeClass("bg-dark text-white");
           });
-          $(".alur").mouseout(function(){
-            $(".i-order").removeClass("bg-dark text-white");
-            $(".i-order").addClass("text-dark");
+          $(".i-order").mouseout(function(){
+            $(this).addClass("bg-dark text-white");
+            $(this).removeClass("text-dark");
           });
         });
 

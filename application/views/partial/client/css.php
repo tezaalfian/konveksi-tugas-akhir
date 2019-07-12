@@ -13,6 +13,8 @@
 
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
+    
+
     <style type="text/css">
       body {
         margin: 0;
@@ -22,6 +24,9 @@
        html,
       body {
         height: 100%;
+      }
+      .i-order {
+        border-radius: 5px;
       }
       .image-roll {
         width: 50px;

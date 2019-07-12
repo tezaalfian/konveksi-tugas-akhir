@@ -7,7 +7,7 @@
     <?php $this->load->view('partial/client/header2');?>
 
         <div class="container">
-            <div class="row mb-5">
+            <div class="row mb-3">
                 <div class="col-md-12">
                     <?php $this->load->view('partial/client/slide');?>
                         <h3 class="text-dark">Produk Kami</h3><hr>
