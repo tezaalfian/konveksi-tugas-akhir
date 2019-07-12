@@ -78,7 +78,7 @@ class Home extends CI_Controller {
 
     $data['pemesanan'] = $this->c_kategori->keranjang($kode);
     if (!$data["pemesanan"]){
-      $this->session->set_flashdata('kosong', '<div class="alert alert-danger" role="alert">Keranjang anda kosong!</div>');
+      $this->session->set_flashdata('kosong', '<div class="row"><div class="col"></div><div class="col-md-3 text-center"><img src="'. base_url('vendor_assets/img/kosong.png') .'" width="100%"><h5><b>Keranjang kosong!</b></h5></div><div class="col"></div></div>');
     }
     if ($this->session->userdata('role_id') == 1) {
         show_404();

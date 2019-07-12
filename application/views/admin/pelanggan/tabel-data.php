@@ -28,6 +28,7 @@
                                 </a>
                             </div>
                             <div class="card-body">
+                                <?= $this->session->flashdata('message'); ?>
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>

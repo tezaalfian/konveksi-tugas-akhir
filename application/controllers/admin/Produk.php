@@ -60,7 +60,13 @@ class Produk extends CI_Controller {
 	{
 		if (!isset($id)) show_404();
         
-        if ($this->m_produk->delete($id)) {
+        $produk = $this->db->get_where('pemesanan', ['barang_id' => $id])->row();
+        
+        if ($produk) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Tidak bisa menghapus produk, karena produk sudah masuk pemesanan!</div>');
+            redirect(site_url('admin/produk'));
+        }else {
+            $this->m_produk->delete($id);
             redirect(site_url('admin/produk'));
         }
 	}

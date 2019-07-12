@@ -10,6 +10,17 @@
             $(this).next('.custom-file-label').addClass("selected").html(fileName);
         });
 
+        $(document).ready(function(){
+          $(".alur").mouseover(function(){
+            $(".i-order").addClass("bg-dark text-white");
+            $(".i-order").removeClass("text-dark");
+          });
+          $(".alur").mouseout(function(){
+            $(".i-order").removeClass("bg-dark text-white");
+            $(".i-order").addClass("text-dark");
+          });
+        });
+
         $(document).ready(function() {
           $('#bootstrap-data-table-export').DataTable();
         });

@@ -46,9 +46,15 @@ class Pelanggan extends CI_Controller {
 	public function delete($id=null)
 	{
 		if (!isset($id)) show_404();
+
+		$pelanggan = $this->db->get_where('pemesanan', ['pelanggan_id' => $id])->row();
         
-        if ($this->m_pelanggan->delete($id)) {
-            redirect(site_url('admin/pelanggan'));
+        if ($pelanggan) {
+        	$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Tidak bisa dihapus, karena pelanggan sudah melakukan transaksi!</div>');
+        	redirect(site_url('admin/pelanggan'));
+        }else {
+        	$this->m_pelanggan->delete($id);
+        	redirect(site_url('admin/pelanggan'));
         }
 	}
 

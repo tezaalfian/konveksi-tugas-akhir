@@ -99,7 +99,7 @@ class Pemesanan extends CI_Controller {
             $data['pemesanan'] = $this->c_kategori->allOrder($kode);
         }
         if (!$data["pemesanan"]){
-            $this->session->set_flashdata('empty', '<div class="alert alert-danger" role="alert">Pesanan anda belum ada!</div>');
+            $this->session->set_flashdata('empty', '<div class="row"><div class="col"></div><div class="col-md-3 text-center"><img src="'. base_url('vendor_assets/img/kosong.png') .'" width="100%"><h5><b>Belum ada pesanan!</b></h5></div><div class="col"></div></div>');
         }
         $data["medsos"] = $this->db->get('medsos')->result();
         $this->load->view("client/home/list-pemesanan", $data);
