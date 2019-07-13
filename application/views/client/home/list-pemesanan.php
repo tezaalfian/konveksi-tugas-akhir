@@ -152,6 +152,8 @@
                                     <div class="col-md-6 border-left">
                                         <small>Tanggal Pemesanan</small>
                                         <h6 class="text-info"><b class="tanggal_pemesanan"></b></h6>
+                                        <small>Perkiraan Selesai</small>
+                                        <h6 class="text-info"><b class="perkiraan"></b></h6>
                                     </div>
                                 </div>
                                 <div class="row py-2 my-2 border-bottom">
@@ -228,6 +230,34 @@
             $('.delete').attr("href", "<?= base_url('pemesanan/delete3/'); ?>"+link)
         });
 
+        function makeTimer(tanggal) {
+
+        //      var endTime = new Date("29 April 2018 9:56:00 GMT+01:00");  
+            var endTime = new Date(tanggal);          
+                endTime = (Date.parse(endTime) / 1000);
+
+                var now = new Date();
+                now = (Date.parse(now) / 1000);
+
+                var timeLeft = endTime - now;
+
+                var days = Math.floor(timeLeft / 86400); 
+                var hours = Math.floor((timeLeft - (days * 86400)) / 3600);
+                var minutes = Math.floor((timeLeft - (days * 86400) - (hours * 3600 )) / 60);
+                var seconds = Math.floor((timeLeft - (days * 86400) - (hours * 3600) - (minutes * 60)));
+      
+                if (hours < "10") { hours = "0" + hours; }
+                if (minutes < "10") { minutes = "0" + minutes; }
+                if (seconds < "10") { seconds = "0" + seconds; }
+
+                // $("#days").html(days + "<span>Days</span>");
+                // $("#hours").html(hours + "<span>Hours</span>");
+                // $("#minutes").html(minutes + "<span>Minutes</span>");
+                // $("#seconds").html(seconds + "<span>Seconds</span>");
+
+                $('.perkiraan').html(days + " hari "+hours+" jam "+minutes+" menit "+seconds+" detik");
+        }
+
     	$(document).ready(function(){
             $(".detail").on("click", function(){
                 var url_get = "<?= base_url('pemesanan/detail/') ?>";
@@ -246,6 +276,8 @@
                             "<h6 class='text-info'><b>"+order[0].status+"</b></h6>"
                         );
                         $('.tanggal_pemesanan').html(order[0].tanggal_pemesanan);
+                        $('.perkiraan').html(order[0].perkiraan);
+                        // setInterval(function() { makeTimer(order[0].perkiraan); }, 1000);
                         $('.produk').html(
                             "<img class='rounded mr-3' id='cover' src='<?= base_url('upload/pemesanan/')?>"+order[0].desain+"'>"+
                             "<div class='d-flex flex-column'>"+

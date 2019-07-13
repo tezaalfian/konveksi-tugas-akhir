@@ -31,9 +31,29 @@ class Pembayaran extends CI_Controller {
         $post = $this->input->post();
 		$this->form_validation->set_rules('nominal', 'Jumlah', 'required|numeric');
 
+		$tanggal = "";
+		$pesanan = $this->db->get_where('pemesanan', ['id_pemesanan' => $id])->row_array();
+		if ($pesanan['jumlah'] <= 10) {
+			$startDate = time();
+			$tanggal = date('Y/m/d', strtotime('+5 day', $startDate));
+		}elseif ($pesanan['jumlah'] <= 20) {
+			$startDate = time();
+			$tanggal = date('Y/m/d', strtotime('+10 day', $startDate));
+		}elseif ($pesanan['jumlah'] <= 30) {
+			$startDate = time();
+			$tanggal = date('Y/m/d', strtotime('+15 day', $startDate));
+		}elseif ($pesanan['jumlah'] <= 40) {
+			$startDate = time();
+			$tanggal = date('Y/m/d', strtotime('+20 day', $startDate));
+		}elseif ($pesanan['jumlah'] > 40) {
+			$startDate = time();
+			$tanggal = date('Y/m/d', strtotime('+30 day', $startDate));
+		}
+
 	    if ($this->form_validation->run() == true) {
 		    $status = array(
-		        "status_id" => 4
+		        "status_id" => 4,
+		        "perkiraan" => $tanggal
 		    );
 
 		    $data_bayar = array(
